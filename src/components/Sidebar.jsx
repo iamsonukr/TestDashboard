@@ -11,7 +11,7 @@ import {
   FiBarChart,
   FiChevronDown,
   FiChevronUp,
-} from "react-icons/fi"; // Import necessary icons
+} from "react-icons/fi";
 
 const navLinks = [
   { id: 1, name: "Dashboard", path: "/", icon: <FiMenu /> },
@@ -38,7 +38,7 @@ const navLinks = [
     isDropdown: true,
     subLinks: [
       { id: 1, name: "Orders", path: "/reports/orders" },
-      { id: 2, name: "Customers", path: "/reports/customers" },
+      { id: 2, name: "Customers", path: "/reports/customerreports" },
     ],
   },
   {
@@ -75,7 +75,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-[60vw] h-full bg-[#3E81BF] text-white md:block transition-transform transform ${
+        className={`fixed top-0 left-0 w-[60vw] h-full bg-gradient-to-r from-[#2C52A0] to-[#4189C4] text-white md:block transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:static md:w-64 z-50`}
       >

@@ -9,7 +9,7 @@ const Header = ({ toggleSidebar }) => {
   };
 
   return (
-    <header className="bg-gray-800 text-white p-4 flex items-center justify-end md:justify-end relative w-full">
+    <header className="bg-gradient-to-r from-[#4189C4] to-[#2C52A0] text-white p-4 flex items-center justify-end md:justify-end relative w-full">
       {/* Menu icon (for mobile) */}
       <div className="absolute left-4 top-4 md:hidden">
         <button className="text-white p-2 rounded" onClick={toggleSidebar}>
