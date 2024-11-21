@@ -1,14 +1,36 @@
+import React from "react";
 import Layout from "../../../layouts/Layout";
+import DynamicTable from "../../../components/DynamicTable";
+const FaqManagement = () => {
+  const faqColumns = [
+    { key: "Content Type", label: "Content Type" },
+    // { key: "lang", label: "Language" },
+    { key: "status", label: "Status" },
+    { key: "createdAt", label: "Created At" },
+  ];
 
-const ContentPages = () => {
+  const faqData = [
+    {
+      id: 1,
+      "Content Type": "FAQ",
+      status: "Active",
+      createdAt: "22 May 2024",
+    },
+    {
+      id: 2,
+    "Content Type": "Privacy Policy",
+      status: "Inactive",
+      createdAt: "15 May 2024",
+    },
+  ];
+
   return (
     <Layout>
-      <div className="bg-white shadow p-4 rounded-lg">
-        <h1 className="text-2xl font-bold">ContentPages</h1>
-        <p className="mt-4">Welcome to the ContentPages page!</p>
+      <div className="p-6 bg-gray-100 min-h-screen">
+        <DynamicTable title="Content Pages" initialData={faqData} columns={faqColumns} />
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default ContentPages
+export default FaqManagement;
