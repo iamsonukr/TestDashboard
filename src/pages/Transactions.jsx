@@ -1,14 +1,43 @@
+import React from "react";
 import Layout from "../layouts/Layout";
+import DynamicTable from "../components/DynamicTable";
+const  Transactions = () => {
+  const faqColumns = [
+    { key: "Time", label: "Time" },
+    { key: "Type", label: "Type" },
+    { key: "Description", label: "Description" },
+    { key: "Amount", label: "Amount" },
+    { key: "Earning", label: "Earning" },
+  ];
 
-const Transactions = () => {
+  const faqData = [
+    {
+      id: 1,
+      Time: "22 May 2024",
+      Type: "Roy",
+      Description: "No Reason",
+      Amount: "300",
+      Earning: "$200",
+    },
+    {
+      id: 2,
+      Time: "22 May 2024",
+      Type: "Roy",
+      Description: "No Reason",
+      Amount: "300",
+      Earning: "$200",
+    },
+  ];
+
   return (
     <Layout>
-      <div className="bg-white shadow p-4 rounded-lg">
-        <h1 className="text-2xl font-bold">Transaction</h1>
-        <p className="mt-4">Welcome to the Transaction page!</p>
+      <div className="p-6 bg-gray-100 min-h-screen">
+        <DynamicTable title="Transations" initialData={faqData} columns={faqColumns} />
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Transactions
+export default  Transactions;
+
+

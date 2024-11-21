@@ -64,7 +64,19 @@ const DynamicTable = ({
 
   return (
     <div className="bg-white shadow-md rounded-md p-4">
+        <div className="flex justify-between">
       <h2 className="text-2xl font-semibold mb-4">{title}</h2>
+      <div className="  ">
+        <button
+          onClick={() => {
+            setIsFormOpen(true);
+            setIsEditing(false);
+          }}
+          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
+        >
+          + Add New Entry
+        </button>
+      </div></div>
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <label htmlFor="filter" className="text-sm font-medium">
@@ -128,20 +140,10 @@ const DynamicTable = ({
           ))}
         </tbody>
       </table>
-      <div className="flex justify-end mt-4">
-        <button
-          onClick={() => {
-            setIsFormOpen(true);
-            setIsEditing(false);
-          }}
-          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
-        >
-          + Add New Entry
-        </button>
-      </div>
+     
       {isFormOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-md shadow-md w-96">
+          <div className="bg-white p-6 rounded-md shadow-md w-96">   
             <h3 className="text-xl font-semibold mb-4">
               {isEditing ? "Edit Entry" : "Add New Entry"}
             </h3>

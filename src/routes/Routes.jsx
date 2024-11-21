@@ -16,6 +16,7 @@ import EMailTemplates from "../pages/subpages/configuration/EMailTemplates";
 import DocumentTemplates from "../pages/subpages/configuration/DocumentTemplates";
 import ContentPages from "../pages/subpages/configuration/ContentPages";
 import ErrorPage from "../pages/ErrorPage";
+import Booking from "../pages/Booking";
 
 const AppRoutes = () => {
   return (
@@ -25,6 +26,7 @@ const AppRoutes = () => {
       <Route path="/serviceprovider" element={<ServiceProvider />} />
       <Route path="/dispute" element={<Dispute />} />
       <Route path="/transactions" element={<Transactions />} />
+      <Route path="/Bookings" element={<Booking />} />
       {/* Subroutes */}
       <Route path="/catalogue/services" element={<Services />} />
       <Route path="/catalogue/addon" element={<AddOn />} />

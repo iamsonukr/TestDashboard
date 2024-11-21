@@ -1,14 +1,43 @@
+import React from "react";
 import Layout from "../layouts/Layout";
+import DynamicTable from "../components/DynamicTable";
+const  Dispute = () => {
+  const faqColumns = [
+    { key: "order ID", label: "Order ID" },
+    { key: "Dispute with", label: "Dispute With" },
+    { key: "Reason", label: "Reason" },
+    { key: "status", label: "Status" },
+    { key: "createdAt", label: "Created At" },
+  ];
 
-const Dispute = () => {
+  const faqData = [
+    {
+      id: 1,
+      "order ID": "02254",
+      "Dispute with": "Roy",
+      Reason: "No Reason",
+      status: "Active",
+      createdAt: "22 May 2024",
+    },
+    {
+      id: 2,
+      "order ID": "054554",
+      "Dispute with": "Doy",
+      Reason: "No Reason",
+      status: "Inactive",
+      createdAt: "15 May 2024",
+    },
+  ];
+
   return (
     <Layout>
-      <div className="bg-white shadow p-4 rounded-lg">
-        <h1 className="text-2xl font-bold">Dispute</h1>
-        <p className="mt-4">Manage your Dispute here.</p>
+      <div className="p-6 bg-gray-100 min-h-screen">
+        <DynamicTable title="Dispute" initialData={faqData} columns={faqColumns} />
       </div>
     </Layout>
   );
 };
 
-export default Dispute;
+export default  Dispute;
+
+
