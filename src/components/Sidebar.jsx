@@ -28,7 +28,7 @@ const navLinks = [
     subLinks: [
       { id: 1, name: "Services", path: "/catalogue/services" },
       { id: 2, name: "Categories", path: "/catalogue/categories" },
-      { id: 2, name: "Add On", path: "/catalogue/addon" },
+      { id: 3, name: "Add On", path: "/catalogue/addon" },
     ],
   },
   {
@@ -59,8 +59,8 @@ const navLinks = [
     subLinks: [
       { id: 1, name: "FAQ", path: "/configuration/faq" },
       { id: 2, name: "Content Pages", path: "/configuration/contentpages" },
-      { id: 2, name: "E-Mail Templates", path: "/configuration/emialtemplates" },
-      { id: 2, name: "Document Templates", path: "/configuration/documenttemplates" },
+      { id: 3, name: "E-Mail Templates", path: "/configuration/emailtemplates" },
+      { id: 4, name: "Document Templates", path: "/configuration/documenttemplates" },
     ],
   },
 ];
@@ -69,7 +69,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const toggleDropdown = (id) => {
-    setOpenDropdown((prev) => (prev === id ? null : id)); // Toggle dropdown
+    setOpenDropdown((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -79,11 +79,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:static md:w-64 z-50`}
       >
+        {/* Logo Section */}
         <div className="hidden md:flex md:justify-center md:items-center">
           <img src="/logo.png" alt="Logo" className="w-16 h-16 p-4" />
         </div>
 
-        <nav className="mt-4 space-y-2">
+        {/* Navigation Section */}
+        <nav className="mt-4 space-y-2 h-[calc(100%-4rem)] overflow-y-auto scrollbar-hide">
           {navLinks.map((link) => (
             <div key={link.id}>
               {link.isDropdown ? (
