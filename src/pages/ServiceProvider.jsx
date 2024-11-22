@@ -1,22 +1,8 @@
-// import Layout from "../layouts/Layout";
-
-// const ServiceProvider = () => {
-//   return (
-//     <Layout>
-//       <div className="bg-white shadow p-4 rounded-lg">
-//         <h1 className="text-2xl font-bold">ServiceProvider</h1>
-//         <p className="mt-4">View and update your ServiceProvider details here.</p>
-//       </div>
-//     </Layout>
-//   );
-// };
-
-// export default ServiceProvider;
-
 import React from "react";
 import Layout from "../layouts/Layout";
 import DynamicTable from "../components/DynamicTable";
-const  ServiceProvider = () => {
+
+const ServiceProvider = () => {
   const faqColumns = [
     { key: "name", label: "Name" },
     { key: "email", label: "Email" },
@@ -38,23 +24,37 @@ const  ServiceProvider = () => {
     },
     {
       id: 2,
-      name: "pawan Yadav",
+      name: "Pawan Yadav",
       "mobile no": "123451565590",
-      email: "asd@gmail.com",
+      email: "pawan@gmail.com",
       status: "Inactive",
       balance: "$200",
       createdAt: "15 May 2024",
     },
   ];
 
+  const pageConfig = {
+    select: true, // Enable row selection
+
+    importExport: true, // Enables Import/Export buttons
+    statusOptions: ["Active", "Inactive"], // Status filter options
+    actions: {
+      view: true, // Enables "View" action
+    },
+  };
+
   return (
     <Layout>
       <div className="p-6 bg-gray-100 min-h-screen">
-        <DynamicTable title="Service Provider" initialData={faqData} columns={faqColumns} />
+        <DynamicTable
+          title="Service Providers"
+          initialData={faqData}
+          columns={faqColumns}
+          pageConfig={pageConfig}
+        />
       </div>
     </Layout>
   );
 };
 
-export default  ServiceProvider;
-
+export default ServiceProvider;

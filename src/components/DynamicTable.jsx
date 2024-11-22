@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { FiEdit } from "react-icons/fi";
+import { MdPreview } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+
 
 const DynamicTable = ({
   title,
@@ -15,6 +19,7 @@ const DynamicTable = ({
   const [newEntry, setNewEntry] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [viewItem, setViewItem] = useState(null); // New state to manage the view modal
 
   const handleSearch = (e) => setSearchQuery(e.target.value);
 
@@ -96,6 +101,11 @@ const DynamicTable = ({
     const matchesFilter = filter === "All" || item.status === filter;
     return matchesSearchQuery && matchesFilter;
   });
+
+  const handleView = (id) => {
+    const itemToView = data.find((item) => item.id === id);
+    setViewItem(itemToView); // Set the item to be viewed
+  };
 
   return (
     <div className="bg-white shadow-md rounded-md p-4">
@@ -204,23 +214,26 @@ const DynamicTable = ({
                 <td className="border px-4 py-2 flex items-center gap-2">
                   {pageConfig?.actions?.view && (
                     <button
-                      className="text-blue-600 hover:text-blue-800"
-                      onClick={() => console.log("View", item)}
+                      className="text-green-500 hover:text-green-900"
+                      onClick={() => handleView(item.id)}
                     >
-                      View
+                      <MdPreview />
+
                     </button>
                   )}
                   <button
                     onClick={() => handleEdit(item.id)}
-                    className="text-blue-600 hover:text-blue-800"
+                    className="text-yellow-500 hover:text-yellow-900"
                   >
-                    Edit
+                    <FiEdit />
+
                   </button>
                   <button
                     onClick={() => handleDelete(item.id)}
-                    className="text-red-600 hover:text-red-800"
+                    className="text-red-500 hover:text-red-900"
                   >
-                    Delete
+                    <MdDelete />
+
                   </button>
                 </td>
               </tr>
@@ -258,6 +271,30 @@ const DynamicTable = ({
                 className="bg-green-600 text-white px-4 py-2 rounded-md"
               >
                 Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {viewItem && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
+            <h3 className="text-xl font-semibold mb-4">View Entry</h3>
+            <div>
+              {columns.map((col) => (
+                <div key={col.key} className="mb-4">
+                  <label className="block text-sm font-medium">{col.label}</label>
+                  <p>{viewItem[col.key]}</p>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setViewItem(null)}
+                className="bg-gray-300 px-4 py-2 rounded-md"
+              >
+                Close
               </button>
             </div>
           </div>
