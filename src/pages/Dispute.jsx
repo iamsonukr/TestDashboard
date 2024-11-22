@@ -1,7 +1,8 @@
 import React from "react";
 import Layout from "../layouts/Layout";
 import DynamicTable from "../components/DynamicTable";
-const  Dispute = () => {
+
+const Dispute = () => {
   const faqColumns = [
     { key: "order ID", label: "Order ID" },
     { key: "Dispute with", label: "Dispute With" },
@@ -9,7 +10,6 @@ const  Dispute = () => {
       
     { key: "createdAt", label: "Created At" },
   ];
-
   const faqData = [
     {
       id: 1,
@@ -29,15 +29,33 @@ const  Dispute = () => {
     },
   ];
 
+  const pageConfig = {
+    select: true, 
+
+    importExport: false, 
+    statusOptions: ["Active", "Inactive"], 
+    actions: {
+      view: true,
+      edit: false,
+      delete: false,
+    },
+  };
+
   return (
     <Layout>
       <div className="p-6 bg-gray-100 min-h-screen">
-        <DynamicTable title="Dispute" initialData={faqData} columns={faqColumns} />
+        <DynamicTable
+          title="Disputes"
+          initialData={faqData}
+          columns={faqColumns}
+          pageConfig={pageConfig}
+        />
       </div>
     </Layout>
   );
 };
 
-export default  Dispute;
+export default Dispute;
+
 
 

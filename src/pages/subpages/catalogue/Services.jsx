@@ -25,11 +25,22 @@ const  Services = () => {
       createdAt: "22 May 2024",
     },
   ];
+  const pageConfig = {
+    select: true, 
+
+    importExport: true, 
+    statusOptions: ["Active", "Inactive"], 
+    actions: {
+      view: false,
+      delete: true,
+      edit: true, 
+    },
+  };
 
   return (
     <Layout>
       <div className="p-6 bg-gray-100 min-h-screen">
-        <DynamicTable title="Services" initialData={faqData} columns={faqColumns} />
+        <DynamicTable title="Services" initialData={faqData} columns={faqColumns} pageConfig={pageConfig}/>
       </div>
     </Layout>
   );

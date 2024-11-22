@@ -28,11 +28,20 @@ const  Transactions = () => {
       Earning: "$200",
     },
   ];
+  const pageConfig = {
+    select: true, 
 
+    importExport: true, 
+    statusOptions: ["Active", "Inactive"], 
+    actions: {
+      view: true,
+      delete: true, 
+    },
+  };
   return (
     <Layout>
       <div className="p-6 bg-gray-100 min-h-screen">
-        <DynamicTable title="Transations" initialData={faqData} columns={faqColumns} />
+        <DynamicTable title="Transations" initialData={faqData} columns={faqColumns}  pageConfig={pageConfig} />
       </div>
     </Layout>
   );
