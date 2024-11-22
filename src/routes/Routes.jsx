@@ -17,11 +17,19 @@ import DocumentTemplates from "../pages/subpages/configuration/DocumentTemplates
 import ContentPages from "../pages/subpages/configuration/ContentPages";
 import ErrorPage from "../pages/ErrorPage";
 import Booking from "../pages/Booking";
+import Login from "../pages/auth/Login"
+import SignUp from "../pages/auth/SignUp"
+import Profile from "../pages/Profile";
+import Password from "../pages/EditPassword";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/password" element={<Password />} />
       <Route path="/customers" element={<Customers />} />
       <Route path="/serviceprovider" element={<ServiceProvider />} />
       <Route path="/dispute" element={<Dispute />} />
