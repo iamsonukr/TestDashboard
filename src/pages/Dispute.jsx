@@ -6,7 +6,7 @@ const  Dispute = () => {
     { key: "order ID", label: "Order ID" },
     { key: "Dispute with", label: "Dispute With" },
     { key: "Reason", label: "Reason" },
-    { key: "status", label: "Status" },
+      
     { key: "createdAt", label: "Created At" },
   ];
 
