@@ -8,6 +8,7 @@ const ServiceProvider = () => {
     { key: "email", label: "Email" },
     { key: "mobile no", label: "Mobile no" },
     { key: "status", label: "Status" },
+    { key: "online status", label: "Online Status" },
     { key: "balance", label: "Balance" },
     { key: "createdAt", label: "Created At" },
   ];
@@ -19,6 +20,7 @@ const ServiceProvider = () => {
       "mobile no": "1234567890",
       email: "asd@gmail.com",
       status: "Active",
+      "online status": "Online",
       balance: "$100",
       createdAt: "22 May 2024",
     },
@@ -28,18 +30,20 @@ const ServiceProvider = () => {
       "mobile no": "123451565590",
       email: "pawan@gmail.com",
       status: "Inactive",
+      "online status": "Offline",
       balance: "$200",
       createdAt: "15 May 2024",
     },
   ];
 
   const pageConfig = {
-    select: true, // Enable row selection
+    select: true, 
 
-    importExport: true, // Enables Import/Export buttons
-    statusOptions: ["Active", "Inactive"], // Status filter options
+    importExport: true, 
+    statusOptions: ["Active", "Inactive"], 
     actions: {
-      view: true, // Enables "View" action
+      view: true,
+      delete: true, 
     },
   };
 

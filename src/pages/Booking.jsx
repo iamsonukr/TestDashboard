@@ -29,10 +29,21 @@ const  Booking = () => {
     },
   ];
 
+  const pageConfig = {
+    select: true, 
+
+    importExport: false, 
+    statusOptions: ["Active", "Inactive"], 
+    actions: {
+      view: true,
+      delete: true, 
+    },
+  };
+
   return (
     <Layout>
       <div className="p-6 bg-gray-100 min-h-screen">
-        <DynamicTable title="Bookings" initialData={faqData} columns={faqColumns} />
+        <DynamicTable title="Bookings" initialData={faqData} columns={faqColumns} pageConfig={pageConfig} />
       </div>
     </Layout>
   );

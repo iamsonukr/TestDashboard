@@ -211,6 +211,7 @@ const DynamicTable = ({
                     )}
                   </td>
                 ))}
+                
                 <td className="border px-4 py-2 flex items-center gap-2">
                   {pageConfig?.actions?.view && (
                     <button
@@ -221,6 +222,7 @@ const DynamicTable = ({
 
                     </button>
                   )}
+                  {pageConfig?.actions?.edit && (
                   <button
                     onClick={() => handleEdit(item.id)}
                     className="text-yellow-500 hover:text-yellow-900"
@@ -228,6 +230,8 @@ const DynamicTable = ({
                     <FiEdit />
 
                   </button>
+                  )}
+                  {pageConfig?.actions?.delete && (
                   <button
                     onClick={() => handleDelete(item.id)}
                     className="text-red-500 hover:text-red-900"
@@ -235,6 +239,7 @@ const DynamicTable = ({
                     <MdDelete />
 
                   </button>
+                  )}
                 </td>
               </tr>
             ))}
@@ -320,6 +325,8 @@ DynamicTable.propTypes = {
     statusOptions: PropTypes.arrayOf(PropTypes.string),
     actions: PropTypes.shape({
       view: PropTypes.bool,
+      edit: PropTypes.bool,
+      delete: PropTypes.bool,
       pending: PropTypes.bool,
       debitBalance: PropTypes.bool,
     }),

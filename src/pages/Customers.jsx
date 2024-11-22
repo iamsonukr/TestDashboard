@@ -31,13 +31,14 @@ const Customers = () => {
   ];
 
   const pageConfig = {
-    select: true, // Enable row selection
-    importExport: true, // Enable import/export functionality
-    statusOptions: ["Active", "Inactive"], // Status filter options
+    select: true, 
+    importExport: true, 
+    statusOptions: ["Active", "Inactive"], 
     actions: {
-      view: false, // Enable "View" action button
-      pending: false, // Disable "Pending" action button
-      debitBalance: false, // Disable "Debit Balance" action button
+      view: true, 
+      delete: true,
+      pending: false, 
+      debitBalance: false, 
     },
   };
 
@@ -48,7 +49,7 @@ const Customers = () => {
           title="Customers"
           initialData={faqData}
           columns={faqColumns}
-          pageConfig={pageConfig} // Pass the page-specific configuration
+          pageConfig={pageConfig} 
         />
       </div>
     </Layout>
