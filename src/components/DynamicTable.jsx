@@ -6,6 +6,7 @@ const DynamicTable = ({
   initialData,
   columns,
   onAddNew = () => {},
+  pageConfig,
 }) => {
   const [data, setData] = useState(initialData);
   const [searchQuery, setSearchQuery] = useState("");
@@ -53,6 +54,40 @@ const DynamicTable = ({
     setIsFormOpen(true);
   };
 
+  const handleImport = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target.result;
+        const rows = content.split("\n").map((row) => row.split(","));
+        const headers = rows[0];
+        const importedData = rows.slice(1).map((row) =>
+          row.reduce((acc, value, idx) => {
+            acc[headers[idx]] = value.trim();
+            return acc;
+          }, {})
+        );
+        setData((prevData) => [...prevData, ...importedData]);
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  const handleExport = () => {
+    const headers = columns.map((col) => col.key).join(",");
+    const rows = data.map((row) =>
+      columns.map((col) => row[col.key] || "").join(",")
+    );
+    const csvContent = [headers, ...rows].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${title}_data.csv`;
+    link.click();
+  };
+
   const filteredData = data.filter((item) => {
     const matchesSearchQuery = Object.values(item)
       .join(" ")
@@ -64,20 +99,40 @@ const DynamicTable = ({
 
   return (
     <div className="bg-white shadow-md rounded-md p-4">
-        <div className="flex justify-between">
-      <h2 className="text-2xl font-semibold mb-4">{title}</h2>
-      <div className="  ">
-        <button
-          onClick={() => {
-            setIsFormOpen(true);
-            setIsEditing(false);
-          }}
-          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
-        >
-          + Add New Entry
-        </button>
-      </div></div>
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex justify-between flex-wrap gap-4 mb-4">
+        <h2 className="text-2xl font-semibold">{title}</h2>
+        <div className="flex gap-2">
+          {pageConfig?.importExport && (
+            <>
+              <button
+                onClick={handleExport}
+                className="bg-blue-600 text-[1.5vw] text-white px-4 py-2 rounded-md hover:bg-blue-700"
+              >
+                Export
+              </button>
+              <label className="bg-blue-600 text-[1.5vw] text-white px-4 py-2 rounded-md hover:bg-blue-700 cursor-pointer">
+                Import
+                <input
+                  type="file"
+                  accept=".csv"
+                  onChange={handleImport}
+                  className="hidden"
+                />
+              </label>
+            </>
+          )}
+          <button
+            onClick={() => {
+              setIsFormOpen(true);
+              setIsEditing(false);
+            }}
+            className="bg-green-600 text-[1.5vw] text-white px-4 py-2 rounded-md hover:bg-green-700"
+          >
+            + Add New Entry
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-wrap items-center justify-between mb-4 gap-4">
         <div className="flex items-center gap-2">
           <label htmlFor="filter" className="text-sm font-medium">
             Filter By:
@@ -89,11 +144,14 @@ const DynamicTable = ({
             className="border border-gray-300 rounded-md px-2 py-1"
           >
             <option value="All">All</option>
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
+            {pageConfig?.statusOptions?.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
-        <div className="flex items-center border border-gray-300 rounded-md">
+        <div className="flex items-center border border-gray-300 rounded-md flex-grow">
           <input
             type="text"
             value={searchQuery}
@@ -103,47 +161,76 @@ const DynamicTable = ({
           />
         </div>
       </div>
-      <table className="w-full table-auto border-collapse border border-gray-300">
-        <thead>
-          <tr className="bg-gray-100 text-left text-sm font-medium text-gray-600">
-            {columns.map((col) => (
-              <th key={col.key} className="border px-4 py-2">
-                {col.label}
-              </th>
-            ))}
-            <th className="border px-4 py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item) => (
-            <tr key={item.id} className="text-sm text-gray-700">
+      <div className="overflow-x-auto">
+        <table className="w-full table-auto border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-gray-100 text-left text-sm font-medium text-gray-600">
+              {pageConfig?.select && (
+                <th className="border px-4 py-2">Select</th>
+              )}
               {columns.map((col) => (
-                <td key={col.key} className="border px-4 py-2">
-                  {item[col.key]}
-                </td>
+                <th key={col.key} className="border px-4 py-2">
+                  {col.label}
+                </th>
               ))}
-              <td className="border px-4 py-2 flex items-center gap-2">
-                <button
-                  onClick={() => handleEdit(item.id)}
-                  className="text-blue-600 hover:text-blue-800"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(item.id)}
-                  className="text-red-600 hover:text-red-800"
-                >
-                  Delete
-                </button>
-              </td>
+              <th className="border px-4 py-2">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-     
+          </thead>
+          <tbody>
+            {filteredData.map((item) => (
+              <tr key={item.id} className="text-sm text-gray-700">
+                {pageConfig?.select && (
+                  <td className="border px-4 py-2">
+                    <input type="checkbox" />
+                  </td>
+                )}
+                {columns.map((col) => (
+                  <td key={col.key} className="border px-4 py-2">
+                    {col.key === "status" ? (
+                      <span
+                        className={`px-2 py-1 text-xs rounded-full ${
+                          item.status === "Active"
+                            ? "bg-green-200 text-green-800"
+                            : "bg-orange-200 text-orange-800"
+                        }`}
+                      >
+                        {item[col.key]}
+                      </span>
+                    ) : (
+                      item[col.key]
+                    )}
+                  </td>
+                ))}
+                <td className="border px-4 py-2 flex items-center gap-2">
+                  {pageConfig?.actions?.view && (
+                    <button
+                      className="text-blue-600 hover:text-blue-800"
+                      onClick={() => console.log("View", item)}
+                    >
+                      View
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleEdit(item.id)}
+                    className="text-blue-600 hover:text-blue-800"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className="text-red-600 hover:text-red-800"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       {isFormOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-md shadow-md w-96">   
+          <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
             <h3 className="text-xl font-semibold mb-4">
               {isEditing ? "Edit Entry" : "Add New Entry"}
             </h3>
@@ -155,7 +242,7 @@ const DynamicTable = ({
                   name={col.key}
                   value={newEntry[col.key] || ""}
                   onChange={handleFormChange}
-                  className="w-full px-3 py-2 border border-black rounded-md"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
                 />
               </div>
             ))}
@@ -179,6 +266,7 @@ const DynamicTable = ({
     </div>
   );
 };
+
 DynamicTable.propTypes = {
   title: PropTypes.string.isRequired,
   initialData: PropTypes.array.isRequired,
@@ -189,6 +277,16 @@ DynamicTable.propTypes = {
     })
   ).isRequired,
   onAddNew: PropTypes.func,
+  pageConfig: PropTypes.shape({
+    select: PropTypes.bool,
+    importExport: PropTypes.bool,
+    statusOptions: PropTypes.arrayOf(PropTypes.string),
+    actions: PropTypes.shape({
+      view: PropTypes.bool,
+      pending: PropTypes.bool,
+      debitBalance: PropTypes.bool,
+    }),
+  }).isRequired,
 };
 
 export default DynamicTable;
