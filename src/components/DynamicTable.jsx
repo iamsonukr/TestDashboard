@@ -17,8 +17,8 @@ const DynamicTable = ({
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [newEntry, setNewEntry] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const [isViewing, setIsViewing] = useState(false);
   const [editingId, setEditingId] = useState(null);
-  const [viewItem, setViewItem] = useState(null); // New state to manage the view modal
 
   const handleSearch = (e) => setSearchQuery(e.target.value);
 
@@ -101,10 +101,20 @@ const DynamicTable = ({
     return matchesSearchQuery && matchesFilter;
   });
 
+  // const handleView = (id) => {
+  //   // Implement the view functionality here
+  //   console.log(`Viewing item with id: ${id}`);
+  // };
+
   const handleView = (id) => {
     const itemToView = data.find((item) => item.id === id);
-    setViewItem(itemToView); // Set the item to be viewed
+    setNewEntry(itemToView);
+    setIsViewing(true);
+    setEditingId(id);
+    setIsFormOpen(true);
   };
+
+
 
   return (
     <div className="bg-white shadow-md rounded-md p-4">
@@ -210,7 +220,6 @@ const DynamicTable = ({
                     )}
                   </td>
                 ))}
-                
                 <td className="border px-4 py-2 flex items-center gap-2">
                   {pageConfig?.actions?.view && (
                     <button
@@ -218,26 +227,23 @@ const DynamicTable = ({
                       onClick={() => handleView(item.id)}
                     >
                       <MdPreview />
-
                     </button>
                   )}
                   {pageConfig?.actions?.edit && (
-                  <button
-                    onClick={() => handleEdit(item.id)}
-                    className="text-yellow-500 hover:text-yellow-900"
-                  >
-                    <FiEdit />
-
-                  </button>
+                    <button
+                      className="text-blue-500 hover:text-blue-900"
+                      onClick={() => handleEdit(item.id)}
+                    >
+                      <FiEdit />
+                    </button>
                   )}
                   {pageConfig?.actions?.delete && (
-                  <button
-                    onClick={() => handleDelete(item.id)}
-                    className="text-red-500 hover:text-red-900"
-                  >
-                    <MdDelete />
-
-                  </button>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="text-red-500 hover:text-red-900"
+                    >
+                      <MdDelete />
+                    </button>
                   )}
                 </td>
               </tr>
@@ -263,6 +269,22 @@ const DynamicTable = ({
                 />
               </div>
             ))}
+            {/* Upload Photo */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Profile Photo</label>
+              <input
+                type="file"
+                name="profilePhoto"
+                accept="image/*"
+                onChange={(e) =>
+                  setNewEntry((prev) => ({
+                    ...prev,
+                    profilePhoto: e.target.files[0],
+                  }))
+                }
+                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              />
+            </div>
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setIsFormOpen(false)}
@@ -280,56 +302,17 @@ const DynamicTable = ({
           </div>
         </div>
       )}
-
-      {viewItem && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
-            <h3 className="text-xl font-semibold mb-4">View Entry</h3>
-            <div>
-              {columns.map((col) => (
-                <div key={col.key} className="mb-4">
-                  <label className="block text-sm font-medium">{col.label}</label>
-                  <p>{viewItem[col.key]}</p>
-                </div>
-              ))}
-            </div>
-            <div className="flex justify-end gap-2">
-              <button
-                onClick={() => setViewItem(null)}
-                className="bg-gray-300 px-4 py-2 rounded-md"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
+export default DynamicTable;
+
 DynamicTable.propTypes = {
   title: PropTypes.string.isRequired,
   initialData: PropTypes.array.isRequired,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  columns: PropTypes.array.isRequired,
   onAddNew: PropTypes.func,
-  pageConfig: PropTypes.shape({
-    select: PropTypes.bool,
-    importExport: PropTypes.bool,
-    statusOptions: PropTypes.arrayOf(PropTypes.string),
-    actions: PropTypes.shape({
-      view: PropTypes.bool,
-      edit: PropTypes.bool,
-      delete: PropTypes.bool,
-      pending: PropTypes.bool,
-      debitBalance: PropTypes.bool,
-    }),
-  }).isRequired,
+  pageConfig: PropTypes.object,
 };
 
-export default DynamicTable;
