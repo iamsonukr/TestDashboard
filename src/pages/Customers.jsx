@@ -39,6 +39,7 @@ const Customers = () => {
       delete: true,
       pending: false, 
       debitBalance: false, 
+      edit: true,
     },
   };
 
