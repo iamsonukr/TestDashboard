@@ -14,21 +14,21 @@ import {
 } from "react-icons/fi";
 
 const navLinks = [
-  { id: 1, name: "Dashboard", path: "/", icon: <FiMenu /> },
-  { id: 2, name: "Customers", path: "/customers", icon: <FiUsers /> },
-  { id: 3, name: "Service Provider", path: "/serviceprovider", icon: <FiTool /> },
-  { id: 4, name: "Dispute", path: "/dispute", icon: <FiFileText /> },
-  { id: 5, name: "Transactions", path: "/transactions", icon: <FiCreditCard /> },
-  { id: 6, name: "Bookings", path: "/bookings", icon: <FiTag /> },
+  { id: 1, name: "Dashboard", path: "/dashboard", icon: <FiMenu /> },
+  { id: 2, name: "Customers", path: "/dashboard/customers", icon: <FiUsers /> },
+  { id: 3, name: "Service Provider", path: "/dashboard/serviceprovider", icon: <FiTool /> },
+  { id: 4, name: "Dispute", path: "/dashboard/dispute", icon: <FiFileText /> },
+  { id: 5, name: "Transactions", path: "/dashboard/transactions", icon: <FiCreditCard /> },
+  { id: 6, name: "Bookings", path: "/dashboard/bookings", icon: <FiTag /> },
   {
     id: 7,
     name: "Catalogue",
     icon: <FiSettings />,
     isDropdown: true,
     subLinks: [
-      { id: 1, name: "Services", path: "/catalogue/services" },
-      { id: 2, name: "Categories", path: "/catalogue/categories" },
-      { id: 3, name: "Add On", path: "/catalogue/addon" },
+      { id: 1, name: "Services", path: "/dashboard/catalogue/services" },
+      { id: 2, name: "Categories", path: "/dashboard/catalogue/categories" },
+      { id: 3, name: "Add On", path: "/dashboard/catalogue/addon" },
     ],
   },
   {
@@ -37,8 +37,8 @@ const navLinks = [
     icon: <FiBarChart />,
     isDropdown: true,
     subLinks: [
-      { id: 1, name: "Orders", path: "/reports/orders" },
-      { id: 2, name: "Customers", path: "/reports/customerreports" },
+      { id: 1, name: "Orders", path: "/dashboard/reports/orders" },
+      { id: 2, name: "Customers", path: "/dashboard/reports/customerreports" },
     ],
   },
   {
@@ -47,8 +47,8 @@ const navLinks = [
     icon: <FiSettings />,
     isDropdown: true,
     subLinks: [
-      { id: 1, name: "Sub Admin", path: "/system-access/subadmin" },
-      { id: 2, name: "Role", path: "/system-access/role" },
+      { id: 1, name: "Sub Admin", path: "/dashboard/system-access/subadmin" },
+      { id: 2, name: "Role", path: "/dashboard/system-access/role" },
     ],
   },
   {
@@ -57,10 +57,10 @@ const navLinks = [
     icon: <FiSettings />,
     isDropdown: true,
     subLinks: [
-      { id: 1, name: "FAQ", path: "/configuration/faq" },
-      { id: 2, name: "Content Pages", path: "/configuration/contentpages" },
-      { id: 3, name: "E-Mail Templates", path: "/configuration/emailtemplates" },
-      { id: 4, name: "Document Templates", path: "/configuration/documenttemplates" },
+      { id: 1, name: "FAQ", path: "/dashboard/configuration/faq" },
+      { id: 2, name: "Content Pages", path: "/dashboard/configuration/contentpages" },
+      { id: 3, name: "E-Mail Templates", path: "/dashboard/configuration/emailtemplates" },
+      { id: 4, name: "Document Templates", path: "/dashboard/configuration/documenttemplates" },
     ],
   },
 ];
