@@ -14,7 +14,7 @@ const Login = () => {
       const response = await fakeLoginAPI(formData);
       if (response.status === 200) {
         toast.success("Login successful!"); 
-        navigate("/"); 
+        navigate("/dashboard"); 
       }
     } catch (error) {
       toast.error("Login failed. Please check your credentials.");
