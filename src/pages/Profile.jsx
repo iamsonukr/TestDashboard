@@ -12,7 +12,7 @@ const Profile = () => {
         phone: "",
         email: "",
         avatar: "",
-        code: "", // Store phone extension here
+        code: "",
     });
     const [avatarPreview, setAvatarPreview] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,7 +72,6 @@ const Profile = () => {
                 <h1 className="text-2xl font-bold mb-4">Edit Profile</h1>
 
                 <form className="space-y-4">
-                    {/* Name and Phone (in the same row on larger screens) */}
                     <div className="flex flex-col sm:flex-row sm:space-x-4 w-full">
                         <div className="flex flex-col w-full">
                             <label htmlFor="name" className="font-semibold text-gray-700">Name</label>
@@ -130,13 +129,13 @@ const Profile = () => {
                             >
                                 {avatarPreview || formData.avatar ? (
                                     <img
-                                        src={avatarPreview || formData.avatar || "https://www.w3schools.com/w3images/avatar2.png"} // Fallback to a default avatar if no avatar is selected
+                                        src={avatarPreview || formData.avatar || "https://www.w3schools.com/w3images/avatar2.png"}
                                         alt="Avatar Preview"
                                         className="w-full h-full object-cover rounded-full"
                                     />
                                 ) : (
                                     <img
-                                        src="https://www.w3schools.com/w3images/avatar2.png" // Default avatar
+                                        src="https://www.w3schools.com/w3images/avatar2.png"
                                         alt="Current Avatar"
                                         className="w-full h-full object-cover rounded-full"
                                     />
