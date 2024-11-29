@@ -31,7 +31,8 @@ const  Services = () => {
   const pageConfig = {
     select: true, 
 
-     
+    Action: true,
+ 
     statusOptions: ["Active", "Inactive"], 
     actions: {
       view: false,

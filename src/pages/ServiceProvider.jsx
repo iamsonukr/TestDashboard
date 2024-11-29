@@ -38,6 +38,7 @@ const ServiceProvider = () => {
 
   const pageConfig = {
     select: true, 
+    Action: true,
 
     importExport: true, 
     statusOptions: ["Active", "Inactive"], 

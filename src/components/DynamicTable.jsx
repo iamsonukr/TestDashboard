@@ -8,7 +8,7 @@ const DynamicTable = ({
   title,
   initialData,
   columns,
-  onAddNew = () => {},
+  onAddNew = () => { },
   pageConfig,
 }) => {
   const [data, setData] = useState(initialData);
@@ -55,6 +55,12 @@ const DynamicTable = ({
     setNewEntry(itemToEdit);
     setIsEditing(true);
     setEditingId(id);
+    setIsFormOpen(true);
+  };
+   const handleView = (id) => {
+    const itemToView = data.find((item) => item.id === id);
+    setNewEntry(itemToView);
+    setIsViewing(true);
     setIsFormOpen(true);
   };
 
@@ -105,14 +111,15 @@ const DynamicTable = ({
   //   // Implement the view functionality here
   //   console.log(`Viewing item with id: ${id}`);
   // };
+ 
 
-  const handleView = (id) => {
-    const itemToView = data.find((item) => item.id === id);
-    setNewEntry(itemToView);
-    setIsViewing(true);
-    setEditingId(id);
-    setIsFormOpen(true);
-  };
+  // const handleView = (id) => {
+  //   const itemToView = data.find((item) => item.id === id);
+  //   setNewEntry(itemToView);
+  //   setIsViewing(true);
+  //   setEditingId(id);
+  //   setIsFormOpen(true);
+  // };
 
 
 
@@ -140,15 +147,19 @@ const DynamicTable = ({
               </label>
             </>
           )}
-          <button
-            onClick={() => {
-              setIsFormOpen(true);
-              setIsEditing(false);
-            }}
-            className="bg-green-600 text-[1.5vw] text-white px-4 py-2 rounded-md hover:bg-green-700"
-          >
-            + Add New Entry
-          </button>
+          {pageConfig?.AddnewEntry && (
+
+            <button
+              onClick={() => {
+                setIsFormOpen(true);
+                setIsEditing(false);
+              }}
+              className="bg-green-600 text-[1.5vw] text-white px-4 py-2 rounded-md hover:bg-green-700"
+            >
+              + Add New Entry
+            </button>
+          )}
+
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-between mb-4 gap-4">
@@ -192,7 +203,11 @@ const DynamicTable = ({
                   {col.label}
                 </th>
               ))}
-              <th className="border px-4 py-2">Actions</th>
+              {pageConfig?.Action && (
+
+                <th className="border px-4 py-2">Actions</th>
+              )}
+
             </tr>
           </thead>
           <tbody>
@@ -207,11 +222,10 @@ const DynamicTable = ({
                   <td key={col.key} className="border px-4 py-2">
                     {col.key === "status" ? (
                       <span
-                        className={`px-2 py-1 text-xs rounded-full ${
-                          item.status === "Active"
+                        className={`px-2 py-1 text-xs rounded-full ${item.status === "Active"
                             ? "bg-green-200 text-green-800"
                             : "bg-orange-200 text-orange-800"
-                        }`}
+                          }`}
                       >
                         {item[col.key]}
                       </span>

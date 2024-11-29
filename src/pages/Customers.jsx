@@ -33,6 +33,8 @@ const Customers = () => {
   const pageConfig = {
     select: true, 
     importExport: true, 
+    AddnewEntry: true,
+    Action: true,
     statusOptions: ["Active", "Inactive"], 
     actions: {
       view: true, 
