@@ -26,29 +26,29 @@ import Landing from "../pages/landing";
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/landing" element={<Landing />} />
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<Landing />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/password" element={<Password />} />
-      <Route path="/customers" element={<Customers />} />
-      <Route path="/serviceprovider" element={<ServiceProvider />} />
-      <Route path="/dispute" element={<Dispute />} />
-      <Route path="/transactions" element={<Transactions />} />
-      <Route path="/Bookings" element={<Booking />} />
+      <Route path="/dashboard/profile" element={<Profile />} />
+      <Route path="/dashboard/password" element={<Password />} />
+      <Route path="/dashboard/customers" element={<Customers />} />
+      <Route path="/dashboard/serviceprovider" element={<ServiceProvider />} />
+      <Route path="/dashboard/dispute" element={<Dispute />} />
+      <Route path="/dashboard/transactions" element={<Transactions />} />
+      <Route path="/dashboard/Bookings" element={<Booking />} />
       {/* Subroutes */}
-      <Route path="/catalogue/services" element={<Services />} />
-      <Route path="/catalogue/addon" element={<AddOn />} />
-      <Route path="/catalogue/categories" element={<Categories />} />
-      <Route path="/reports/orders" element={<Orders />} />
-      <Route path="/reports/customerreports" element={<CustomerReports />} />
-      <Route path="/system-access/subadmin" element={<SubAdmin />} />
-      <Route path="/system-access/role" element={<Role />} />
-      <Route path="/configuration/faq" element={<Faq />} />
-      <Route path="/configuration/emailtemplates" element={<EMailTemplates />} />
-      <Route path="/configuration/documenttemplates" element={<DocumentTemplates />} />
-      <Route path="/configuration/contentpages" element={<ContentPages />} />
+      <Route path="/dashboard/catalogue/services" element={<Services />} />
+      <Route path="/dashboard/catalogue/addon" element={<AddOn />} />
+      <Route path="/dashboard/catalogue/categories" element={<Categories />} />
+      <Route path="/dashboard/reports/orders" element={<Orders />} />
+      <Route path="/dashboard/reports/customerreports" element={<CustomerReports />} />
+      <Route path="/dashboard/system-access/subadmin" element={<SubAdmin />} />
+      <Route path="/dashboard/system-access/role" element={<Role />} />
+      <Route path="/dashboard/configuration/faq" element={<Faq />} />
+      <Route path="/dashboard/configuration/emailtemplates" element={<EMailTemplates />} />
+      <Route path="/dashboard/configuration/documenttemplates" element={<DocumentTemplates />} />
+      <Route path="/dashboard/configuration/contentpages" element={<ContentPages />} />
       {/* Error Route */}
       <Route path="*" element={<ErrorPage />} />
     </Routes>

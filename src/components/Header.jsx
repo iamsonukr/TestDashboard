@@ -13,9 +13,9 @@ const Header = ({ toggleSidebar }) => {
   // Handle the navigation based on selected option
   const handleNavigation = (action) => {
     if (action === "profile") {
-      navigate("/profile"); // Navigate to the profile page
+      navigate("/dashboard/profile"); // Navigate to the profile page
     } else if (action === "password") {
-      navigate("/password"); // Navigate to the password change page
+      navigate("/dashboard/password"); // Navigate to the password change page
     } else if (action === "logout") {
       localStorage.removeItem("authToken"); // Remove auth token on logout
       navigate("/login"); // Redirect to login page
