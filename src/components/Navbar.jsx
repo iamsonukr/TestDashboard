@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Navbar = ({ isAuthenticated = false }) => {
+const Navbar = ({ isAuthenticated = true }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -19,28 +19,26 @@ const Navbar = ({ isAuthenticated = false }) => {
                 <p className="text-2xl font-bold bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text text-transparent">Yarpacom</p>
               </div>
             </a>
-            <a
+            {/* <a
               href="#"
               className="text-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text hover:text-transparent hidden md:block"
             >
               Home
-            </a>
-            <a
+            </a> */}
+            {/* <a
               href="#"
               className="text-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text hover:text-transparent hidden md:block"
             >
-              About
-            </a>
+              AboutUs
+            </a> */}
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             {isAuthenticated ? (
-              <img
-                className="rounded-full object-cover w-[3vw] h-[3vw]"
-                src="https://lh3.googleusercontent.com/a/ACg8ocLo1k9z4lf-TrNDEykxp8ciG497GKuHDTn-eAFriebIPui-Ff-v=s96-c"
-                alt=""
-              />
+              <div className="w-12 h-12 bg-gray-500 rounded-full p-2 flex items-center justify-center">
+              <p className="font-bold text-2xl text-white">H</p>
+              </div>
             ) : (
               <button className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]">
                 Login / Sign Up
@@ -88,11 +86,9 @@ const Navbar = ({ isAuthenticated = false }) => {
           <div className="py-4 space-y-1 flex flex-col gap-2 items-center justify-center">
             <div>
               {isAuthenticated ? (
-                <img
-                  className="rounded-full object-cover w-12 h-12"
-                  src="https://lh3.googleusercontent.com/a/ACg8ocLo1k9z4lf-TrNDEykxp8ciG497GKuHDTn-eAFriebIPui-Ff-v=s96-c"
-                  alt=""
-                />
+                <div className="w-10 h-10 bg-gray-500 rounded-full p-2 flex items-center justify-center">
+                <p className="font-semibold text-xl text-white">H</p>
+                </div>
               ) : (
                 <button className="p-1 text-sm rounded-sm text-white font-medium bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]">
                   Login / Sign Up
