@@ -21,10 +21,12 @@ import Login from "../pages/auth/Login"
 import SignUp from "../pages/auth/SignUp"
 import Profile from "../pages/Profile";
 import Password from "../pages/EditPassword";
+import Landing from "../pages/landing";
 
 const AppRoutes = () => {
   return (
     <Routes>
+      <Route path="/landing" element={<Landing />} />
       <Route path="/" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />

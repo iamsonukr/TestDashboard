@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { FiEdit } from "react-icons/fi";
 import { MdPreview } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-
 
 const DynamicTable = ({
   title,
