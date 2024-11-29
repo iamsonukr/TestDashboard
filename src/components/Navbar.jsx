@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Navbar = ({ isAuthenticated = true }) => {
+const Navbar = ({ isAuthenticated = false }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
