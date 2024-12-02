@@ -1,12 +1,24 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import AppRoutes from "./routes/Routes";
 
-const App = () => {
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Landing from './pages/landing';
+import CartDetails from './components/CartDetails'
+import { Route, Routes } from 'react-router-dom';
+import Header from './components/Header'
+import { Toaster } from 'react-hot-toast';
+
+function App() {
+
   return (
-    <Router>
-      <AppRoutes />
-    </Router>
-  );
-};
+    <>
+    <Header/>
+      <Routes>
+        <Route path='/' element={<Landing/> } />
+        <Route path='/Cart' element={<CartDetails />} />
+      </Routes>
+      <Toaster />
 
-export default App;
+    </>
+  )
+}
+
+export default App

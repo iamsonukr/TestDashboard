@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { FaCartShopping } from "react-icons/fa6";
 
 const Navbar = ({ isAuthenticated = true }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { carts } = useSelector((state) => state.allCart)
+  console.log(carts)
   return (
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,6 +23,21 @@ const Navbar = ({ isAuthenticated = true }) => {
                 <p className="text-2xl font-bold bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text text-transparent">Yarpacom</p>
               </div>
             </a>
+            <NavLink 
+  to="/cart" 
+  className="text-decoration-none text-light mx-2 flex items-center justify-center "
+>
+  <div className="relative flex items-center justify-center" >
+    <FaCartShopping className="text-black text-2xl" />
+    {carts.length > 0 && (
+      <span 
+        className="absolute bottom-4 left-3 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center"
+      >
+        {carts.length}
+      </span>
+    )}
+  </div>
+</NavLink>
             {/* <a
               href="#"
               className="text-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text hover:text-transparent hidden md:block"
