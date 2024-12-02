@@ -1,3 +1,4 @@
+import { MinusIcon, PlusIcon } from "@heroicons/react/16/solid";
 import { useState } from "react";
 
 const input = [
@@ -44,7 +45,9 @@ function Card() {
 
   function handleSub(index) {
     setCounts((prevCounts) =>
-      prevCounts.map((count, i) => (i === index && count > 0 ? count - 1 : count))
+      prevCounts.map((count, i) =>
+        i === index && count > 0 ? count - 1 : count
+      )
     );
   }
 
@@ -75,12 +78,21 @@ function Card() {
               </h1>
               <p className="text-[5vw] md:text-[1vw]">{data.desc}</p>
               <div
-                className="flex rounded-md font-semibold mt-[2vw] md:mt-[1vw] text-lg
-              px-[6vw] md:px-[1vw] py-[1.5vw] md:py-[0.4vw] gap-[4vw] md:gap-[1.5vw] hover:text-white bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+                className="flex rounded-md font-semibold mt-[2vw] md:mt-[1vw] text-lg gap-[1px] "
               >
-                <button onClick={() => handleAdd(index)}>+</button>
-                {counts[index]}
-                <button onClick={() => handleSub(index)}>-</button>
+                <button
+                  className="w-10 h-7 text-lg md:w-12 md:h-9 rounded-l-full md:text-2xl bg-transparent flex items-center hover:shadow-lg hover:border hover:border-gray-200 hover:bg-gray-100 justify-center p-3"
+                  onClick={() => handleAdd(index)}
+                >
+                  <PlusIcon/>
+                </button>
+                <span className="w-10 h-7 text-lg md:w-12 md:h-9 bg-transparent flex items-center justify-center md:text-2xl">{counts[index]}</span>
+                <button
+                  className="w-10 h-7 text-lg md:w-12 md:h-9 md:text-2xl rounded-r-full hover:shadow-lg hover:border hover:border-gray-200 hover:bg-gray-100 bg-transparent flex items-center justify-center p-3"
+                  onClick={() => handleSub(index)}
+                >
+                  <MinusIcon/>
+                </button>
               </div>
             </div>
           </div>

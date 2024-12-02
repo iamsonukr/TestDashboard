@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Navbar = ({ isAuthenticated = false }) => {
+const Navbar = ({ isAuthenticated = true }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -24,8 +24,8 @@ const Navbar = ({ isAuthenticated = false }) => {
               className="text-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text hover:text-transparent hidden md:block"
             >
               Home
-            </a> */}
-            {/* <a
+            </a>
+            <a
               href="#"
               className="text-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text hover:text-transparent hidden md:block"
             >
