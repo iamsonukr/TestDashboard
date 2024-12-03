@@ -40,7 +40,7 @@ const  Services = () => {
 
   return (
     <Layout>
-      <div className="p-6 bg-gray-100 min-h-screen">
+      <div className="p-6 bg-gray-100 h-full">
         <DynamicTable title="Services" initialData={faqData} columns={faqColumns} pageConfig={pageConfig}/>
       </div>
     </Layout>
