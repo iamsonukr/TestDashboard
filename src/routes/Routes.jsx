@@ -15,21 +15,29 @@ import Faq from "../pages/subpages/configuration/Faq";
 import EMailTemplates from "../pages/subpages/configuration/EMailTemplates";
 import DocumentTemplates from "../pages/subpages/configuration/DocumentTemplates";
 import ContentPages from "../pages/subpages/configuration/ContentPages";
-import ErrorPage from "../pages/ErrorPage";
+import Geofencing from "../pages/subpages/configuration/Geofencing";
+import Terminology from "../pages/subpages/configuration/Terminology";
+import ThemeSetting from "../pages/subpages/configuration/ThemeSetting";
+import WebsiteMenu from "../pages/subpages/configuration/WebsiteMenu";
+import Gallery from "../pages/subpages/configuration/Gallery";
+import BasicSettings from "../pages/subpages/configuration/BasicSettings";
+import ServiceProviderSettings from "../pages/subpages/configuration/ServiceProviderSetting";
+import AddPage from "../pages/AddPage";
 import Booking from "../pages/Booking";
-import Login from "../pages/auth/Login"
-import SignUp from "../pages/auth/SignUp"
 import Profile from "../pages/Profile";
 import Password from "../pages/EditPassword";
 import Landing from "../pages/landing";
+import Login from "../pages/auth/Login"
+import SignUp from "../pages/auth/SignUp"
+import ErrorPage from "../pages/ErrorPage";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/profile" element={<Profile />} />
       <Route path="/dashboard/password" element={<Password />} />
       <Route path="/dashboard/customers" element={<Customers />} />
@@ -37,6 +45,7 @@ const AppRoutes = () => {
       <Route path="/dashboard/dispute" element={<Dispute />} />
       <Route path="/dashboard/transactions" element={<Transactions />} />
       <Route path="/dashboard/Bookings" element={<Booking />} />
+      <Route path="/add/:configKey" element={<AddPage />} />
       {/* Subroutes */}
       <Route path="/dashboard/catalogue/services" element={<Services />} />
       <Route path="/dashboard/catalogue/addon" element={<AddOn />} />
@@ -49,6 +58,13 @@ const AppRoutes = () => {
       <Route path="/dashboard/configuration/emailtemplates" element={<EMailTemplates />} />
       <Route path="/dashboard/configuration/documenttemplates" element={<DocumentTemplates />} />
       <Route path="/dashboard/configuration/contentpages" element={<ContentPages />} />
+      <Route path="/dashboard/configuration/geofencing" element={<Geofencing />} />
+      <Route path="/dashboard/configuration/terminology" element={<Terminology />} />
+      <Route path="/dashboard/configuration/themesetting" element={<ThemeSetting />} />
+      <Route path="/dashboard/configuration/websitemenu" element={<WebsiteMenu />} />
+      <Route path="/dashboard/configuration/gallery" element={<Gallery />} />
+      <Route path="/dashboard/configuration/basicsettings" element={<BasicSettings />} />
+      <Route path="/dashboard/configuration/serviceprovidersettings" element={<ServiceProviderSettings />} />
       {/* Error Route */}
       <Route path="*" element={<ErrorPage />} />
     </Routes>
