@@ -38,16 +38,16 @@ const Navbar = ({ isAuthenticated = false }) => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-2">
+          <div className="hidden md:flex gap-3">
 
           <NavLink
               to={`${!isAuthenticated ? `/login` :`/cart`}`}
-              className="text-decoration-none text-light mx-2 flex items-center justify-center "
+              className="text-decoration-none text-light flex items-center justify-center "
             >
               <div className="relative flex items-center justify-center">
                 <FaCartShopping className="text-black" size={40} />
                 {carts.length > 0 && (
-                  <span className="absolute bottom-4 left-3 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                  <span className="absolute top-0 right-0 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
                     {carts.length}
                   </span>
                 )}
