@@ -21,15 +21,29 @@ import Login from "../pages/auth/Login"
 import SignUp from "../pages/auth/SignUp"
 import Profile from "../pages/Profile";
 import Password from "../pages/EditPassword";
-import Landing from "../pages/landing";
+import Landing from "../pages/Landing";
+import CartDetails from "../components/CartDetails"
+import CleaningServices from "../pages/CleaningServices"
+
 
 const AppRoutes = () => {
   return (
     <Routes>
+
+      {/* Unprotected Routes */}
       <Route path="/" element={<Landing />} />
-      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+
+
+      {/* There all below routes should be protectes */}
+
+      <Route path='/Cart' element={<CartDetails />} />
+      <Route path='/cleaningServices' element={<CleaningServices />} />
+
+
+      {/* Dashboard Routes */}
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/profile" element={<Profile />} />
       <Route path="/dashboard/password" element={<Password />} />
       <Route path="/dashboard/customers" element={<Customers />} />
@@ -49,6 +63,7 @@ const AppRoutes = () => {
       <Route path="/dashboard/configuration/emailtemplates" element={<EMailTemplates />} />
       <Route path="/dashboard/configuration/documenttemplates" element={<DocumentTemplates />} />
       <Route path="/dashboard/configuration/contentpages" element={<ContentPages />} />
+
       {/* Error Route */}
       <Route path="*" element={<ErrorPage />} />
     </Routes>

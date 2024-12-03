@@ -146,8 +146,7 @@ const Home = () => {
                                                 <h5 className="text-[15px] tracking-[0.4px] font-normal text-[rgba(17,17,17,0.849)]">{element.desc}</h5>
                                                 <span className="text-[15px] tracking-[0.4px] text-[rgba(17,17,17,0.849)]">{element.price}</span>
                                             </div>
-                                            <div className="border-b-2 border-black ;
-}"></div>
+                                            <div className="border-b-2 border-black}"></div>
                                             <div className="last_data d-flex justify-content-between align-items-center">
                                                 {/* <Button onClick={() => { send(element) }} style={{ width: "150px", background: "#ff3054db", border: 'none' }} variant="outline-light" className="mt-2 mb-2">Add To Cart</Button> */}
                                                 <button onClick={() => { send(element) }} style={{ width: "150px", background: "#2D56A2", border: 'none',  }}  className="mt-2 rounded-sm text-blue-300 mb-2">Add To Cart

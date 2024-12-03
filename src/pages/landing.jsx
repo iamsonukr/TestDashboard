@@ -1,25 +1,43 @@
-import Card from "../components/Card";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Slider from "../components/Slider";
+import QnA from "../components/QnA";
+import WhatWeOffer from "../components/WhatWeOffer";
+import MapSearchBar from "../components/MapSearchBar"
+import { useNavigate } from "react-router-dom";
 
-function landing() {
+function Landing({isAuthenticated=true}) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    } else {
+      navigate("/CleaningServices");
+    }
+  };
+
   return (
     <div className="w-full h-full">
-      <Navbar />
+      <Navbar isAuthenticated={isAuthenticated} />
       {/* static content */}
-      <div className="w-full h-full flex flex-col md:flex-row gap-5 p-6">
-        <div className="flex flex-col items-start justify-center gap-2 md:w-1/2 md:p-[3vw]">
+      <div className="w-full h-full flex flex-col md:flex-row gap-4 p-6">
+
+        <div className="flex flex-col items-start justify-center gap-3 md:gap-4 md:w-1/2 md:p-[3vw]">
           <h1 className="text-3xl md:text-[4vw] font-bold md:leading-[4vw]">
             Find Cleaning{" "}
-            <span className="bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text text-transparent">Service Near You</span>
+            <span className="bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text text-transparent">
+              Services Near You
+            </span>
           </h1>
           <h2 className="text-md md:text-[2vw] font-semibold text-gray-400">
-            Explore Best Cleaning Service Near You
+            Explore Best Cleaning Services Near You
           </h2>
-          <button className="text-lg md:text-[2vw] px-3 py-1 md:px-[1.5vw] md:py-[0.7vw] rounded-md font-semibold text-white bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]">
+          <button onClick={handleClick} className="text-lg md:text-[2vw] px-4 py-2 md:px-2vw] md:py-[1vw] rounded-md font-semibold text-white bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]">
             Book Now
           </button>
         </div>
+
         <div className=" md:w-1/2 p-[3vw]">
           <img
             className="h-full w-full hover:scale-105 duration-1000 rounded-2xl object-fill shadow-xl"
@@ -28,15 +46,26 @@ function landing() {
           />
         </div>
       </div>
-      {/* card */}
+      
+      <div className="w-full">
+      <MapSearchBar/>
+      </div>
 
-        <Card/>
+      <div className="w-full h-full">
+        <WhatWeOffer isAuthenticated={isAuthenticated} />
+      </div>
 
-<div>
-  <Footer/>
-</div>
+      <div className="w-full h-full">
+        <Slider />
+      </div>
+      <div className="w-full h-full md:px-20 md:pb-12">
+        <QnA />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
 
-export default landing;
+export default Landing;
