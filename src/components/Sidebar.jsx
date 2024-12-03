@@ -82,7 +82,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-[60vw] h-full md:h-auto bg-gradient-to-r from-[#2C52A0] to-[#4189C4] text-white md:block  transition-transform transform  ${
+        className={`fixed top-0 left-0 w-[60vw] h-full md:h-screen bg-gradient-to-r from-[#2C52A0] to-[#4189C4] text-white md:block  transition-transform transform  ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:static md:w-64 z-50`}
       >
@@ -92,7 +92,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
 
         {/* Navigation Section */}
-        <nav className="mt-4 space-y-2 h-[calc(100%-4rem)] overflow-y-auto scrollbar-hide">
+        <nav className="space-y-2 overflow-y-auto scrollbar-hide">
           {navLinks.map((link) => (
             <div key={link.id}>
               {link.isDropdown ? (
