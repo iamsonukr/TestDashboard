@@ -29,6 +29,9 @@ import Password from "../pages/EditPassword";
 import Landing from "../pages/Landing";
 import CartDetails from "../components/CartDetails"
 import CleaningServices from "../pages/CleaningServices"
+import Login from "../pages/auth/Login"
+import SignUp from "../pages/auth/SignUp"
+import ErrorPage from "../pages/ErrorPage";
 
 
 const AppRoutes = () => {
@@ -69,6 +72,13 @@ const AppRoutes = () => {
       <Route path="/dashboard/configuration/emailtemplates" element={<EMailTemplates />} />
       <Route path="/dashboard/configuration/documenttemplates" element={<DocumentTemplates />} />
       <Route path="/dashboard/configuration/contentpages" element={<ContentPages />} />
+      <Route path="/dashboard/configuration/geofencing" element={<Geofencing />} />
+      <Route path="/dashboard/configuration/terminology" element={<Terminology />} />
+      <Route path="/dashboard/configuration/themesetting" element={<ThemeSetting />} />
+      <Route path="/dashboard/configuration/websitemenu" element={<WebsiteMenu />} />
+      <Route path="/dashboard/configuration/gallery" element={<Gallery />} />
+      <Route path="/dashboard/configuration/basicsettings" element={<BasicSettings />} />
+      <Route path="/dashboard/configuration/serviceprovidersettings" element={<ServiceProviderSettings />} />
 
       {/* Error Route */}
       <Route path="*" element={<ErrorPage />} />
