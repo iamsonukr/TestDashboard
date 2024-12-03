@@ -82,9 +82,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-[60vw] h-full md:h-screen bg-gradient-to-r from-[#2C52A0] to-[#4189C4] text-white md:block  transition-transform transform  ${
+        className={`fixed top-0 left-0 w-[60vw] md:w-64 h-screen bg-gradient-to-r from-[#2C52A0] to-[#4189C4] text-white md:block transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:static md:w-64 z-50`}
+        } md:translate-x-0 md:static z-50`}
       >
         {/* Logo Section */}
         <div className="hidden md:flex md:justify-center md:items-center">
@@ -92,26 +92,26 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
 
         {/* Navigation Section */}
-        <nav className="space-y-2 overflow-y-auto scrollbar-hide">
+        <nav className="h-full overflow-y-scroll scrollbar-hide flex flex-col items-start gap-4 justify-center md:justify-start md:pl-[1vw]">
           {navLinks.map((link) => (
             <div key={link.id}>
               {link.isDropdown ? (
                 <div
-                  className={`w-full px-[1vw] py-2 text-center md:text-left flex items-center space-x-2 cursor-pointer justify-between`}
+                  className="w-full px-[1vw] py-2 text-center md:text-left flex items-center space-x-2 cursor-pointer justify-between"
                   onClick={() => toggleDropdown(link.id)}
                 >
                   <div className="flex items-center space-x-2">
                     {link.icon}
                     <span>{link.name}</span>
                   </div>
-                  <div>
+                  <div className="">
                     {openDropdown === link.id ? <FiChevronUp /> : <FiChevronDown />}
                   </div>
                 </div>
               ) : (
                 <Link
                   to={link.path}
-                  className="w-full px-[1vw] py-2 text-center md:text-left  flex items-center space-x-2 hover:no-underline hover:text-black"
+                  className="w-full px-[1vw] py-2 text-center md:text-left flex items-center space-x-2 hover:no-underline hover:text-black"
                   onClick={toggleSidebar}
                 >
                   {link.icon}
@@ -121,12 +121,16 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
               {/* Render Dropdown if it exists */}
               {link.isDropdown && openDropdown === link.id && (
-                <div className="pl-6 mt-2 space-y-2 hover:no-underline hover:text-black">
+                <div
+                  className={`h-full overflow-y-auto scrollbar-hide ${
+                    link.id === 10 ? "md:mb-28" : ""
+                  }`}
+                >
                   {link.subLinks.map((subLink) => (
                     <Link
                       key={subLink.id}
                       to={subLink.path}
-                      className="block text-sm text-left  px-4 py-2 hover:no-underline hover:text-black"
+                      className="block text-sm text-left px-4 py-2 hover:no-underline hover:text-black"
                       onClick={toggleSidebar}
                     >
                       {subLink.name}

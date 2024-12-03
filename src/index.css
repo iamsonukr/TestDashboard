@@ -3,11 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+  display: none;
 }
 
 .scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
