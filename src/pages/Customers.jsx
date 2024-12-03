@@ -8,7 +8,7 @@ const Customers = () => {
     { key: "email", label: "Email" },
     { key: "mobile no", label: "Mobile no" },
     { key: "status", label: "Status" },
-    { key: "createdAt", label: "Created At" },
+    { key: "registeredAt", label: "Registered At" },
   ];
 
   const faqData = [
@@ -18,7 +18,7 @@ const Customers = () => {
       "mobile no": "1234567890",
       email: "asd@gmail.com",
       status: "Active",
-      createdAt: "22 May 2024",
+      registeredAt: "22 May 2024",
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ const Customers = () => {
       "mobile no": "123451565590",
       email: "asd@gmail.com",
       status: "Inactive",
-      createdAt: "15 May 2024",
+      registeredAt: "15 May 2024",
     },
   ];
 

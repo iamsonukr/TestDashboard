@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import { FiEdit } from "react-icons/fi";
 import { MdPreview } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { FaFileExport } from "react-icons/fa6";
+import { MdImportExport } from "react-icons/md";
 
 const DynamicTable = ({
   title,
   initialData,
   columns,
-  onAddNew = () => { },
+  onAddNew = () => {},
   pageConfig,
 }) => {
   const [data, setData] = useState(initialData);
@@ -20,11 +22,27 @@ const DynamicTable = ({
   const [isViewing, setIsViewing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
+  // New state for delete confirmation modal
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+
   const handleSearch = (e) => setSearchQuery(e.target.value);
 
   const handleDelete = (id) => {
-    const updatedData = data.filter((item) => item.id !== id);
+    setItemToDelete(id); // Store the item ID to be deleted
+    setIsDeleteModalOpen(true); // Open the delete confirmation modal
+  };
+
+  const confirmDelete = () => {
+    const updatedData = data.filter((item) => item.id !== itemToDelete);
     setData(updatedData);
+    setIsDeleteModalOpen(false);
+    setItemToDelete(null); // Clear the item to delete
+  };
+
+  const cancelDelete = () => {
+    setIsDeleteModalOpen(false);
+    setItemToDelete(null); // Clear the item to delete
   };
 
   const handleFormChange = (e) => {
@@ -57,7 +75,8 @@ const DynamicTable = ({
     setEditingId(id);
     setIsFormOpen(true);
   };
-   const handleView = (id) => {
+
+  const handleView = (id) => {
     const itemToView = data.find((item) => item.id === id);
     setNewEntry(itemToView);
     setIsViewing(true);
@@ -107,36 +126,21 @@ const DynamicTable = ({
     return matchesSearchQuery && matchesFilter;
   });
 
-  // const handleView = (id) => {
-  //   // Implement the view functionality here
-  //   console.log(`Viewing item with id: ${id}`);
-  // };
- 
-
-  // const handleView = (id) => {
-  //   const itemToView = data.find((item) => item.id === id);
-  //   setNewEntry(itemToView);
-  //   setIsViewing(true);
-  //   setEditingId(id);
-  //   setIsFormOpen(true);
-  // };
-
-
-
   return (
     <div className="bg-white shadow-md rounded-md p-4">
       <div className="flex justify-between flex-wrap gap-4 mb-4">
         <h2 className="text-2xl font-semibold">{title}</h2>
-        <div className="flex gap-2">
+        <div className="flex gap-2 justify-center items-center">
           {pageConfig?.importExport && (
             <>
               <button
                 onClick={handleExport}
-                className="bg-blue-600 text-[1.5vw] text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                className="border-blue-600 border-2 text-[1vw] text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer"
               >
-                Export
+                <FaFileExport /> Export
               </button>
-              <label className="bg-blue-600 text-[1.5vw] text-white px-4 py-2 rounded-md hover:bg-blue-700 cursor-pointer">
+              <button className="border-blue-600 border-2 text-[1vw] text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer">
+                <MdImportExport />
                 Import
                 <input
                   type="file"
@@ -144,22 +148,20 @@ const DynamicTable = ({
                   onChange={handleImport}
                   className="hidden"
                 />
-              </label>
+              </button>
             </>
           )}
           {pageConfig?.AddnewEntry && (
-
             <button
               onClick={() => {
                 setIsFormOpen(true);
                 setIsEditing(false);
               }}
-              className="bg-green-600 text-[1.5vw] text-white px-4 py-2 rounded-md hover:bg-green-700"
+              className=" border-blue-600 border-2 text-[1vw] text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
             >
               + Add New Entry
             </button>
           )}
-
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-between mb-4 gap-4">
@@ -203,11 +205,7 @@ const DynamicTable = ({
                   {col.label}
                 </th>
               ))}
-              {pageConfig?.Action && (
-
-                <th className="border px-4 py-2">Actions</th>
-              )}
-
+              {pageConfig?.Action && <th className="border px-4 py-2">Actions</th>}
             </tr>
           </thead>
           <tbody>
@@ -222,10 +220,11 @@ const DynamicTable = ({
                   <td key={col.key} className="border px-4 py-2">
                     {col.key === "status" ? (
                       <span
-                        className={`px-2 py-1 text-xs rounded-full ${item.status === "Active"
+                        className={`px-2 py-1 text-xs rounded-full ${
+                          item.status === "Active"
                             ? "bg-green-200 text-green-800"
                             : "bg-orange-200 text-orange-800"
-                          }`}
+                        }`}
                       >
                         {item[col.key]}
                       </span>
@@ -265,6 +264,31 @@ const DynamicTable = ({
           </tbody>
         </table>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
+            <h3 className="text-lg font-semibold mb-4">Are you sure?</h3>
+            <p className="mb-4">Do you really want to delete this entry?</p>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={cancelDelete}
+                className="border-blue-600 border-2 text-[1vw] text-blue-600 px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="border-red-600 border-2 text-[1vw] text-red-500 px-2 rounded-md hover:text-white hover:bg-red-600 flex items-center gap-1 cursor-pointer"
+              >
+                Confirm Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {isFormOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
@@ -283,7 +307,6 @@ const DynamicTable = ({
                 />
               </div>
             ))}
-            {/* Upload Photo */}
             <div className="mb-4">
               <label className="block text-sm font-medium">Profile Photo</label>
               <input
@@ -329,4 +352,3 @@ DynamicTable.propTypes = {
   onAddNew: PropTypes.func,
   pageConfig: PropTypes.object,
 };
-

@@ -7,7 +7,8 @@ const Dispute = () => {
     { key: "order ID", label: "Order ID" },
     { key: "Dispute with", label: "Dispute With" },
     { key: "Reason", label: "Reason" },
-      
+    { key: "status", label: "Status" },
+
     { key: "createdAt", label: "Created At" },
   ];
   const faqData = [
@@ -31,6 +32,7 @@ const Dispute = () => {
 
   const pageConfig = {
     select: true, 
+    Action: true,
 
     importExport: false, 
     statusOptions: ["Active", "Inactive"], 

@@ -31,6 +31,7 @@ const  Booking = () => {
 
   const pageConfig = {
     select: true, 
+    Action: true,
 
     importExport: false, 
     statusOptions: ["Active", "Inactive"], 
