@@ -88,7 +88,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       >
         {/* Logo Section */}
         <div className="hidden md:flex md:justify-center md:items-center">
-          <img src="/logo.png" alt="Logo" className="w-16 h-16 p-4" />
+          <img src="/logo.png" alt="Logo" className="w-24 h-24 p-4" />
         </div>
 
         {/* Navigation Section */}
@@ -97,7 +97,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <div key={link.id}>
               {link.isDropdown ? (
                 <div
-                  className={`w-full px-[1vw] py-2 text-center md:text-left hover:bg-gray-700 flex items-center space-x-2 cursor-pointer justify-between`}
+                  className={`w-full px-[1vw] py-2 text-center md:text-left flex items-center space-x-2 cursor-pointer justify-between`}
                   onClick={() => toggleDropdown(link.id)}
                 >
                   <div className="flex items-center space-x-2">
@@ -111,7 +111,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               ) : (
                 <Link
                   to={link.path}
-                  className="w-full px-[1vw] py-2 text-center md:text-left hover:bg-gray-700 flex items-center space-x-2"
+                  className="w-full px-[1vw] py-2 text-center md:text-left  flex items-center space-x-2 hover:no-underline hover:text-black"
                   onClick={toggleSidebar}
                 >
                   {link.icon}
@@ -121,12 +121,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
               {/* Render Dropdown if it exists */}
               {link.isDropdown && openDropdown === link.id && (
-                <div className="pl-6 mt-2 space-y-2">
+                <div className="pl-6 mt-2 space-y-2 hover:no-underline hover:text-black">
                   {link.subLinks.map((subLink) => (
                     <Link
                       key={subLink.id}
                       to={subLink.path}
-                      className="block text-sm text-left hover:bg-gray-600 px-4 py-2"
+                      className="block text-sm text-left  px-4 py-2 hover:no-underline hover:text-black"
                       onClick={toggleSidebar}
                     >
                       {subLink.name}
