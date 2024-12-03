@@ -61,6 +61,13 @@ const navLinks = [
       { id: 2, name: "Content Pages", path: "/dashboard/configuration/contentpages" },
       { id: 3, name: "E-Mail Templates", path: "/dashboard/configuration/emailtemplates" },
       { id: 4, name: "Document Templates", path: "/dashboard/configuration/documenttemplates" },
+      { id: 5, name: "GeoFencing", path: "/dashboard/configuration/geofencing" },
+      { id: 6, name: "Terminology", path: "/dashboard/configuration/terminology" },
+      { id: 7, name: "Theme Setting", path: "/dashboard/configuration/themesetting" },
+      { id: 8, name: "Website Menu", path: "/dashboard/configuration/websitemenu" },
+      { id: 9, name: "Gallery", path: "/dashboard/configuration/gallery" },
+      { id: 10, name: "Basic Settings", path: "/dashboard/configuration/basicsettings" },
+      { id: 11, name: "Service Provider Setting", path: "/dashboard/configuration/serviceprovidersettings" },
     ],
   },
 ];
@@ -75,7 +82,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-[60vw] h-full bg-gradient-to-r from-[#2C52A0] to-[#4189C4] text-white md:block transition-transform transform ${
+        className={`fixed top-0 left-0 w-[60vw] h-full md:h-auto bg-gradient-to-r from-[#2C52A0] to-[#4189C4] text-white md:block  transition-transform transform  ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:static md:w-64 z-50`}
       >
