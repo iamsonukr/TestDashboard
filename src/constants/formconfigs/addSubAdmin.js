@@ -1,6 +1,6 @@
 const subAdminConfig = {
     endpoint: "/api/subadmins",
-    backRoute: "/subadmins",
+    backRoute: "/dashboard/system-access/subadmin",
     fields: [
       { name: "name", label: "Name", type: "text", required: true },
       { name: "phoneExtension", label: "Phone Extension", type: "text", required: true },

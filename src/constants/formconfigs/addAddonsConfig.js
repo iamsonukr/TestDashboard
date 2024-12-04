@@ -1,6 +1,6 @@
 const addAddonsConfig = {
   endpoint: "/api/addons",
-  backRoute: "/addons",
+  backRoute: "/dashboard/catalogue/addon",
   fields: [
     { name: "addonName", label: "Addon Name", type: "text", required: true },
     { name: "optionName", label: "Option Name", type: "text", required: true },

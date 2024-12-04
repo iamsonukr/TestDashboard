@@ -1,6 +1,6 @@
 const customerConfig = {
   endpoint: "/api/customers",
-  backRoute: "/customers", 
+  backRoute: "/dashboard/customers", 
   fields: [
     { name: "name", label: "Name", type: "text", required: true },
     { name: "mobileCode", label: "Mobile Code", type: "text", required: true },

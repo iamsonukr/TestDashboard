@@ -36,7 +36,7 @@ const ServiceProvider = () => {
     },
   ];
 
-  const pageConfig = {
+  const pageConfig1 = {
     select: true, 
     Action: true,
 
@@ -55,7 +55,12 @@ const ServiceProvider = () => {
           title="Service Providers"
           initialData={faqData}
           columns={faqColumns}
-          pageConfig={pageConfig}
+          pageConfig1={pageConfig1}
+          pageConfig={{
+            AddnewEntry: true,
+            addNewEntryRoute: "/add/addServices"
+          }}
+
         />
       </div>
     </Layout>

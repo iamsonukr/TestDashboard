@@ -104,7 +104,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     {link.icon}
                     <span>{link.name}</span>
                   </div>
-                  <div className="">
+                  <div className="block">
                     {openDropdown === link.id ? <FiChevronUp /> : <FiChevronDown />}
                   </div>
                 </div>

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
-import { MdPreview } from "react-icons/md";
-import { MdDelete } from "react-icons/md";
+import { MdPreview, MdDelete } from "react-icons/md";
 import { FaFileExport } from "react-icons/fa6";
 import { MdImportExport } from "react-icons/md";
 
@@ -22,27 +22,28 @@ const DynamicTable = ({
   const [isViewing, setIsViewing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  // New state for delete confirmation modal
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
+
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSearch = (e) => setSearchQuery(e.target.value);
 
   const handleDelete = (id) => {
-    setItemToDelete(id); // Store the item ID to be deleted
-    setIsDeleteModalOpen(true); // Open the delete confirmation modal
+    setItemToDelete(id);
+    setIsDeleteModalOpen(true);
   };
 
   const confirmDelete = () => {
     const updatedData = data.filter((item) => item.id !== itemToDelete);
     setData(updatedData);
     setIsDeleteModalOpen(false);
-    setItemToDelete(null); // Clear the item to delete
+    setItemToDelete(null);
   };
 
   const cancelDelete = () => {
     setIsDeleteModalOpen(false);
-    setItemToDelete(null); // Clear the item to delete
+    setItemToDelete(null);
   };
 
   const handleFormChange = (e) => {
@@ -68,15 +69,13 @@ const DynamicTable = ({
     setIsFormOpen(false);
   };
 
+  // const handleAddNew = () => {
+  //   setIsFormOpen(true);
+  //   setIsEditing(false);
+  //   setIsViewing(false);
+  //   setNewEntry({});
+  // };
 
-
-  const handleAddNew = () => {
-    setIsFormOpen(true);
-    setIsEditing(false);
-    setIsViewing(false);
-    setNewEntry({});
-  };
-  
   const handleEdit = (id) => {
     const itemToEdit = data.find((item) => item.id === id);
     setNewEntry(itemToEdit);
@@ -84,16 +83,18 @@ const DynamicTable = ({
     setIsViewing(false);
     setEditingId(id);
     setIsFormOpen(true);
+    setIsViewing(false); // Ensure that "viewing" is turned off when editing
   };
-  
+
   const handleView = (id) => {
     const itemToView = data.find((item) => item.id === id);
     setNewEntry(itemToView);
     setIsViewing(true);
     setIsEditing(false);
     setIsFormOpen(true);
+    setIsEditing(false); // Ensure that "editing" is turned off when viewing
   };
-  
+
   const handleImport = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -137,6 +138,12 @@ const DynamicTable = ({
     return matchesSearchQuery && matchesFilter;
   });
 
+  const handleAddNewEntryClick = () => {
+    if (pageConfig?.addNewEntryRoute) {
+      navigate(pageConfig.addNewEntryRoute); // Use navigate to go to the route
+    }
+  };
+
   return (
     <div className="bg-white shadow-md rounded-md p-4">
       <div className="flex justify-between flex-wrap gap-4 mb-4">
@@ -164,10 +171,7 @@ const DynamicTable = ({
           )}
           {pageConfig?.AddnewEntry && (
             <button
-              onClick={() => {
-                setIsFormOpen(true);
-                setIsEditing(false);
-              }}
+              onClick={handleAddNewEntryClick} // Trigger route navigation
               className="border-blue-600 border-2 text-[1vw] text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
             >
               + Add New Entry
@@ -175,199 +179,95 @@ const DynamicTable = ({
           )}
         </div>
       </div>
-      <div className="flex flex-wrap items-center justify-between mb-4 gap-4">
-        <div className="flex items-center gap-2">
-          <label htmlFor="filter" className="text-sm font-medium">
-            Filter By:
-          </label>
-          <select
-            id="filter"
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            className="border border-gray-300 rounded-md px-2 py-1"
-          >
-            <option value="All">All</option>
-            {pageConfig?.statusOptions?.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="flex items-center border border-gray-300 rounded-md flex-grow">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearch}
-            placeholder="Search"
-            className="px-4 py-2 outline-none w-full"
-          />
-        </div>
-      </div>
+
       <div className="overflow-x-auto">
-        <table className="w-full table-auto border-collapse border border-gray-300">
+        <table className="min-w-full table-auto">
           <thead>
-            <tr className="bg-gray-100 text-left text-sm font-medium text-gray-600">
-              {pageConfig?.select && (
-                <th className="border px-4 py-2">Select</th>
-              )}
+            <tr>
               {columns.map((col) => (
-                <th key={col.key} className="border px-4 py-2">
+                <th key={col.key} className="px-4 py-2 border-b">
                   {col.label}
                 </th>
               ))}
-              {pageConfig?.Action && <th className="border px-4 py-2">Actions</th>}
+              <th className="px-4 py-2 border-b">Actions</th>
             </tr>
           </thead>
           <tbody>
             {filteredData.map((item) => (
-              <tr key={item.id} className="text-sm text-gray-700">
-                {pageConfig?.select && (
-                  <td className="border px-4 py-2">
-                    <input type="checkbox" />
-                  </td>
-                )}
+              <tr key={item.id}>
                 {columns.map((col) => (
-                  <td key={col.key} className="border px-4 py-2">
-                    {col.key === "status" ? (
-                      <span
-                        className={`px-2 py-1 text-xs rounded-full ${
-                          item.status === "Active"
-                            ? "bg-green-200 text-green-800"
-                            : "bg-orange-200 text-orange-800"
-                        }`}
-                      >
-                        {item[col.key]}
-                      </span>
-                    ) : (
-                      item[col.key]
-                    )}
+                  <td key={col.key} className="px-4 py-2 border-b">
+                    {item[col.key]}
                   </td>
                 ))}
-                {pageConfig?.Action && (
-                  <td className="border px-4 py-2 flex gap-2">
-                    <button
-                      onClick={() => handleView(item.id)}
-                      className="text-blue-600"
-                    >
-                      view
-                      <MdPreview />
-                    </button>
-                    <button
-                      onClick={() => handleEdit(item.id)}
-                      className="text-yellow-600"
-                    >
-                      edit
-                      <FiEdit />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(item.id)}
-                      className="text-red-600"
-                    >
-                      <MdDelete />
-                    </button>
-                  </td>
-                  
-                )}
+                <td className="px-4 py-2 border-b flex gap-2">
+                  <button onClick={() => handleView(item.id)}>
+                    <MdPreview />
+                  </button>
+                  <button onClick={() => handleEdit(item.id)}>
+                    <FiEdit />
+                  </button>
+                  <button onClick={() => handleDelete(item.id)}>
+                    <MdDelete />
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
-            <h3 className="text-xl font-semibold mb-4">Confirm Delete</h3>
-            <p>Are you sure you want to delete this entry?</p>
-            <div className="mt-4 flex justify-end gap-2">
-              <button
-                onClick={cancelDelete}
-                className="bg-gray-300 text-black px-4 py-2 rounded-md"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="bg-red-600 text-white px-4 py-2 rounded-md"
-              >
-                Delete
-              </button>
-            </div>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-4 rounded-lg">
+            <p>Are you sure you want to delete this item?</p>
+            <button onClick={confirmDelete} className="mr-2 bg-red-500 text-white px-4 py-2 rounded">
+              Yes
+            </button>
+            <button onClick={cancelDelete} className="bg-gray-500 text-white px-4 py-2 rounded">
+              No
+            </button>
           </div>
         </div>
       )}
 
-      {/* Form Modal */}
-      {isFormOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
-            <h3 className="text-xl font-semibold mb-4">
-              {isEditing ? "Edit Entry" : isViewing ? "View Entry" : "Add New Entry"}
-            </h3>
+      {/* Modal for View or Edit */}
+      {(isEditing || isViewing) && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg w-[400px]">
+            <h3 className="text-xl font-semibold mb-4">{isEditing ? "Edit" : "View"} Item</h3>
             {columns.map((col) => (
-              <div className="mb-4" key={col.key}>
-                <label className="block text-sm font-medium">{col.label}</label>
-                {isViewing ? (
-                  <p className="text-gray-700">{newEntry[col.key] || "N/A"}</p>
-                ) : (
-                  <input
-                    type="text"
-                    name={col.key}
-                    value={newEntry[col.key] || ""}
-                    onChange={handleFormChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    disabled={isViewing}  // Disable editing if viewing
-                  />
-                )}
+              <div key={col.key} className="mb-4">
+                <label className="block text-gray-700">{col.label}</label>
+                <input
+                  type="text"
+                  name={col.key}
+                  value={newEntry[col.key] || ""}
+                  onChange={handleFormChange}
+                  disabled={isViewing} // Disable input if viewing
+                  className="mt-1 p-2 border border-gray-300 rounded w-full"
+                />
               </div>
             ))}
-            <div className="mb-4">
-              <label className="block text-sm font-medium">Profile Photo</label>
-              {isViewing ? (
-                <img
-                  src={newEntry.profilePhoto ? URL.createObjectURL(newEntry.profilePhoto) : "#"}
-                  alt="Profile"
-                  className="w-24 h-24 object-cover rounded-full"
-                />
-              ) : (
-                <input
-                  type="file"
-                  name="profilePhoto"
-                  accept="image/*"
-                  onChange={(e) =>
-                    setNewEntry((prev) => ({
-                      ...prev,
-                      profilePhoto: e.target.files[0],
-                    }))
-                  }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                />
-              )}
-            </div>
-            <div className="flex justify-end gap-2">
-              <button
-                onClick={() => setIsFormOpen(false)}
-                className="bg-gray-300 px-4 py-2 rounded-md"
-              >
-                Cancel
-              </button>
-              {isViewing ? (
-                <button
-                  onClick={() => setIsFormOpen(false)}  // Just close without any action for view
-                  className="bg-blue-600 text-white px-4 py-2 rounded-md"
-                >
-                  Close
-                </button>
-              ) : (
+            <div className="flex justify-between gap-2">
+              {isEditing && (
                 <button
                   onClick={handleFormSubmit}
-                  className="bg-green-600 text-white px-4 py-2 rounded-md"
+                  className="bg-blue-500 text-white px-4 py-2 rounded"
                 >
-                  Submit
+                  Save
                 </button>
               )}
+              <button
+                onClick={() => {
+                  setIsFormOpen(false);
+                  setIsEditing(false);
+                  setIsViewing(false);
+                }}
+                className="bg-gray-500 text-white px-4 py-2 rounded"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
@@ -381,7 +281,7 @@ DynamicTable.propTypes = {
   initialData: PropTypes.array.isRequired,
   columns: PropTypes.array.isRequired,
   onAddNew: PropTypes.func,
-  pageConfig: PropTypes.object.isRequired,
+  pageConfig: PropTypes.object,
 };
 
 export default DynamicTable;
