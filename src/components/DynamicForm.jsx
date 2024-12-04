@@ -1,7 +1,8 @@
 import React, { useState, Suspense } from "react";
 import formConfig from "../constants/formconfigs";
 import Layout from "../layouts/Layout";
-// Use React.lazy() for dynamic imports in React
+
+// Use React.lazy() for dynamic imports
 const ReactQuill = React.lazy(() => import("react-quill"));
 import "react-quill/dist/quill.snow.css"; // Rich Text Editor styles
 
@@ -123,10 +124,11 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
             className="hidden"
           />
           <span
-            className={`absolute text-[3vw] md:text-[0.8vw] text-white w-1/2 h-full flex items-center justify-center rounded-full transition-transform p-1 ${formData[field.name]
+            className={`absolute text-[3vw] md:text-[0.8vw] text-white w-1/2 h-full flex items-center justify-center rounded-full transition-transform p-1 ${
+              formData[field.name]
                 ? "bg-blue-500 translate-x-full"
                 : "bg-gray-400 translate-x-0"
-              }`}
+            }`}
           >
             {formData[field.name] ? options.enabled : options.disabled}
           </span>
@@ -175,14 +177,49 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
         </Suspense>
       </div>
     );
-  };  
+  };
+
+  const renderSections = () => {
+    if (!config.sections) return null;
+
+    return (
+      <div className="mt-6 space-y-6">
+        {config.sections.map((section, idx) => (
+          <div key={idx} className="p-4 bg-gray-100 rounded-md">
+            <h3 className="text-lg font-semibold mb-4">{section.heading}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {section.cards.map((card, cardIdx) => (
+                <div
+                  key={cardIdx}
+                  className="border rounded p-4 shadow-sm bg-white"
+                >
+                  <h4 className="font-medium text-sm mb-2">{card.title}</h4>
+                  {card.options.map((option, optionIdx) => (
+                    <div key={optionIdx} className="flex items-center mb-2">
+                      <input
+                        type={option.type}
+                        name={option.name}
+                        onChange={handleChange}
+                        className="mr-2"
+                      />
+                      <label className="text-sm">{option.label}</label>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <Layout>
       <div className="flex justify-center mt-6">
         <div className="w-full max-w-4xl p-6 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">
-          Add {configKey.charAt(0).toUpperCase() + configKey.slice(1)}
+            Add {configKey.charAt(0).toUpperCase() + configKey.slice(1)}
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -230,6 +267,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
                 </div>
               ))}
             </div>
+            {renderSections()}
             <div className="flex justify-between mt-4">
               <button
                 type="button"

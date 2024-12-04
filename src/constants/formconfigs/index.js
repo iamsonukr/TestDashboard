@@ -24,8 +24,8 @@ const formConfig = {
   // documentTemplate:documentTemplateConfig,
   FAQ:addFAQ,
   gallery:galleryConfig,
-  // role:roleConfig,
-  // geofencing:geofencingConfig,
+  role:roleConfig,
+  geofencing:geofencingConfig,
 };
 
 export default formConfig;
