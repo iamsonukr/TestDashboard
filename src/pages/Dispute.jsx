@@ -30,18 +30,7 @@ const Dispute = () => {
     },
   ];
 
-  const pageConfig = {
-    select: true, 
-    Action: true,
-
-    importExport: false, 
-    statusOptions: ["Active", "Inactive"], 
-    actions: {
-      view: true,
-      edit: false,
-      delete: false,
-    },
-  };
+ 
 
   return (
     <Layout>
@@ -50,7 +39,11 @@ const Dispute = () => {
           title="Disputes"
           initialData={faqData}
           columns={faqColumns}
-          pageConfig={pageConfig}
+          pageConfig={{ showView: true,
+            showEdit: false,
+            statusOptions: ["Active", "Inactive"],
+
+            showDelete: false,}}
         />
       </div>
     </Layout>

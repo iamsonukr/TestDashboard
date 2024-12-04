@@ -30,12 +30,7 @@ const Customers = () => {
     },
   ];
 
-  // const pageConfig = {
-  //   importExport: true, 
-  //   AddnewEntry: true,
-  //   Action: true,
-   
-  // };
+
 
   return (
     <Layout>
@@ -47,18 +42,15 @@ const Customers = () => {
           pageConfig={{
             AddnewEntry: true,
             addNewEntryRoute: "/add/customer",
-            importExport: true, 
-            statusOptions: ["Active", "Inactive"], 
+            importExport: true,
+            statusOptions: ["Active", "Inactive"],
 
-            select: true, 
+            select: true,
             Action: true,
-            actions: {
-              view: true, 
-              delete: true,
-              pending: false, 
-              debitBalance: false, 
-              edit: true,
-            },
+
+            showView: true,
+            showEdit: true,
+            showDelete: true,
           }}
         />
       </div>

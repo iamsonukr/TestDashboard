@@ -36,17 +36,7 @@ const ServiceProvider = () => {
     },
   ];
 
-  const pageConfig1 = {
-    select: true, 
-    Action: true,
-
-    importExport: true, 
-    statusOptions: ["Active", "Inactive"], 
-    actions: {
-      view: true,
-      delete: true, 
-    },
-  };
+ 
 
   return (
     <Layout>
@@ -55,10 +45,14 @@ const ServiceProvider = () => {
           title="Service Providers"
           initialData={faqData}
           columns={faqColumns}
-          pageConfig1={pageConfig1}
           pageConfig={{
             AddnewEntry: true,
-            addNewEntryRoute: "/add/addServices"
+            addNewEntryRoute: "/add/addServices",
+            importExport: true, 
+            statusOptions: ["Active", "Inactive"], 
+            showView: true,
+            showEdit: false,
+            showDelete: true,
           }}
 
         />
