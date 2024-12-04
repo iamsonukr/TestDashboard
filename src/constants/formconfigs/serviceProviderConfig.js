@@ -1,6 +1,6 @@
 const serviceProviderConfig = {
   endpoint: "/api/services",
-  backRoute: "/services",
+  backRoute: "/dashboard/serviceprovider",
   fields: [
     { name: "name", label: "Name", type: "text", required: true },
     { name: "mobileCode", label: "Mobile Code", type: "text", required: true },

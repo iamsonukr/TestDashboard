@@ -52,7 +52,10 @@ const Customers = () => {
           title="Customers"
           initialData={faqData}
           columns={faqColumns}
-          pageConfig={pageConfig} 
+          pageConfig={{
+            AddnewEntry: true,
+            addNewEntryRoute: "/add/customer"
+          }}
         />
       </div>
     </Layout>

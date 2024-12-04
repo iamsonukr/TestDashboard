@@ -1,6 +1,6 @@
 const addServicesConfig = {
   endpoint: "/api/services",
-  backRoute: "/services",
+  backRoute: "/dashboard/catalogue/services",
   fields: [
     { 
       name: "serviceName", 

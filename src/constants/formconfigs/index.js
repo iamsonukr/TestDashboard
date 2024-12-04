@@ -9,6 +9,8 @@ import addCampaignTemplate from "./addCampaignTemplate";
 import addFAQ from "./addFAQ"
 import documentTemplateConfig from "./addDocumentTemplate";
 import galleryConfig from "./addGallery";
+import roleConfig from "./addRole";
+import geofencingConfig from "./addGeofencing";
 
 const formConfig = {
   customer: customerConfig,
@@ -18,10 +20,12 @@ const formConfig = {
   addAddons: addAddonsConfig,
   addSubAdmin: addSubAdmin,
   addCampaign: addCampaign,
-  addCampaignTemplate: addCampaignTemplate,
+  // addCampaignTemplate: addCampaignTemplate,
+  // documentTemplate:documentTemplateConfig,
   FAQ:addFAQ,
-  documentTemplate:documentTemplateConfig,
   gallery:galleryConfig,
+  // role:roleConfig,
+  // geofencing:geofencingConfig,
 };
 
 export default formConfig;

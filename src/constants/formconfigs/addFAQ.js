@@ -1,6 +1,6 @@
 const faq = {
     endpoint: "/api/faqs", // Adjust the endpoint for your API
-    backRoute: "/faqs",
+    backRoute: "/dashboard/configuration/faq",
     fields: [
       { 
         name: "question", 

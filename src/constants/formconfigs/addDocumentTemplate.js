@@ -1,6 +1,6 @@
 const documentTemplateConfig = {
     endpoint: "/api/document-templates", // Adjust the endpoint for your API
-    backRoute: "/document-templates",    // Adjust the back route for navigation
+    backRoute: "/dashboard/configuration/documenttemplates",
     fields: [
       { 
         name: "name", 

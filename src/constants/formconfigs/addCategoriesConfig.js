@@ -1,6 +1,6 @@
 const addCategoriesConfig = {
   endpoint: "/api/categories",
-  backRoute: "/categories",
+  backRoute: "/dashboard/catalogue/categories",
   fields: [
     {
       name: "parentCategory",

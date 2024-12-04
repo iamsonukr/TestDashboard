@@ -1,6 +1,6 @@
 const galleryConfig = {
     endpoint: "/api/gallery", // Adjust the endpoint for your API
-    backRoute: "/gallery",    // Adjust the back route for navigation
+    backRoute: "/dashboard/configuration/gallery",
     fields: [
       { 
         name: "image", 
