@@ -1,14 +1,49 @@
+import React from "react";
 import Layout from "../../../layouts/Layout";
+import DynamicTable from "../../../components/DynamicTable";
+const Services = () => {
+  const faqColumns = [
+    { key: "Name", label: "Name" },
+    { key: "status", label: "Status" },
+    { key: "createdAt", label: "Created At" },
+  ];
 
-const Role = () => {
+  const faqData = [
+    {
+      id: 1,
+      Name: "Roy",
+      status: "Active",
+      createdAt: "22 May 2024",
+    },
+    {
+      id: 2,
+      Name: "Roy",
+      status: "Active",
+      createdAt: "22 May 2024",
+    },
+  ];
+
+
   return (
     <Layout>
-      <div className="bg-white shadow p-4 rounded-lg">
-        <h1 className="text-2xl font-bold">Role</h1>
-        <p className="mt-4">Welcome to the Role page!</p>
-      </div>
-    </Layout>
-  )
-}
+      <div className="p-6 bg-gray-100 h-full">
+        <DynamicTable title="Roles" subTitle="You can customise multiple user roles as per your requirements and assign these roles to your sub-admin users to have very specific data access" initialData={faqData} columns={faqColumns} pageConfig={{
+          AddnewEntry: true,
+          addNewEntryRoute: "/add/addSubAdmin",
+          statusOptions: ["Active", "Inactive"],
 
-export default Role
+          select: true,
+          Action: true,
+
+          showDelete: true,
+          showEdit: true,
+        }} />
+      </div>
+      
+    </Layout>
+  );
+};
+
+export default Services;
+
+

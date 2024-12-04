@@ -29,22 +29,20 @@ const  Booking = () => {
     },
   ];
 
-  const pageConfig = {
-    select: true, 
-    Action: true,
-
-    importExport: false, 
-    statusOptions: ["Active", "Inactive"], 
-    actions: {
-      view: true,
-      delete: true, 
-    },
-  };
+ 
 
   return (
     <Layout>
       <div className="p-6 bg-gray-100 h-full">
-        <DynamicTable title="Bookings" initialData={faqData} columns={faqColumns} pageConfig={pageConfig} />
+        <DynamicTable title="Bookings" initialData={faqData} columns={faqColumns}  pageConfig={{
+            addNewEntryRoute: "/add/customer",
+            statusOptions: ["Active", "Inactive"],
+
+            select: true,
+            Action: true,
+
+            showView: true,
+          }}/>
       </div>
     </Layout>
   );

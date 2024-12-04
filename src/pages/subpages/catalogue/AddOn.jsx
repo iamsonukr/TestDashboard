@@ -28,23 +28,22 @@ const  Services = () => {
       createdAt: "22 May 2024",
     },
   ];
-  const pageConfig = {
-    select: true, 
-
-    Action: true,
  
-    statusOptions: ["Active", "Inactive"], 
-    actions: {
-      view: false,
-      delete: true,
-      edit: true, 
-    },
-  };
 
   return (
     <Layout>
       <div className="p-6 bg-gray-100 h-full">
-        <DynamicTable title="Add On" initialData={faqData} columns={faqColumns} pageConfig={pageConfig}/>
+        <DynamicTable title="Add On" initialData={faqData} columns={faqColumns}  pageConfig={{
+            AddnewEntry: true,
+            addNewEntryRoute: "/add/addAddons",
+            statusOptions: ["Active", "Inactive"],
+
+            select: true,
+            Action: true,
+
+            showView: true,
+            showDelete: true,
+          }}/>
       </div>
     </Layout>
   );

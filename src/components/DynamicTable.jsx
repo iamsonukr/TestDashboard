@@ -8,6 +8,7 @@ import { MdImportExport } from "react-icons/md";
 
 const DynamicTable = ({
   title,
+  subTitle,
   initialData,
   columns,
   onAddNew = () => {},
@@ -172,11 +173,12 @@ const DynamicTable = ({
               onClick={handleAddNewEntryClick}
               className="border-blue-600 border-2 text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer"
             >
-              + Add New Entry
+             + Add New {title}
             </button>
           )}
         </div>
       </div>
+      <h2 className="text-[1.1vw]  text-gray-400 font-light pb-[1vw]">{subTitle}</h2>
 
       {/* Search and Filter */}
       <div className="mb-4 flex gap-4">
@@ -326,6 +328,7 @@ const DynamicTable = ({
 
 DynamicTable.propTypes = {
   title: PropTypes.string.isRequired,
+  subTitle: PropTypes.string,
   initialData: PropTypes.array.isRequired,
   columns: PropTypes.array.isRequired,
   onAddNew: PropTypes.func,

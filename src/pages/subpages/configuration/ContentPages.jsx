@@ -27,7 +27,16 @@ const FaqManagement = () => {
   return (
     <Layout>
       <div className="p-6 bg-gray-100 h-full">
-        <DynamicTable title="Content Pages" initialData={faqData} columns={faqColumns} />
+        <DynamicTable title="Content Pages" initialData={faqData} columns={faqColumns}
+         pageConfig={{
+          statusOptions: ["Active", "Inactive"],
+        
+
+          select: true,
+          Action: true,
+
+          showView: true,
+        }}/> 
       </div>
     </Layout>
   );

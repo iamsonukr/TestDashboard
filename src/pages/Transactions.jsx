@@ -33,7 +33,7 @@ const  Transactions = () => {
     <Layout>
       <div className="p-6 bg-gray-100 h-full">
         <DynamicTable title="Transations" initialData={faqData} columns={faqColumns}  pageConfig={{
-            AddnewEntry: true,
+        
             addNewEntryRoute: "/add/customer",
             importExport: true,
             statusOptions: ["Active", "Inactive"],

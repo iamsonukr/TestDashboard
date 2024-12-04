@@ -29,7 +29,17 @@ const FaqManagement = () => {
   return (
     <Layout>
       <div className="p-6 bg-gray-100 h-full">
-        <DynamicTable title="FAQs" initialData={faqData} columns={faqColumns} />
+        <DynamicTable title="FAQs" initialData={faqData} columns={faqColumns}   pageConfig={{
+            addNewEntryRoute: "/add/FAQ",
+            statusOptions: ["Active", "Inactive"],
+
+            select: true,
+            Action: true,
+            AddnewEntry: true,
+
+            showEdit: true,
+            showDelete: true,
+          }}/>
       </div>
     </Layout>
   );
