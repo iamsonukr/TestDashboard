@@ -82,9 +82,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-[60vw] md:w-64 h-screen bg-gradient-to-r from-[#2C52A0] to-[#4189C4] text-white md:block transition-transform transform ${
+        className={`fixed top-0 left-0 w-[60vw] md:w-64 h-full bg-gradient-to-r from-[#2C52A0] to-[#4189C4] text-white md:block transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:static z-50`}
+        } md:translate-x-0 md:static z-50 md:overflow-y-auto scrollbar-hide`}
       >
         {/* Logo Section */}
         <div className="hidden md:flex md:justify-center md:items-center">
