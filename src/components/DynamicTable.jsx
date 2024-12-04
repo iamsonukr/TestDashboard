@@ -22,7 +22,6 @@ const DynamicTable = ({
   const [isViewing, setIsViewing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  // New state for delete confirmation modal
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
 
@@ -31,20 +30,20 @@ const DynamicTable = ({
   const handleSearch = (e) => setSearchQuery(e.target.value);
 
   const handleDelete = (id) => {
-    setItemToDelete(id); // Store the item ID to be deleted
-    setIsDeleteModalOpen(true); // Open the delete confirmation modal
+    setItemToDelete(id);
+    setIsDeleteModalOpen(true);
   };
 
   const confirmDelete = () => {
     const updatedData = data.filter((item) => item.id !== itemToDelete);
     setData(updatedData);
     setIsDeleteModalOpen(false);
-    setItemToDelete(null); // Clear the item to delete
+    setItemToDelete(null);
   };
 
   const cancelDelete = () => {
     setIsDeleteModalOpen(false);
-    setItemToDelete(null); // Clear the item to delete
+    setItemToDelete(null);
   };
 
   const handleFormChange = (e) => {
@@ -70,10 +69,18 @@ const DynamicTable = ({
     setIsFormOpen(false);
   };
 
+  // const handleAddNew = () => {
+  //   setIsFormOpen(true);
+  //   setIsEditing(false);
+  //   setIsViewing(false);
+  //   setNewEntry({});
+  // };
+
   const handleEdit = (id) => {
     const itemToEdit = data.find((item) => item.id === id);
     setNewEntry(itemToEdit);
     setIsEditing(true);
+    setIsViewing(false);
     setEditingId(id);
     setIsFormOpen(true);
     setIsViewing(false); // Ensure that "viewing" is turned off when editing
@@ -83,6 +90,7 @@ const DynamicTable = ({
     const itemToView = data.find((item) => item.id === id);
     setNewEntry(itemToView);
     setIsViewing(true);
+    setIsEditing(false);
     setIsFormOpen(true);
     setIsEditing(false); // Ensure that "editing" is turned off when viewing
   };
