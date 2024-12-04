@@ -68,21 +68,32 @@ const DynamicTable = ({
     setIsFormOpen(false);
   };
 
+
+
+  const handleAddNew = () => {
+    setIsFormOpen(true);
+    setIsEditing(false);
+    setIsViewing(false);
+    setNewEntry({});
+  };
+  
   const handleEdit = (id) => {
     const itemToEdit = data.find((item) => item.id === id);
     setNewEntry(itemToEdit);
     setIsEditing(true);
+    setIsViewing(false);
     setEditingId(id);
     setIsFormOpen(true);
   };
-
+  
   const handleView = (id) => {
     const itemToView = data.find((item) => item.id === id);
     setNewEntry(itemToView);
     setIsViewing(true);
+    setIsEditing(false);
     setIsFormOpen(true);
   };
-
+  
   const handleImport = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -157,7 +168,7 @@ const DynamicTable = ({
                 setIsFormOpen(true);
                 setIsEditing(false);
               }}
-              className=" border-blue-600 border-2 text-[1vw] text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+              className="border-blue-600 border-2 text-[1vw] text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
             >
               + Add New Entry
             </button>
@@ -233,32 +244,31 @@ const DynamicTable = ({
                     )}
                   </td>
                 ))}
-                <td className="border px-4 py-2 flex items-center gap-2">
-                  {pageConfig?.actions?.view && (
+                {pageConfig?.Action && (
+                  <td className="border px-4 py-2 flex gap-2">
                     <button
-                      className="text-green-500 hover:text-green-900"
                       onClick={() => handleView(item.id)}
+                      className="text-blue-600"
                     >
+                      view
                       <MdPreview />
                     </button>
-                  )}
-                  {pageConfig?.actions?.edit && (
                     <button
-                      className="text-blue-500 hover:text-blue-900"
                       onClick={() => handleEdit(item.id)}
+                      className="text-yellow-600"
                     >
+                      edit
                       <FiEdit />
                     </button>
-                  )}
-                  {pageConfig?.actions?.delete && (
                     <button
                       onClick={() => handleDelete(item.id)}
-                      className="text-red-500 hover:text-red-900"
+                      className="text-red-600"
                     >
                       <MdDelete />
                     </button>
-                  )}
-                </td>
+                  </td>
+                  
+                )}
               </tr>
             ))}
           </tbody>
@@ -269,58 +279,72 @@ const DynamicTable = ({
       {isDeleteModalOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
-            <h3 className="text-lg font-semibold mb-4">Are you sure?</h3>
-            <p className="mb-4">Do you really want to delete this entry?</p>
-            <div className="flex justify-end gap-2">
+            <h3 className="text-xl font-semibold mb-4">Confirm Delete</h3>
+            <p>Are you sure you want to delete this entry?</p>
+            <div className="mt-4 flex justify-end gap-2">
               <button
                 onClick={cancelDelete}
-                className="border-blue-600 border-2 text-[1vw] text-blue-600 px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer"
+                className="bg-gray-300 text-black px-4 py-2 rounded-md"
               >
                 Cancel
               </button>
               <button
                 onClick={confirmDelete}
-                className="border-red-600 border-2 text-[1vw] text-red-500 px-2 rounded-md hover:text-white hover:bg-red-600 flex items-center gap-1 cursor-pointer"
+                className="bg-red-600 text-white px-4 py-2 rounded-md"
               >
-                Confirm Delete
+                Delete
               </button>
             </div>
           </div>
         </div>
       )}
 
+      {/* Form Modal */}
       {isFormOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
             <h3 className="text-xl font-semibold mb-4">
-              {isEditing ? "Edit Entry" : "Add New Entry"}
+              {isEditing ? "Edit Entry" : isViewing ? "View Entry" : "Add New Entry"}
             </h3>
             {columns.map((col) => (
               <div className="mb-4" key={col.key}>
                 <label className="block text-sm font-medium">{col.label}</label>
-                <input
-                  type="text"
-                  name={col.key}
-                  value={newEntry[col.key] || ""}
-                  onChange={handleFormChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                />
+                {isViewing ? (
+                  <p className="text-gray-700">{newEntry[col.key] || "N/A"}</p>
+                ) : (
+                  <input
+                    type="text"
+                    name={col.key}
+                    value={newEntry[col.key] || ""}
+                    onChange={handleFormChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    disabled={isViewing}  // Disable editing if viewing
+                  />
+                )}
               </div>
             ))}
             <div className="mb-4">
               <label className="block text-sm font-medium">Profile Photo</label>
-              <input
-                type="file"
-                name="profilePhoto"
-                accept="image/*"
-                onChange={(e) =>
-                  setNewEntry((prev) => ({
-                    ...prev,
-                    profilePhoto: e.target.files[0],
-                  }))
-                }
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              />
+              {isViewing ? (
+                <img
+                  src={newEntry.profilePhoto ? URL.createObjectURL(newEntry.profilePhoto) : "#"}
+                  alt="Profile"
+                  className="w-24 h-24 object-cover rounded-full"
+                />
+              ) : (
+                <input
+                  type="file"
+                  name="profilePhoto"
+                  accept="image/*"
+                  onChange={(e) =>
+                    setNewEntry((prev) => ({
+                      ...prev,
+                      profilePhoto: e.target.files[0],
+                    }))
+                  }
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                />
+              )}
             </div>
             <div className="flex justify-end gap-2">
               <button
@@ -329,12 +353,21 @@ const DynamicTable = ({
               >
                 Cancel
               </button>
-              <button
-                onClick={handleFormSubmit}
-                className="bg-green-600 text-white px-4 py-2 rounded-md"
-              >
-                Submit
-              </button>
+              {isViewing ? (
+                <button
+                  onClick={() => setIsFormOpen(false)}  // Just close without any action for view
+                  className="bg-blue-600 text-white px-4 py-2 rounded-md"
+                >
+                  Close
+                </button>
+              ) : (
+                <button
+                  onClick={handleFormSubmit}
+                  className="bg-green-600 text-white px-4 py-2 rounded-md"
+                >
+                  Submit
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -343,16 +376,12 @@ const DynamicTable = ({
   );
 };
 
-export default DynamicTable;
-
 DynamicTable.propTypes = {
   title: PropTypes.string.isRequired,
   initialData: PropTypes.array.isRequired,
   columns: PropTypes.array.isRequired,
   onAddNew: PropTypes.func,
-  pageConfig: PropTypes.object,
+  pageConfig: PropTypes.object.isRequired,
 };
 
-
-
-
+export default DynamicTable;
