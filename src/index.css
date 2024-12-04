@@ -3,12 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-}
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
