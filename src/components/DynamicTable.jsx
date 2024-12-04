@@ -352,3 +352,7 @@ DynamicTable.propTypes = {
   onAddNew: PropTypes.func,
   pageConfig: PropTypes.object,
 };
+
+
+
+
