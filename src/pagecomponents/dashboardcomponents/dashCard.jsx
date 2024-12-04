@@ -1,7 +1,7 @@
 
 const DashCard = ({ name, number, Icon }) => {
   return (
-    <div className="flex items-center justify-between bg-white shadow-lg rounded-lg p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+    <div className="flex items-center justify-between bg-white shadow-lg rounded-lg p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
       {/* Left Side */}
       <div className="flex flex-col justify-between">
         {/* Card Name */}

@@ -1,6 +1,9 @@
-import { useState } from "react";
+import React, { useState, Suspense } from "react";
 import formConfig from "../constants/formconfigs";
 import Layout from "../layouts/Layout";
+// Use React.lazy() for dynamic imports in React
+const ReactQuill = React.lazy(() => import("react-quill"));
+import "react-quill/dist/quill.snow.css"; // Rich Text Editor styles
 
 const DynamicForm = ({ configKey, onBack, onSubmit }) => {
   const config = formConfig[configKey];
@@ -63,6 +66,13 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
     }
   };
 
+  const handleEditorChange = (value, name) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const renderImageUpload = (field) => {
     const styles = {
       circle: "rounded-full w-28 h-28",
@@ -100,11 +110,11 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
   };
 
   const renderToggle = (field) => {
-    const { label, options } = field;  // Assuming config contains 'options' for toggle
+    const { label, options } = field;
 
     return (
       <div className="flex items-center">
-        <label className="relative flex items-center w-20 h-11 bg-gray-300 rounded-full">
+        <label className="relative flex items-center w-20 h-11 bg-gray-300 rounded-full cursor-pointer">
           <input
             type="checkbox"
             name={field.name}
@@ -113,13 +123,11 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
             className="hidden"
           />
           <span
-            className={`absolute text-[3vw] md:text-[0.8vw] text-white w-1/2 h-full flex items-center justify-center rounded-full transition-transform p-1 ${
-              formData[field.name]
+            className={`absolute text-[3vw] md:text-[0.8vw] text-white w-1/2 h-full flex items-center justify-center rounded-full transition-transform p-1 ${formData[field.name]
                 ? "bg-blue-500 translate-x-full"
                 : "bg-gray-400 translate-x-0"
-            }`}
+              }`}
           >
-            {/* Dynamically setting the label based on options */}
             {formData[field.name] ? options.enabled : options.disabled}
           </span>
         </label>
@@ -127,12 +135,54 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
     );
   };
 
+  const renderDateTimeField = (field) => {
+    return (
+      <input
+        type="datetime-local"
+        name={field.name}
+        onChange={handleChange}
+        className="border rounded px-4 py-2 cursor-pointer"
+        required={field.required}
+      />
+    );
+  };
+
+  const renderEditor = (field) => {
+    return (
+      <div className="space-y-4">
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center">
+              <div className="spinner-border animate-spin border-t-2 border-b-2 border-blue-500 w-8 h-8 rounded-full"></div>
+            </div>
+          }
+        >
+          <ReactQuill
+            value={formData[field.name] || ""}
+            onChange={(value) => handleEditorChange(value, field.name)}
+            modules={{
+              toolbar: [
+                [{ header: "1" }, { header: "2" }, { font: [] }],
+                [{ list: "ordered" }, { list: "bullet" }],
+                ["bold", "italic", "underline"],
+                ["link"],
+                [{ align: [] }],
+                ["image"],
+              ],
+            }}
+            className="border rounded px-4 py-2"
+          />
+        </Suspense>
+      </div>
+    );
+  };  
+
   return (
     <Layout>
       <div className="flex justify-center mt-6">
         <div className="w-full max-w-4xl p-6 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">
-            Add {configKey.charAt(0).toUpperCase() + configKey.slice(1)}
+          Add {configKey.charAt(0).toUpperCase() + configKey.slice(1)}
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -150,7 +200,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
                     <select
                       name={field.name}
                       onChange={handleChange}
-                      className="border rounded px-4 py-2"
+                      className="border rounded px-4 py-2 cursor-pointer"
                       required={field.required}
                     >
                       <option value="">Select {field.label}</option>
@@ -164,6 +214,10 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
                     renderToggle(field)
                   ) : field.type === "file" ? (
                     renderImageUpload(field)
+                  ) : field.type === "datetime" ? (
+                    renderDateTimeField(field)
+                  ) : field.type === "editor" ? (
+                    renderEditor(field)
                   ) : (
                     <input
                       type={field.type}

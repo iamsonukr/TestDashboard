@@ -110,8 +110,6 @@
 
 
 import "./Style.css"
-// import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import CardsData from "./CardData";
 import { addToCart } from "../Redux/features/CartSlice";
 import { useDispatch } from "react-redux";
