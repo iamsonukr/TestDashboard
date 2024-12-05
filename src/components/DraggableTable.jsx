@@ -5,7 +5,7 @@ import { MdDragIndicator, MdMoreVert } from 'react-icons/md';
 const DraggableTable = ({ columns, columnMap, data, onReorder, onNavigate, heading }) => {
   const [draggedRow, setDraggedRow] = useState(null);
   const [dragOverRow, setDragOverRow] = useState(null);
-  const [selectedRows, setSelectedRows] = useState([]);
+//   const [selectedRows, setSelectedRows] = useState([]);
   const [menuOpen, setMenuOpen] = useState(null); // Track the open menu
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -45,21 +45,21 @@ const DraggableTable = ({ columns, columnMap, data, onReorder, onNavigate, headi
     }
   };
 
-  const handleCheckboxChange = (e, rowId) => {
-    if (e.target.checked) {
-      setSelectedRows((prevSelectedRows) => [...prevSelectedRows, rowId]);
-    } else {
-      setSelectedRows((prevSelectedRows) => prevSelectedRows.filter((id) => id !== rowId));
-    }
-  };
+//   const handleCheckboxChange = (e, rowId) => {
+//     if (e.target.checked) {
+//       setSelectedRows((prevSelectedRows) => [...prevSelectedRows, rowId]);
+//     } else {
+//       setSelectedRows((prevSelectedRows) => prevSelectedRows.filter((id) => id !== rowId));
+//     }
+//   };
 
-  const handleSelectAllChange = (e) => {
-    if (e.target.checked) {
-      setSelectedRows(data.map((row) => row.id));
-    } else {
-      setSelectedRows([]);
-    }
-  };
+//   const handleSelectAllChange = (e) => {
+//     if (e.target.checked) {
+//       setSelectedRows(data.map((row) => row.id));
+//     } else {
+//       setSelectedRows([]);
+//     }
+//   };
 
   const handleMenuToggle = (index) => {
     setMenuOpen(menuOpen === index ? null : index); // Toggle the dropdown for the clicked row

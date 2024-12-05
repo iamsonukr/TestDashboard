@@ -11,10 +11,10 @@ const Categories = () => {
   };
 
   const initialData = [
-    { id: 1, categoryName: 'Plumbing', status: 'Active', itemCount: 1 },
-    { id: 2, categoryName: 'Lawyer', status: 'Inactive', itemCount: 3 },
-    { id: 3, categoryName: 'Cleaning', status: 'Active', itemCount: 2 },
-    { id: 4, categoryName: 'Electrician', status: 'Inactive', itemCount: 1 },
+    { id: 1, categoryName: 'Plumbing', status: 'Active', itemCount: "Item Count : 1" },
+    { id: 2, categoryName: 'Lawyer', status: 'Inactive', itemCount: "Item Count : 0" },
+    { id: 3, categoryName: 'Cleaning', status: 'Active', itemCount: "Item Count : 3" },
+    { id: 4, categoryName: 'Electrician', status: 'Inactive', itemCount: "Item Count : 2" },
   ];
 
   const [data, setData] = useState(initialData);
