@@ -1,5 +1,6 @@
 const rolesConfig = {
   // configKey: "roles",
+  title: "Roles",
   endpoint: "/api/roles", // Your API endpoint for submission
   backRoute: "/dashboard/system-access/role",
   fields: [

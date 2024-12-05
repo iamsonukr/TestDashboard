@@ -10,6 +10,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
   const config = formConfig[configKey];
   const [formData, setFormData] = useState({});
   const [imagePreviews, setImagePreviews] = useState({});
+  const [mapCoordinates, setMapCoordinates] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -179,6 +180,25 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
     );
   };
 
+  const renderMap = () => {
+    if (config.showMap) {
+      return (
+        <div className="mt-6">
+          <h3 className="text-lg font-semibold mb-4">Select Location on Map</h3>
+          <div className="w-full h-64 border">
+            <iframe
+              title="Google Map"
+              src={`https://www.google.com/maps/embed/v1/place?q=${mapCoordinates}&key=YOUR_API_KEY`}
+              className="w-full h-full border-0"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
   const renderSections = () => {
     if (!config.sections) return null;
 
@@ -218,9 +238,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
     <Layout>
       <div className="flex justify-center mt-6">
         <div className="w-full max-w-4xl p-6 bg-white shadow-lg rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4">
-            Add {configKey.charAt(0).toUpperCase() + configKey.slice(1)}
-          </h2>
+          <h2 className="text-2xl font-semibold mb-4">Add {config.title}</h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {config.fields.map((field) => (
@@ -260,6 +278,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
                       type={field.type}
                       name={field.name}
                       onChange={handleChange}
+                      placeholder={field.placeholder}
                       className="border rounded px-4 py-2"
                       required={field.required}
                     />
@@ -267,18 +286,21 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
                 </div>
               ))}
             </div>
+            {renderMap()}
             {renderSections()}
-            <div className="flex justify-between mt-4">
-              <button
-                type="button"
-                onClick={onBack}
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
-              >
-                Back
-              </button>
+            <div className="flex justify-end space-x-4 mt-4">
+              {onBack && (
+                <button
+                  type="button"
+                  onClick={onBack}
+                  className="bg-gray-500 text-white px-4 py-2 rounded"
+                >
+                  Back
+                </button>
+              )}
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded"
+                className="bg-blue-600 text-white px-4 py-2 rounded"
               >
                 Submit
               </button>
@@ -291,7 +313,3 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
 };
 
 export default DynamicForm;
-
-
-
-
