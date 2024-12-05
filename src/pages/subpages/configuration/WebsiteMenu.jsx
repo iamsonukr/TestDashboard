@@ -1,9 +1,43 @@
+import React from "react";
 import Layout from "../../../layouts/Layout";
-const  WebsiteMenu = () => {
+import DynamicTable from "../../../components/DynamicTable";const  WebsiteMenu = () => {
+  const faqColumns = [
+    { key: "Label", label: "Label" },
+    // { key: "lang", label: "Language" },
+    { key: "status", label: "Status" },
+    { key: "createdAt", label: "Created At" },
+  ];
 
+  const faqData = [
+    {
+      id: 1,
+      Label: "FAQ",
+      status: "Active",
+      createdAt: "22 May 2024",
+    },
+    {
+      id: 2,
+      Label: "FAQ",
+      status: "Inactive",
+      createdAt: "15 May 2024",
+    },
+  ];
   return (
     <Layout>
-    <h2>Website Menu</h2>
+      
+     
+      <div className="p-6 bg-gray-100 h-full">
+      <DynamicTable title="Menu" initialData={faqData} columns={faqColumns}
+          pageConfig={{
+            statusOptions: ["Active", "Inactive"],
+          
+  
+            select: true,
+            Action: true,
+  
+            showView: true,
+          }}/>         
+      </div>
     </Layout>
   );
 };
