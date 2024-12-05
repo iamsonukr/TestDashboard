@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 
 
-const CartDetails = () => {
+const CartDetails = ({isAuthenticated=true}) => {
   const { carts } = useSelector((state) => state.allCart)
 
   const [totalPrice, settotalPrice] = useState(0)
