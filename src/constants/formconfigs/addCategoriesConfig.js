@@ -1,4 +1,5 @@
 const addCategoriesConfig = {
+  title: "Categories Config",
   endpoint: "/api/categories",
   backRoute: "/dashboard/catalogue/categories",
   fields: [

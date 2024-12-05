@@ -1,4 +1,5 @@
 const addAddonsConfig = {
+  title: "Add On",
   endpoint: "/api/addons",
   backRoute: "/dashboard/catalogue/addon",
   fields: [

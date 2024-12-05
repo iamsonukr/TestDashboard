@@ -1,4 +1,5 @@
 const addServicesConfig = {
+  title: "Services",
   endpoint: "/api/services",
   backRoute: "/dashboard/catalogue/services",
   fields: [

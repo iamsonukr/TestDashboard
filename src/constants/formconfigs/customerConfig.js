@@ -1,4 +1,5 @@
 const customerConfig = {
+  title: "Customers",
   endpoint: "/api/customers",
   backRoute: "/dashboard/customers", 
   fields: [

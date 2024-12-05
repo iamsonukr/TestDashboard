@@ -124,11 +124,10 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
             className="hidden"
           />
           <span
-            className={`absolute text-[3vw] md:text-[0.8vw] text-white w-1/2 h-full flex items-center justify-center rounded-full transition-transform p-1 ${
-              formData[field.name]
+            className={`absolute text-[3vw] md:text-[0.8vw] text-white w-1/2 h-full flex items-center justify-center rounded-full transition-transform p-1 ${formData[field.name]
                 ? "bg-blue-500 translate-x-full"
                 : "bg-gray-400 translate-x-0"
-            }`}
+              }`}
           >
             {formData[field.name] ? options.enabled : options.disabled}
           </span>
@@ -219,7 +218,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
       <div className="flex justify-center mt-6">
         <div className="w-full max-w-4xl p-6 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">
-            Add {configKey.charAt(0).toUpperCase() + configKey.slice(1)}
+           Add {config.title}
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -1,4 +1,5 @@
 const serviceProviderConfig = {
+  title: "Service Providers",
   endpoint: "/api/services",
   backRoute: "/dashboard/serviceprovider",
   fields: [

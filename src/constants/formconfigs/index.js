@@ -14,7 +14,7 @@ import geofencingConfig from "./addGeofencing";
 
 const formConfig = {
   customer: customerConfig,
-  services: serviceProviderConfig,
+  Services: serviceProviderConfig,
   addServices: addServicesConfig,
   addCategories: addCategoriesConfig,
   addAddons: addAddonsConfig,
