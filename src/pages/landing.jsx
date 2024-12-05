@@ -47,20 +47,29 @@ function Landing({isAuthenticated=true}) {
         </div>
       </div>
       
+      {/* Search Bar */}
       <div className="w-full">
       <MapSearchBar/>
       </div>
 
+      {/* Maps */}
+      <div className="w-full"></div>
+
+      {/*  */}
       <div className="w-full h-full">
         <WhatWeOffer isAuthenticated={isAuthenticated} />
       </div>
 
+      {/* Testimonials */}
       <div className="w-full h-full">
         <Slider />
       </div>
+
+      {/* QnA */}
       <div className="w-full h-full md:px-20 md:pb-12">
         <QnA />
       </div>
+
       <div>
         <Footer />
       </div>

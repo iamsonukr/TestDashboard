@@ -120,6 +120,19 @@ const Navbar = ({ isAuthenticated = false }) => {
             <div className="w-full h-full flex items-center justify-center">
               {isAuthenticated ? (
                 <div className="flex gap-4">
+                  <NavLink
+              to={`${!isAuthenticated ? `/login` :`/cart`}`}
+              className="text-decoration-none text-light flex items-center justify-center "
+            >
+              <div className="relative flex items-center justify-center">
+                <FaCartShopping className="text-black" size={40} />
+                {carts.length > 0 && (
+                  <span className="absolute top-0 right-0 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                    {carts.length}
+                  </span>
+                )}
+              </div>
+            </NavLink>
                 <div className="w-10 h-10 bg-gray-500 rounded-full p-2 flex items-center justify-center">
                   <p className="font-semibold text-xl text-white">H</p>
                 </div>
