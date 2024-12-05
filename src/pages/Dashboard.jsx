@@ -42,6 +42,9 @@ const Dashboard = () => {
     select: true, 
     importExport: false, 
     statusOptions: ["Active", "Inactive"], 
+    showEdit: true,
+    showDelete: true,
+    showView: true,
     
   };
 
