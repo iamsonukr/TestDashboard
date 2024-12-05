@@ -29,8 +29,9 @@ const Services = () => {
       <div className="p-6 bg-gray-100 h-full">
         <DynamicTable title="Roles" subTitle="You can customise multiple user roles as per your requirements and assign these roles to your sub-admin users to have very specific data access" initialData={faqData} columns={faqColumns} pageConfig={{
           AddnewEntry: true,
-          addNewEntryRoute: "/add/addSubAdmin",
+          addNewEntryRoute: "/add/role",
           statusOptions: ["Active", "Inactive"],
+          showAction: true,
 
           select: true,
           Action: true,

@@ -40,6 +40,7 @@ const  Booking = () => {
 
             select: true,
             Action: true,
+            showAction: true,
 
             showView: true,
           }}/>

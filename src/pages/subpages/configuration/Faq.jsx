@@ -32,6 +32,7 @@ const FaqManagement = () => {
         <DynamicTable title="FAQs" initialData={faqData} columns={faqColumns}   pageConfig={{
             addNewEntryRoute: "/add/FAQ",
             statusOptions: ["Active", "Inactive"],
+            showAction: true,
 
             select: true,
             Action: true,
