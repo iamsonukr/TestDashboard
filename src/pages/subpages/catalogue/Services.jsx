@@ -32,7 +32,7 @@ const  Services = () => {
       <div className="p-6 bg-gray-100 h-full">
         <DynamicTable title="Services" initialData={faqData} columns={faqColumns}  pageConfig={{
             AddnewEntry: true,
-            addNewEntryRoute: "/add/services",
+            addNewEntryRoute: "/add/Services",
             statusOptions: ["Active", "Inactive"],
             showAction: true,
 
