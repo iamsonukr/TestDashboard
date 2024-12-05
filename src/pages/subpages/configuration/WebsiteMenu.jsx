@@ -31,7 +31,8 @@ import DynamicTable from "../../../components/DynamicTable";const  WebsiteMenu =
           pageConfig={{
             statusOptions: ["Active", "Inactive"],
           
-  
+            showAction: true,
+
             select: true,
             Action: true,
   

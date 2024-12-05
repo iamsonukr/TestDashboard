@@ -53,6 +53,8 @@ const ServiceProvider = () => {
             showView: true,
             showEdit: false,
             showDelete: true,
+            showAction: true,
+
           }}
 
         />

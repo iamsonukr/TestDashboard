@@ -36,7 +36,8 @@ const  Geofencing = () => {
           statusOptions: ["Active", "Inactive"],
           AddnewEntry: true,
 
-          addNewEntryRoute: "/add/geofencing",
+          addNewEntryRoute: "/add/Geofencing",
+          showAction: true,
 
           select: true,
           Action: true,

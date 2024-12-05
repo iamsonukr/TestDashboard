@@ -31,6 +31,7 @@ const Services = () => {
           AddnewEntry: true,
           addNewEntryRoute: "/add/role",
           statusOptions: ["Active", "Inactive"],
+          showAction: true,
 
           select: true,
           Action: true,

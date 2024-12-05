@@ -30,7 +30,8 @@ const FaqManagement = () => {
         <DynamicTable title="Content Pages" initialData={faqData} columns={faqColumns}
          pageConfig={{
           statusOptions: ["Active", "Inactive"],
-        
+          showAction: true,
+
 
           select: true,
           Action: true,
