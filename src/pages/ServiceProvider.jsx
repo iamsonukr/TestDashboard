@@ -47,12 +47,14 @@ const ServiceProvider = () => {
           columns={faqColumns}
           pageConfig={{
             AddnewEntry: true,
-            addNewEntryRoute: "/add/addServices",
+            addNewEntryRoute: "/add/Services",
             importExport: true, 
             statusOptions: ["Active", "Inactive"], 
             showView: true,
             showEdit: false,
             showDelete: true,
+            showAction: true,
+
           }}
 
         />

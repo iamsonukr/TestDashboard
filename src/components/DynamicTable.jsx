@@ -214,8 +214,11 @@ const DynamicTable = ({
                   {col.label}
                 </th>
               ))}
+                                {pageConfig?.showAction && (
+
               <th className="px-4 py-2 border-b">Actions</th>
-              
+            )}
+
             </tr>
           </thead>
          <tbody>
@@ -281,47 +284,47 @@ const DynamicTable = ({
         </div>
       )}
 
-      {/* Form for Add/Edit/View Entries */}
-      {(isEditing || isViewing) && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg w-[400px]">
-            <h3 className="text-xl font-semibold mb-4">{isEditing ? "Edit" : "View"} Item</h3>
-            {columns.map((col) => (
-              <div key={col.key} className="mb-4">
-                <label className="block text-gray-700">{col.label}</label>
-                <input
-                  type="text"
-                  name={col.key}
-                  value={newEntry[col.key] || ""}
-                  onChange={handleFormChange}
-                  disabled={isViewing} // Disable input if viewing
-                  className="mt-1 p-2 border border-gray-300 rounded w-full"
-                />
-              </div>
-            ))}
-            <div className="flex justify-between gap-2">
-              {isEditing && (
-                <button
-                  onClick={handleFormSubmit}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Save
-                </button>
-              )}
-              <button
-                onClick={() => {
-                  setIsFormOpen(false);
-                  setIsEditing(false);
-                  setIsViewing(false);
-                }}
-                className="bg-gray-500 text-white px-4 py-2 rounded"
-              >
-                Close
-              </button>
-            </div>
-          </div>
+{(isEditing || isViewing) && (
+  <div className="fixed inset-0 flex  items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-white p-6 rounded-lg w-[400px] max-h-[80vh] scrollbar-hide overflow-y-auto">
+      <h3 className="text-xl font-semibold mb-4">{isEditing ? "Edit" : "View"} Item</h3>
+      {columns.map((col) => (
+        <div key={col.key} className="mb-4">
+          <label className="block text-gray-700">{col.label}</label>
+          <input
+            type="text"
+            name={col.key}
+            value={newEntry[col.key] || ""}
+            onChange={handleFormChange}
+            disabled={isViewing} // Disable input if viewing
+            className="mt-1 p-2 border border-gray-300 rounded w-full"
+          />
         </div>
-      )}
+      ))}
+      <div className="flex justify-between gap-2">
+        {isEditing && (
+          <button
+            onClick={handleFormSubmit}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Save
+          </button>
+        )}
+        <button
+          onClick={() => {
+            setIsFormOpen(false);
+            setIsEditing(false);
+            setIsViewing(false);
+          }}
+          className="bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

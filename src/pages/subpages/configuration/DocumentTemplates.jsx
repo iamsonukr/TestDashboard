@@ -36,6 +36,8 @@ const FaqManagement = () => {
           AddnewEntry: true,
           addNewEntryRoute: "/add/documentTemplate",
           select: true,
+          showAction: true,
+
           Action: true,
           showEdit: true,
           showDelete: true,

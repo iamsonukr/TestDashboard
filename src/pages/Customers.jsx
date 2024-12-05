@@ -44,7 +44,7 @@ const Customers = () => {
             addNewEntryRoute: "/add/customer",
             importExport: true,
             statusOptions: ["Active", "Inactive"],
-
+            showAction: true,
             select: true,
             Action: true,
 

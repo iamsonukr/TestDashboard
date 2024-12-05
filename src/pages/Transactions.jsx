@@ -40,6 +40,7 @@ const  Transactions = () => {
 
             select: true,
             Action: true,
+            showAction: true,
 
             showView: true,
             showEdit: true,

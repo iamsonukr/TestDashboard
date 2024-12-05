@@ -14,7 +14,7 @@ import geofencingConfig from "./addGeofencing";
 
 const formConfig = {
   customer: customerConfig,
-  services: serviceProviderConfig,
+  Services: serviceProviderConfig,
   addServices: addServicesConfig,
   addCategories: addCategoriesConfig,
   addAddons: addAddonsConfig,
@@ -25,7 +25,7 @@ const formConfig = {
   FAQ:addFAQ,
   gallery:galleryConfig,
   role:roleConfig,
-  geofencing:geofencingConfig,
+  Geofencing:geofencingConfig,
 };
 
 export default formConfig;

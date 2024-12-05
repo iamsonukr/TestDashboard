@@ -40,6 +40,7 @@ const  Services = () => {
 
             select: true,
             Action: true,
+            showAction: true,
 
             showView: true,
             showDelete: true,

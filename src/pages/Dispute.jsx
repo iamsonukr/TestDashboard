@@ -42,6 +42,7 @@ const Dispute = () => {
           pageConfig={{ showView: true,
             showEdit: false,
             statusOptions: ["Active", "Inactive"],
+            showAction: true,
 
             showDelete: false,}}
         />
