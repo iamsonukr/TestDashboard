@@ -1,10 +1,10 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
-import QnA from "../components/QnA";
 import WhatWeOffer from "../components/WhatWeOffer";
 import MapSearchBar from "../components/MapSearchBar"
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Landing({isAuthenticated=true}) {
   const navigate = useNavigate();
@@ -16,6 +16,15 @@ function Landing({isAuthenticated=true}) {
       navigate("/CleaningServices");
     }
   };
+
+  useEffect(() => {
+    if (window.location.hash === "#faq") {
+      const faqSection = document.getElementById("faq");
+      if (faqSection) {
+        faqSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
 
   return (
     <div className="w-full h-full">
@@ -63,12 +72,7 @@ function Landing({isAuthenticated=true}) {
       {/* Testimonials */}
       <div className="w-full h-full">
         <Slider />
-      </div>
-
-      {/* QnA */}
-      <div className="w-full h-full md:px-20 md:pb-12">
-        <QnA />
-      </div>
+      </div>      
 
       <div>
         <Footer />
