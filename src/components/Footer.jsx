@@ -1,5 +1,3 @@
-import React from "react";
-
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-6">
@@ -36,7 +34,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/#faq"
                   className="hover:text-gray-400 transition duration-200"
                 >
                   FAQs
@@ -46,9 +44,7 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col items-center">
-            <h5 className="text-lg font-semibold text-white mb-4">
-              Follow Us
-            </h5>
+            <h5 className="text-lg font-semibold text-white mb-4">Follow Us</h5>
             <div className="flex space-x-6">
               <a
                 href="#"
@@ -75,7 +71,7 @@ const Footer = () => {
           </div>
         </div>
 
-         <div className="mt-8 text-center text-sm">
+        <div className="mt-8 text-center text-sm">
           <p>Copyright © 2024 Go Rapid Food - All Rights Reserved.</p>
         </div>
       </div>

@@ -79,13 +79,13 @@ const Slider = () => {
                         onClick={handleLeftClick}
                         className="p-2 w-[10vw] h-[10vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw] bg-blue-400 hover:bg-blue-600 rounded-full flex justify-center items-center"
                     >
-                        <FaChevronLeft size={"4vw,2vw"}/>
+                        <FaChevronLeft size={30}/>
                     </button>
                     <button
                         onClick={handleRightClick}
                         className="p-2 w-[10vw] h-[10vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw]  bg-blue-400 hover:bg-blue-600 rounded-full flex justify-center items-center"
                     >
-                        <FaChevronRight size={"[4vw,2vw]"} />
+                        <FaChevronRight size={30} />
                     </button>
                 </div>
             </div>

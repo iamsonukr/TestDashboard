@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaCartShopping } from "react-icons/fa6";
@@ -19,10 +19,10 @@ const Navbar = ({ isAuthenticated = false }) => {
 
   return (
     <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
+      <div className="w-full mx-auto px-4">
+        <div className="flex justify-between h-20 items-center md:px-[8vw]">
           {/* Logo */}
-          <div className="h-20 flex items-center justify-center gap-10 text-lg font-semibold ">
+          <div className="w-full h-20 flex items-center justify-between gap-10 text-lg font-semibold ">
             <a href="/">
               <div className="w-full h-20 p-4 overflow-hidden flex items-center justify-center gap-2">
                 <img
