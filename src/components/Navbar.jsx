@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoLogOutOutline } from "react-icons/io5";
 import LoginPage from '../pages/auth/Login';
-// import SignupPage from '../pages/auth/SignUp';
 import ServiceProviderPage from '../pages/auth/ServiceProvider';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = ({ isAuthenticated = false }) => {
-  const navigate = useNavigate();
   const { carts } = useSelector((state) => state.allCart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -20,20 +16,20 @@ const Navbar = ({ isAuthenticated = false }) => {
   const closeModal = () => setActiveModal(null);
 
 
-  
+
   function handleLogout() {
     isAuthenticated = false;
   }
 
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="w-full mx-auto px-4">
-        <div className="flex justify-between h-20 items-center md:px-[8vw]">
+    <nav className="w-full h-full bg-white shadow-md">
+      <div className="w-full h-full mx-auto px-4">
+        <div className="flex w-full justify-between h-20 items-center md:px-[8vw]">
           {/* Logo */}
-          <div className="w-full h-20 flex items-center justify-between gap-10 text-lg font-semibold ">
+          <div className="w-full h-full flex items-center justify-between gap-10 text-lg font-semibold ">
             <a href="/">
-              <div className="w-full h-24 p-4 overflow-hidden flex items-center justify-center gap-2">
+              <div className="w-full h-16 p-4 overflow-hidden flex items-center justify-center gap-2">
                 <img
                   className="w-full h-full rounded-xl object-cover"
                   src="https://s3-alpha-sig.figma.com/img/1c0c/d169/3dbdc0fd97d8c3de81ffbaef9d4c9586?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qUirXu4SfnS8EyQMEmCnb1mI5OI3CKIKFhtpuDJ0j9QL8FT40MHgnxbPjG3ERG5jITIru7u4aB5jHlOZzRYGasDe-r8mDLjv6qUDQQsbBtJPYVzNjQvI57prg2q9Hk9mNQ8dfogyg2FUjJOASsuG2c3rtFJPcOZ-fOV8rBxEA9QWDDH-WK6cTK7WW2Lym4S4s64l-HuqdD6ZDXNr7xNpigmIBz8BQcGSATD5wAoxyzZLMhU2rpYKh81J2iJ-uWPeuHgg4oeI8kbRN7EfmiaKw3Hn9LeDbI9CyZHlLk4Lo~PAaZpJtr87WSgeP1ROV3TOa6CtYSmeQVhaJvkpd8DfoA__"
@@ -77,7 +73,6 @@ const Navbar = ({ isAuthenticated = false }) => {
             ) : (
 
               <div className="flex gap-2">
-                <ToastContainer />
                 {/* signin */}
                 <button
                   onClick={() => openModal('login')}
@@ -168,7 +163,6 @@ const Navbar = ({ isAuthenticated = false }) => {
                 </div>
               ) : (
                 <div className="flex flex-col gap-2">
-                <ToastContainer />
                 {/* signin */}
                 <button
                   onClick={() => openModal('login')}

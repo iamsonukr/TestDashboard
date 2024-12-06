@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import LoginPage from '../pages/auth/Login';
 
-function whatWeOffer({isAuthenticated=true}) {
+function WhatWeOffer({isAuthenticated=true}) {
   const navigate = useNavigate();
 
   const [activeModal, setActiveModal] = useState(null);
@@ -64,4 +64,4 @@ function whatWeOffer({isAuthenticated=true}) {
   )
 }
 
-export default whatWeOffer
+export default WhatWeOffer
