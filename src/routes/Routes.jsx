@@ -26,13 +26,18 @@ import AddPage from "../pages/AddPage";
 import Booking from "../pages/Booking";
 import Profile from "../pages/Profile";
 import Password from "../pages/EditPassword";
-import Landing from "../pages/Landing";
+import Landing from "../pages/landing";
 import CartDetails from "../components/CartDetails"
 import CleaningServices from "../pages/CleaningServices"
 import Login from "../pages/auth/Login"
 import SignUp from "../pages/auth/SignUp"
 import ErrorPage from "../pages/ErrorPage";
+<<<<<<< HEAD
 import Cview from "../components/Viewandedit";
+=======
+import MainPage from "../pages/auth/MainApp";
+
+>>>>>>> 06832b40f263a19bbafca81139767757d4bd9d45
 
 const AppRoutes = () => {
   return (
@@ -42,6 +47,7 @@ const AppRoutes = () => {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/main" element={<MainPage />} />
 
 
       {/* There all below routes should be protectes */}

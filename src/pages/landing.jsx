@@ -2,16 +2,23 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
 import WhatWeOffer from "../components/WhatWeOffer";
-import MapSearchBar from "../components/MapSearchBar"
+import MapSearchBar from "../components/MapSearchBar";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
+import LoginPage from './auth/Login';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Landing({isAuthenticated=true}) {
+function Landing({ isAuthenticated = false }) {
   const navigate = useNavigate();
+
+  const [activeModal, setActiveModal] = useState(null);
+  const openModal = (modal) => setActiveModal(modal);
+  const closeModal = () => setActiveModal(null);
 
   const handleClick = () => {
     if (!isAuthenticated) {
-      navigate("/login");
+      openModal("login");
     } else {
       navigate("/CleaningServices");
     }
@@ -31,7 +38,6 @@ function Landing({isAuthenticated=true}) {
       <Navbar isAuthenticated={isAuthenticated} />
       {/* static content */}
       <div className="w-full h-full flex flex-col md:flex-row gap-4 p-6">
-
         <div className="flex flex-col items-start justify-center gap-3 md:gap-4 md:w-1/2 md:p-[3vw]">
           <h1 className="text-3xl md:text-[4vw] font-bold md:leading-[4vw]">
             Find Cleaning{" "}
@@ -42,7 +48,10 @@ function Landing({isAuthenticated=true}) {
           <h2 className="text-md md:text-[2vw] font-semibold text-gray-400">
             Explore Best Cleaning Services Near You
           </h2>
-          <button onClick={handleClick} className="text-lg md:text-[2vw] px-4 py-2 md:px-2vw] md:py-[1vw] rounded-md font-semibold text-white bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]">
+          <button
+            onClick={handleClick}
+            className="text-lg md:text-[2vw] px-4 py-2 md:px-2vw] md:py-[1vw] rounded-md font-semibold text-white bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+          >
             Book Now
           </button>
         </div>
@@ -55,10 +64,10 @@ function Landing({isAuthenticated=true}) {
           />
         </div>
       </div>
-      
+
       {/* Search Bar */}
       <div className="w-full">
-      <MapSearchBar/>
+        <MapSearchBar />
       </div>
 
       {/* Maps */}
@@ -72,11 +81,14 @@ function Landing({isAuthenticated=true}) {
       {/* Testimonials */}
       <div className="w-full h-full">
         <Slider />
-      </div>      
+      </div>
 
       <div>
         <Footer />
       </div>
+
+      {/* modal */}
+      <LoginPage isOpen={activeModal === "login"} onClose={closeModal} />
     </div>
   );
 }
