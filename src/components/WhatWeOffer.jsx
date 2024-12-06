@@ -1,8 +1,13 @@
-import React from 'react'
+import {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import LoginPage from '../pages/auth/Login';
 
 function whatWeOffer({isAuthenticated=true}) {
   const navigate = useNavigate();
+
+  const [activeModal, setActiveModal] = useState(null);
+  const openModal = (modal) => setActiveModal(modal);
+  const closeModal = () => setActiveModal(null);
 
 
   const services = [
@@ -19,7 +24,7 @@ function whatWeOffer({isAuthenticated=true}) {
   function handleClick(){
     if(!isAuthenticated)
     {
-      navigate("/login")
+      openModal('login')
     }
     else{
       navigate("/CleaningServices")
@@ -54,6 +59,7 @@ function whatWeOffer({isAuthenticated=true}) {
           ))}
         </div>
       </section>
+      <LoginPage isOpen={activeModal === 'login'} onClose={closeModal} />
     </div>
   )
 }

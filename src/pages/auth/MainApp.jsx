@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import LoginPage from './Login';
 import SignupPage from './SignUp';
 import ServiceProviderPage from './ServiceProvider';
