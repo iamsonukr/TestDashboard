@@ -17,6 +17,10 @@ const Navbar = ({ isAuthenticated = false }) => {
     navigate("/login");
   }
 
+  function handleBecomeAPartner(){
+    navigate("/cleaner-register")
+  }
+
   return (
     <nav className="bg-white shadow-md">
       <div className="w-full mx-auto px-4">
@@ -24,7 +28,7 @@ const Navbar = ({ isAuthenticated = false }) => {
           {/* Logo */}
           <div className="w-full h-20 flex items-center justify-between gap-10 text-lg font-semibold ">
             <a href="/">
-              <div className="w-full h-20 p-4 overflow-hidden flex items-center justify-center gap-2">
+              <div className="w-full h-24 p-4 overflow-hidden flex items-center justify-center gap-2">
                 <img
                   className="w-full h-full rounded-xl object-cover"
                   src="https://s3-alpha-sig.figma.com/img/1c0c/d169/3dbdc0fd97d8c3de81ffbaef9d4c9586?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qUirXu4SfnS8EyQMEmCnb1mI5OI3CKIKFhtpuDJ0j9QL8FT40MHgnxbPjG3ERG5jITIru7u4aB5jHlOZzRYGasDe-r8mDLjv6qUDQQsbBtJPYVzNjQvI57prg2q9Hk9mNQ8dfogyg2FUjJOASsuG2c3rtFJPcOZ-fOV8rBxEA9QWDDH-WK6cTK7WW2Lym4S4s64l-HuqdD6ZDXNr7xNpigmIBz8BQcGSATD5wAoxyzZLMhU2rpYKh81J2iJ-uWPeuHgg4oeI8kbRN7EfmiaKw3Hn9LeDbI9CyZHlLk4Lo~PAaZpJtr87WSgeP1ROV3TOa6CtYSmeQVhaJvkpd8DfoA__"
@@ -38,10 +42,13 @@ const Navbar = ({ isAuthenticated = false }) => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-3">
+          <div className="w-full hidden md:flex justify-end gap-3">
+            
 
-          <NavLink
-              to={`${!isAuthenticated ? `/login` :`/cart`}`}
+            {isAuthenticated ? (
+              <div className="flex gap-3">
+                <NavLink
+              to={`${!isAuthenticated ? `/login` : `/cart`}`}
               className="text-decoration-none text-light flex items-center justify-center "
             >
               <div className="relative flex items-center justify-center">
@@ -53,9 +60,6 @@ const Navbar = ({ isAuthenticated = false }) => {
                 )}
               </div>
             </NavLink>
-
-            {isAuthenticated ? (
-              <div className="flex gap-3">
                 <div className="w-12 h-12 bg-gray-500 rounded-full p-2 flex items-center justify-center hover:cursor-pointer">
                   <p className="font-bold text-2xl text-white">H</p>
                 </div>
@@ -67,16 +71,21 @@ const Navbar = ({ isAuthenticated = false }) => {
                 </button>
               </div>
             ) : (
-              <button
-                onClick={handleSignIn}
-                className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
-              >
-                Sign In
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={handleSignIn}
+                  className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+                >
+                  Sign In
+                </button>
+                <button
+                  onClick={handleBecomeAPartner}
+                  className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+                >
+                  Become a Partner
+                </button>
+              </div>
             )}
-
-            
-
           </div>
 
           {/* Mobile Menu Button */}
@@ -121,35 +130,43 @@ const Navbar = ({ isAuthenticated = false }) => {
               {isAuthenticated ? (
                 <div className="flex gap-4">
                   <NavLink
-              to={`${!isAuthenticated ? `/login` :`/cart`}`}
-              className="text-decoration-none text-light flex items-center justify-center "
-            >
-              <div className="relative flex items-center justify-center">
-                <FaCartShopping className="text-black" size={40} />
-                {carts.length > 0 && (
-                  <span className="absolute top-0 right-0 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
-                    {carts.length}
-                  </span>
-                )}
-              </div>
-            </NavLink>
-                <div className="w-10 h-10 bg-gray-500 rounded-full p-2 flex items-center justify-center">
-                  <p className="font-semibold text-xl text-white">H</p>
-                </div>
-                <button
-                  onClick={handleLogout}
-                  className="p-2 gap-2 items-center justify-center flex rounded-2xl text-red-500 border-2 border-red-500 font-extrabold hover:text-white hover:bg-red-500 hover:border-none"
-                >
-                  <IoLogOutOutline size={20} />
-                </button>
+                    to={`${!isAuthenticated ? `/login` : `/cart`}`}
+                    className="text-decoration-none text-light flex items-center justify-center "
+                  >
+                    <div className="relative flex items-center justify-center">
+                      <FaCartShopping className="text-black" size={40} />
+                      {carts.length > 0 && (
+                        <span className="absolute top-0 right-0 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                          {carts.length}
+                        </span>
+                      )}
+                    </div>
+                  </NavLink>
+                  <div className="w-10 h-10 bg-gray-500 rounded-full p-2 flex items-center justify-center">
+                    <p className="font-semibold text-xl text-white">H</p>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="p-2 gap-2 items-center justify-center flex rounded-2xl text-red-500 border-2 border-red-500 font-extrabold hover:text-white hover:bg-red-500 hover:border-none"
+                  >
+                    <IoLogOutOutline size={20} />
+                  </button>
                 </div>
               ) : (
+                <div className="flex flex-col gap-2">
                 <button
                   onClick={handleSignIn}
-                  className="p-1 text-sm rounded-sm text-white font-medium bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+                  className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
                 >
                   Sign In
                 </button>
+                <button
+                onClick={handleBecomeAPartner}
+                className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+              >
+                Become a Partner
+              </button>
+              </div>
               )}
             </div>
           </div>

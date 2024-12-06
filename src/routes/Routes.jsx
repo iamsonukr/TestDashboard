@@ -32,6 +32,7 @@ import CleaningServices from "../pages/CleaningServices"
 import Login from "../pages/auth/Login"
 import SignUp from "../pages/auth/SignUp"
 import ErrorPage from "../pages/ErrorPage";
+import CleanerRegister from "../pages/CleanerRegister";
 
 
 const AppRoutes = () => {
@@ -42,6 +43,7 @@ const AppRoutes = () => {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/cleaner-register" element={<CleanerRegister />} />
 
 
       {/* There all below routes should be protectes */}

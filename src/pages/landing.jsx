@@ -6,7 +6,7 @@ import MapSearchBar from "../components/MapSearchBar"
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-function Landing({isAuthenticated=true}) {
+function Landing({isAuthenticated=false}) {
   const navigate = useNavigate();
 
   const handleClick = () => {
