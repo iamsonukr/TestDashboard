@@ -20,14 +20,7 @@ const Customers = () => {
       status: "Active",
       registeredAt: "22 May 2024",
     },
-    {
-      id: 2,
-      name: "Pawan Yadav",
-      "mobile no": "123451565590",
-      email: "asd@gmail.com",
-      status: "Inactive",
-      registeredAt: "15 May 2024",
-    },
+   
   ];
 
 
@@ -49,7 +42,6 @@ const Customers = () => {
             Action: true,
 
             showView: true,
-            showEdit: true,
             showDelete: true,
           }}
         />

@@ -32,7 +32,7 @@ import CleaningServices from "../pages/CleaningServices"
 import Login from "../pages/auth/Login"
 import SignUp from "../pages/auth/SignUp"
 import ErrorPage from "../pages/ErrorPage";
-
+import Cview from "../components/Viewandedit";
 
 const AppRoutes = () => {
   return (
@@ -79,7 +79,8 @@ const AppRoutes = () => {
       <Route path="/dashboard/configuration/gallery" element={<Gallery />} />
       <Route path="/dashboard/configuration/basicsettings" element={<BasicSettings />} />
       <Route path="/dashboard/configuration/serviceprovidersettings" element={<ServiceProviderSettings />} />
-
+{/* View and Edit */}
+      <Route path="/dashboard/viewandedit" element={<Cview/>} />
       {/* Error Route */}
       <Route path="*" element={<ErrorPage />} />
     </Routes>

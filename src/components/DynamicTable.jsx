@@ -1,10 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { FiEdit } from "react-icons/fi";
-import { MdPreview, MdDelete } from "react-icons/md";
 import { FaFileExport } from "react-icons/fa6";
-import { MdImportExport } from "react-icons/md";
+import { MdImportExport, MdDelete, MdPreview } from "react-icons/md";
+import { FiEdit } from "react-icons/fi";
 
 const DynamicTable = ({
   title,
@@ -17,11 +16,6 @@ const DynamicTable = ({
   const [data, setData] = useState(initialData);
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("All");
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [newEntry, setNewEntry] = useState({});
-  const [isEditing, setIsEditing] = useState(false);
-  const [isViewing, setIsViewing] = useState(false);
-  const [editingId, setEditingId] = useState(null);
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
@@ -35,6 +29,12 @@ const DynamicTable = ({
     setIsDeleteModalOpen(true);
   };
 
+
+  const handleView = (id) => {
+    navigate(`/dashboard/viewandedit`, { state: { id } });
+  };
+
+
   const confirmDelete = () => {
     const updatedData = data.filter((item) => item.id !== itemToDelete);
     setData(updatedData);
@@ -45,53 +45,6 @@ const DynamicTable = ({
   const cancelDelete = () => {
     setIsDeleteModalOpen(false);
     setItemToDelete(null);
-  };
-
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setNewEntry((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleFormSubmit = () => {
-    if (isEditing) {
-      setData((prevData) =>
-        prevData.map((item) =>
-          item.id === editingId ? { ...item, ...newEntry } : item
-        )
-      );
-    } else {
-      const newId = data.length ? data[data.length - 1].id + 1 : 1;
-      setData([...data, { ...newEntry, id: newId }]);
-      onAddNew(newEntry);
-    }
-    setNewEntry({});
-    setIsEditing(false);
-    setEditingId(null);
-    setIsFormOpen(false);
-  };
-
-  // const handleAddNew = () => {
-  //   setIsFormOpen(true);
-  //   setIsEditing(false);
-  //   setIsViewing(false);
-  //   setNewEntry({});
-  // };
-
-  const handleEdit = (id) => {
-    const itemToEdit = data.find((item) => item.id === id);
-    setNewEntry(itemToEdit);
-    setIsEditing(true);
-    setIsViewing(false);
-    setEditingId(id);
-    setIsFormOpen(true);
-  };
-
-  const handleView = (id) => {
-    const itemToView = data.find((item) => item.id === id);
-    setNewEntry(itemToView);
-    setIsViewing(true);
-    setIsEditing(false);
-    setIsFormOpen(true);
   };
 
   const handleImport = (event) => {
@@ -148,37 +101,37 @@ const DynamicTable = ({
       <div className="flex justify-between flex-wrap gap-4 mb-4">
         <h2 className="text-2xl font-semibold">{title}</h2>
         <div className="flex gap-2 justify-center items-center">
-         {pageConfig?.importExport && (
-  <>
-    <button
-      onClick={handleExport}
-      className="border-blue-600 border-2 text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer"
-    >
-      <FaFileExport /> Export
-    </button>
-    <button className="relative border-blue-600 border-2 text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer">
-      <MdImportExport />
-      Import
-      <input
-        type="file"
-        accept=".csv"
-        onChange={handleImport}
-        className="absolute inset-0 opacity-0 cursor-pointer"
-      />
-    </button>
-  </>
-)}
+          {pageConfig?.importExport && (
+            <>
+              <button
+                onClick={handleExport}
+                className="border-blue-600 border-2 text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer"
+              >
+                <FaFileExport /> Export
+              </button>
+              <button className="relative border-blue-600 border-2 text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer">
+                <MdImportExport />
+                Import
+                <input
+                  type="file"
+                  accept=".csv"
+                  onChange={handleImport}
+                  className="absolute inset-0 opacity-0 cursor-pointer"
+                />
+              </button>
+            </>
+          )}
           {pageConfig?.AddnewEntry && (
             <button
               onClick={handleAddNewEntryClick}
               className="border-blue-600 border-2 text-black px-2 rounded-md hover:text-white hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4] flex items-center gap-1 cursor-pointer"
             >
-             + Add New {title}
+              + Add New {title}
             </button>
           )}
         </div>
       </div>
-      <h2 className="text-[1.1vw]  text-gray-400 font-light pb-[1vw]">{subTitle}</h2>
+      <h2 className="text-[1.1vw] text-gray-400 font-light pb-[1vw]">{subTitle}</h2>
 
       {/* Search and Filter */}
       <div className="mb-4 flex gap-4">
@@ -214,51 +167,48 @@ const DynamicTable = ({
                   {col.label}
                 </th>
               ))}
-                                {pageConfig?.showAction && (
-
-              <th className="px-4 py-2 border-b">Actions</th>
-            )}
-
+              {pageConfig?.showAction && <th className="px-4 py-2 border-b">Actions</th>}
             </tr>
           </thead>
-         <tbody>
-  {filteredData.map((item) => (
-    <tr key={item.id}>
-      {columns.map((col) => (
-         <td
-         key={col.key}
-         className={`px-4 py-2 border-b ${
-           col.key === "status"
-             ? item[col.key]?.toLowerCase() === "active"
-               ? "text-green-600"
-               : "text-red-600"
-             : ""
-         }`}
-       >
-         {item[col.key]}
-       </td>
-      ))}
-       <td className="px-4 py-2 border-b flex gap-2">
-                  {pageConfig?.showView && (
-                    <button onClick={() => handleView(item.id)}>
-                      <MdPreview />
-                    </button>
-                  )}
-                  {pageConfig?.showEdit && (
-                    <button onClick={() => handleEdit(item.id)}>
-                      <FiEdit />
-                    </button>
-                  )}
-                  {pageConfig?.showDelete && (
-                    <button onClick={() => handleDelete(item.id)}>
-                      <MdDelete className="text-red-600" />
-                    </button>
-                  )}
-                </td>
-    </tr>
-  ))}
-</tbody>
-
+          <tbody>
+            {filteredData.map((item) => (
+              <tr key={item.id}>
+                {columns.map((col) => (
+                  <td
+                    key={col.key}
+                    className={`px-4 py-2 border-b ${
+                      col.key === "status"
+                        ? item[col.key]?.toLowerCase() === "active"
+                          ? "text-green-600"
+                          : "text-red-600"
+                        : ""
+                    }`}
+                  >
+                    {item[col.key]}
+                  </td>
+                ))}
+                {pageConfig?.showAction && (
+                      <td className="px-4 py-2 border-b flex gap-2">
+                      {pageConfig?.showView && (
+                        <button onClick={() => handleView(item.id)}>
+                          <MdPreview />
+                        </button>
+                      )}
+                      {pageConfig?.showEdit && (
+                        <button onClick={() => handleEdit(item.id)}>
+                          <FiEdit />
+                        </button>
+                      )}
+                      {pageConfig?.showDelete && (
+                        <button onClick={() => handleDelete(item.id)}>
+                          <MdDelete className="text-red-600" />
+                        </button>
+                      )}
+                    </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
 
@@ -283,48 +233,6 @@ const DynamicTable = ({
           </div>
         </div>
       )}
-
-{(isEditing || isViewing) && (
-  <div className="fixed inset-0 flex  items-center justify-center bg-black bg-opacity-50">
-    <div className="bg-white p-6 rounded-lg w-[400px] max-h-[80vh] scrollbar-hide overflow-y-auto">
-      <h3 className="text-xl font-semibold mb-4">{isEditing ? "Edit" : "View"} Item</h3>
-      {columns.map((col) => (
-        <div key={col.key} className="mb-4">
-          <label className="block text-gray-700">{col.label}</label>
-          <input
-            type="text"
-            name={col.key}
-            value={newEntry[col.key] || ""}
-            onChange={handleFormChange}
-            disabled={isViewing} // Disable input if viewing
-            className="mt-1 p-2 border border-gray-300 rounded w-full"
-          />
-        </div>
-      ))}
-      <div className="flex justify-between gap-2">
-        {isEditing && (
-          <button
-            onClick={handleFormSubmit}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Save
-          </button>
-        )}
-        <button
-          onClick={() => {
-            setIsFormOpen(false);
-            setIsEditing(false);
-            setIsViewing(false);
-          }}
-          className="bg-gray-500 text-white px-4 py-2 rounded"
-        >
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-
     </div>
   );
 };

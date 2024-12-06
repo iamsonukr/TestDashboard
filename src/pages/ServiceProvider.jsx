@@ -24,16 +24,7 @@ const ServiceProvider = () => {
       balance: "$100",
       createdAt: "22 May 2024",
     },
-    {
-      id: 2,
-      name: "Pawan Yadav",
-      "mobile no": "123451565590",
-      email: "pawan@gmail.com",
-      status: "Inactive",
-      "online status": "Offline",
-      balance: "$200",
-      createdAt: "15 May 2024",
-    },
+   
   ];
 
  
