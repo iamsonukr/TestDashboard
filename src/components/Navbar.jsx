@@ -3,10 +3,19 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoLogOutOutline } from "react-icons/io5";
+import LoginPage from '../pages/auth/Login';
+import SignupPage from '../pages/auth/SignUp';
+import ServiceProviderPage from '../pages/auth/ServiceProvider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = ({ isAuthenticated = false }) => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
+
+  const openModal = (modal) => setActiveModal(modal);
+  const closeModal = () => setActiveModal(null);
   const { carts } = useSelector((state) => state.allCart);
 
   function handleLogout() {
@@ -72,14 +81,15 @@ const Navbar = ({ isAuthenticated = false }) => {
               </div>
             ) : (
               <div className="flex gap-2">
+                <ToastContainer />
                 <button
-                  onClick={handleSignIn}
+                  onClick={() => openModal('login')}
                   className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
                 >
                   Sign In
                 </button>
                 <button
-                  onClick={handleBecomeAPartner}
+                onClick={() => openModal('serviceProvider')}
                   className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
                 >
                   Become a Partner
@@ -172,6 +182,8 @@ const Navbar = ({ isAuthenticated = false }) => {
           </div>
         </div>
       )}
+      <LoginPage isOpen={activeModal === 'login'} onClose={closeModal} />
+      <ServiceProviderPage isOpen={activeModal === 'serviceProvider'} onClose={closeModal} />
     </nav>
   );
 };
