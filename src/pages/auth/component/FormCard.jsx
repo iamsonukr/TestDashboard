@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import PasswordInput from './PasswordInput';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const DynamicForm = ({ role, onSubmit }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [previewImage, setPreviewImage] = useState(null);
+  const navigate = useNavigate();
 
   const rolesConfig = {
     login: ['email', 'password'],
@@ -103,6 +105,43 @@ const DynamicForm = ({ role, onSubmit }) => {
           </div>
         )
       ))}
+      
+      {/* Conditional Links for Navigation */}
+      {role === 'signup' ? (
+        <div className="col-span-2 flex justify-center items-center text-sm text-gray-600 text-center">
+          <span className="mr-1">Already have an account?</span>
+          <button
+            type="button"
+            onClick={() => navigate("/login")}
+            className="text-blue-500 hover:text-blue-700"
+          >
+            Login
+          </button>
+        </div>
+      ) : role === 'login' ? (
+        <div className="col-span-2 flex justify-center items-center text-sm text-gray-600 text-center">
+          <span className="mr-1">Don't have an account?</span>
+          <button
+            type="button"
+            onClick={() => navigate("/signup")}
+            className="text-blue-500 hover:text-blue-700"
+          >
+            Sign Up
+          </button>
+        </div>
+      ) : role === 'serviceProvider' ? (
+        <div className="col-span-2 flex justify-center items-center text-sm text-gray-600 text-center">
+          <span className="mr-1">Already registered?</span>
+          <button
+            type="button"
+            onClick={() => navigate("/login")}
+            className="text-blue-500 hover:text-blue-700"
+          >
+            Login
+          </button>
+        </div>
+      ) : null}
+
       <div className="col-span-2">
         <button
           type="submit"
@@ -111,7 +150,6 @@ const DynamicForm = ({ role, onSubmit }) => {
           Submit
         </button>
       </div>
-
     </form>
   );
 };
