@@ -6,10 +6,10 @@ import MapSearchBar from "../components/MapSearchBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect,useState } from "react";
 import LoginPage from './auth/Login';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Landing({ isAuthenticated = false }) {
+
   const navigate = useNavigate();
 
   const [activeModal, setActiveModal] = useState(null);
@@ -83,7 +83,7 @@ function Landing({ isAuthenticated = false }) {
         <Slider />
       </div>
 
-      <div>
+      <div className="w-full h-full">
         <Footer />
       </div>
 

@@ -1,78 +1,116 @@
-const Footer = () => {
-  return (
-    <footer className="bg-gray-900 text-gray-300 py-6">
-      <div className="container mx-auto px-4 md:px-16">
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
-          <div className="mb-6 md:mb-0">
-            <h5 className="text-lg font-semibold text-white mb-4">
-              Customer Service
-            </h5>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-400 transition duration-200"
-                >
-                  Terms & Condition
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-400 transition duration-200"
-                >
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-400 transition duration-200"
-                >
-                  Refund Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#faq"
-                  className="hover:text-gray-400 transition duration-200"
-                >
-                  FAQs
-                </a>
-              </li>
-            </ul>
-          </div>
+import React from 'react';
+import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 
-          <div className="flex flex-col items-center">
-            <h5 className="text-lg font-semibold text-white mb-4">Follow Us</h5>
-            <div className="flex space-x-6">
-              <a
-                href="#"
-                className="hover:text-gray-400 transition duration-200"
-                aria-label="Facebook"
-              >
-                <i className="fab fa-facebook text-xl"></i>
-              </a>
-              <a
-                href="#"
-                className="hover:text-gray-400 transition duration-200"
-                aria-label="Twitter"
-              >
-                <i className="fab fa-twitter text-xl"></i>
-              </a>
-              <a
-                href="#"
-                className="hover:text-gray-400 transition duration-200"
-                aria-label="Instagram"
-              >
-                <i className="fab fa-instagram text-xl"></i>
-              </a>
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  
+  const footerSections = [
+    {
+      title: "Customer Service",
+      links: [
+        { text: "Terms & Conditions", href: "/terms" },
+        { text: "Privacy Policy", href: "/privacy" },
+        { text: "Refund Policy", href: "/refund" },
+        { text: "FAQs", href: "/faq" }
+      ]
+    },
+    {
+      title: "Quick Links",
+      links: [
+        { text: "About Us", href: "/about" },
+        { text: "Our Services", href: "/menu" },
+        { text: "Order Now", href: "/order" },
+        { text: "Contact Us", href: "/contact" }
+      ]
+    },
+    {
+      title: "Contact Info",
+      content: (
+        <div className="space-y-3">
+          <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-gray-400 transition duration-200">
+            <Phone size={16} />
+            <span>(123) 456-7890</span>
+          </a>
+          <a href="mailto:info@gorapid.food" className="flex items-center gap-2 hover:text-gray-400 transition duration-200">
+            <Mail size={16} />
+            <span>info@Yarpacom.food</span>
+          </a>
+          <div className="flex items-center gap-2">
+            <MapPin size={16} />
+            <span>123 Food Street, Cuisine City</span>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  const socialLinks = [
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Instagram, href: "#", label: "Instagram" }
+  ];
+
+  return (
+    <footer className="bg-gray-900 text-gray-300 py-12 ">
+      <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {footerSections.map((section, index) => (
+            <div key={index}>
+              <h2 className="text-lg font-semibold text-white mb-4">
+                {section.title}
+              </h2>
+              {section.links ? (
+                <ul className="space-y-3">
+                  {section.links.map((link, linkIndex) => (
+                    <li key={linkIndex}>
+                      <a
+                        href={link.href}
+                        className="hover:text-gray-400 transition duration-200"
+                      >
+                        {link.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                section.content
+              )}
+            </div>
+          ))}
+
+          <div>
+            <h2 className="text-lg font-semibold text-white mb-4">
+              Connect With Us
+            </h2>
+            <div className="space-y-4">
+              <p className="text-sm">
+                Stay updated with our latest offers and updates!
+              </p>
+              <div className="flex space-x-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className="hover:text-gray-400 transition duration-200"
+                    aria-label={social.label}
+                  >
+                    <social.icon size={24} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 text-center text-sm">
-          <p>Copyright © 2024 Go Rapid Food - All Rights Reserved.</p>
+        <div className="mt-12 pt-8 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm">
+              Copyright © {currentYear} Yarpacom - All Rights Reserved.
+            </p>
+            <p className="text-sm">
+              {/* Designed with ❤️ for Hygiene everywhere */}
+            </p>
+          </div>
         </div>
         
       </div>
