@@ -1,13 +1,21 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom';
 import Layout from "../layouts/Layout";
 
 const UserProfile = () => {
-  const location = useLocation();
+  // const location = useLocation();
+
+  const navigate = useNavigate();
+  const {id} = useParams()
+
+  const handleNavigate = () => {
+    console.log("Navigating to Add Customer");  
+    navigate("/add/viewcustomer?id="+id);
+  };
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-100 p-6">
+      <div className="min-h-screen bg-gray-100 p-6"> 
         {/* Header Section */}
         <div className="bg-white shadow rounded-lg p-6 flex items-center space-x-6">
           {/* Profile Image */}
@@ -43,7 +51,6 @@ const UserProfile = () => {
 
         {/* Profile Details Section */}
         <div className="mt-6 w-[40vw] grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Personal Information Section (Narrowed Width) */}
           <div className="bg-white shadow rounded-lg p-6 ">
             <h3 className="text-lg font-medium mb-4">Personal Information</h3>
             <ul className="space-y-2 text-sm">
@@ -60,8 +67,12 @@ const UserProfile = () => {
                 <strong>Wallet Amount:</strong> $0
               </li>
             </ul>
-            <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg">Edit</button>
-          </div>
+            <button
+      className="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg"
+      onClick={handleNavigate}
+    >
+      Edit
+    </button>          </div>
 
           {/* Orders Section */}
           <div className="bg-white shadow rounded-lg p-6 w-[50vw] ">

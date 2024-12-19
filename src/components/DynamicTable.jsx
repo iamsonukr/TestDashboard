@@ -31,7 +31,7 @@ const DynamicTable = ({
 
 
   const handleView = (id) => {
-    navigate(`/dashboard/viewandedit`, { state: { id } });
+    navigate(`/dashboard/viewandedit/`+id )
   };
 
 

@@ -11,6 +11,7 @@ import documentTemplateConfig from "./addDocumentTemplate";
 import galleryConfig from "./addGallery";
 import roleConfig from "./addRole";
 import geofencingConfig from "./addGeofencing";
+import viewcustomerConfig from "./ViewCustomerConfig";
 
 const formConfig = {
   customer: customerConfig,
@@ -19,6 +20,7 @@ const formConfig = {
   addCategories: addCategoriesConfig,
   addAddons: addAddonsConfig,
   addSubAdmin: addSubAdmin,
+  viewcustomer:viewcustomerConfig,
   // addCampaign: addCampaign,
   // addCampaignTemplate: addCampaignTemplate,
   documentTemplate:documentTemplateConfig,

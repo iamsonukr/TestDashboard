@@ -32,12 +32,9 @@ import CleaningServices from "../pages/CleaningServices"
 import Login from "../pages/auth/Login"
 import SignUp from "../pages/auth/SignUp"
 import ErrorPage from "../pages/ErrorPage";
-<<<<<<< HEAD
 import Cview from "../components/Viewandedit";
-=======
 import MainPage from "../pages/auth/MainApp";
 
->>>>>>> 06832b40f263a19bbafca81139767757d4bd9d45
 
 const AppRoutes = () => {
   return (
@@ -86,7 +83,7 @@ const AppRoutes = () => {
       <Route path="/dashboard/configuration/basicsettings" element={<BasicSettings />} />
       <Route path="/dashboard/configuration/serviceprovidersettings" element={<ServiceProviderSettings />} />
 {/* View and Edit */}
-      <Route path="/dashboard/viewandedit" element={<Cview/>} />
+      <Route path="/dashboard/viewandedit/:id" element={<Cview/>} />
       {/* Error Route */}
       <Route path="*" element={<ErrorPage />} />
     </Routes>

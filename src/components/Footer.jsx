@@ -74,6 +74,7 @@ const Footer = () => {
         <div className="mt-8 text-center text-sm">
           <p>Copyright © 2024 Go Rapid Food - All Rights Reserved.</p>
         </div>
+        
       </div>
     </footer>
   );

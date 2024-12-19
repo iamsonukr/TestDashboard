@@ -1,16 +1,46 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import formConfig from "../constants/formconfigs";
 import Layout from "../layouts/Layout";
 
 // Use React.lazy() for dynamic imports
 const ReactQuill = React.lazy(() => import("react-quill"));
 import "react-quill/dist/quill.snow.css"; // Rich Text Editor styles
+import faqData from "../utils/Data";
+
+//    name	
+// mobileCode		
+// MobileNumber'			
+// email		
+// status		
+// profileImage
 
 const DynamicForm = ({ configKey, onBack, onSubmit }) => {
   const config = formConfig[configKey];
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({name:""});
   const [imagePreviews, setImagePreviews] = useState({});
   const [mapCoordinates, setMapCoordinates] = useState(null);
+
+  // get id from query params
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id");
+
+  console.table(config.fields);
+
+  useEffect(() => {
+    if (id) {
+      const data = faqData.find((item) => item.id === Number(id));
+      if (data) {
+        setFormData({
+          name: data.name,
+          mobileCode: data.mobileCode,
+          mobileNumber: data["mobile no"],
+          email: data.email,
+          status: data.status === "Active",
+        });
+      }
+    }
+  }, [id]);
+
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -48,6 +78,8 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+
+      console.log('==============Form Datat------------:',formData);
       const response = await fetch(config.endpoint, {
         method: "POST",
         headers: {
@@ -239,7 +271,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
       <div className="flex justify-center mt-6">
         <div className="w-full max-w-4xl p-6 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">Add {config.title}</h2>
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form className="space-y-4 border-4 border-yellow-500" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {config.fields.map((field) => (
                 <div key={field.name} className="flex flex-col">
@@ -277,6 +309,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
                     <input
                       type={field.type}
                       name={field.name}
+                      value={formData[field.name] || ""}
                       onChange={handleChange}
                       placeholder={field.placeholder}
                       className="border rounded px-4 py-2"
