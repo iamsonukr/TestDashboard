@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { FaFileExport } from "react-icons/fa6";
@@ -79,6 +79,7 @@ const DynamicTable = ({
     link.href = url;
     link.download = `${title}_data.csv`;
     link.click();
+    
   };
 
   const filteredData = data.filter((item) => {
@@ -95,6 +96,7 @@ const DynamicTable = ({
       navigate(pageConfig.addNewEntryRoute);
     }
   };
+
 
   return (
     <div className="bg-white shadow-md rounded-md p-4">
