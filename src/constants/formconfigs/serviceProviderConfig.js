@@ -1,6 +1,6 @@
 const serviceProviderConfig = {
   title: "Service Providers",
-  endpoint: "/api/services",
+  endpoint: "http://localhost:5001/api/v1/admin/create",
   backRoute: "/dashboard/serviceprovider",
   fields: [
     { name: "name", label: "Name", type: "text", required: true },

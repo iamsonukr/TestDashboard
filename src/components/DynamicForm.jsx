@@ -24,7 +24,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
 
-  console.table(config.fields);
+  // console.table(config.fields) ;
 
   useEffect(() => {
     if (id) {
@@ -80,6 +80,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
     try {
 
       console.log('==============Form Datat------------:',formData);
+      console.log(config)
       const response = await fetch(config.endpoint, {
         method: "POST",
         headers: {
@@ -113,6 +114,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
       square: "w-32 h-32",
       banner: "w-80 h-32 rounded-md",
     };
+
 
     return (
       <div className="flex flex-col items-center">

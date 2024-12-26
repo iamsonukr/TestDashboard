@@ -17,7 +17,7 @@ const AddPage = () => {
       configKey={configKey}
       onBack={() => navigate(config.backRoute || "/")}
     />
-  );
+  );  
 };
 
 export default AddPage;
