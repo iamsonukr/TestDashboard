@@ -271,7 +271,7 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
       <div className="flex justify-center mt-6">
         <div className="w-full max-w-4xl p-6 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">Add {config.title}</h2>
-          <form className="space-y-4 border-4 border-yellow-500" onSubmit={handleSubmit}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {config.fields.map((field) => (
                 <div key={field.name} className="flex flex-col">

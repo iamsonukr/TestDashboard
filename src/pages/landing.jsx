@@ -34,12 +34,12 @@ function Landing({ isAuthenticated = false }) {
   }, []);
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full  ">
       <Navbar isAuthenticated={isAuthenticated} />
       {/* static content */}
-      <div className="w-full h-full flex border-2  border-red-700 bg-[url('https://wallpaperaccess.com/full/1137443.jpg')] bg-cover bg-center flex-col md:flex-row gap-4 p-6">
+      <div className="w-full flex bg-[url('https://wallpaperaccess.com/full/1137443.jpg')] bg-cover bg-center flex-col md:flex-row gap-4 p-20">
         <div className="flex flex-col items-start justify-center gap-3 md:gap-4 md:w-1/2 md:p-[3vw]">
-          <h1 className="text-3xl md:text-[4vw] text-gray-400 font-bold md:leading-[4vw]">
+          <h1 className="text-3xl md:text-[4vw] text-white font-bold md:leading-[4vw]">
             Find Cleaning{" "}
             <span className="bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text text-transparent">
               Services Near You
@@ -50,7 +50,7 @@ function Landing({ isAuthenticated = false }) {
           </h2>
           <button
             onClick={handleClick}
-            className="text-lg md:text-[2vw] px-4 py-2 md:px-2vw] md:py-[1vw] rounded-md font-semibold text-white bg-gray-500 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+            className="text-lg md:text-[2vw] px-4 py-2 md:px-2vw] md:py-[1vw] rounded-md font-semibold text-white bg-[#2C52A0] hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
           >
             Book Now
           </button>
@@ -59,14 +59,14 @@ function Landing({ isAuthenticated = false }) {
         <div className=" md:w-1/2 p-[3vw]">
           <img
             className="h-full w-full hover:scale-105 duration-1000 rounded-2xl object-fill shadow-xl"
-            src="https://img.freepik.com/free-photo/medium-shot-people-cleaning-building_23-2150454555.jpg?t=st=1734599132~exp=1734602732~hmac=da0d17153e3a454f617ea4451c9676456eb5ae330adc154f22faf67cdc32ebc0&w=1060"
+            src="https://th.bing.com/th?id=OIP.KkxfezKFPzxP8MXBT4hdxwHaE7&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
             alt=""
           />
         </div>
       </div>
 
       {/* Search Bar */}
-      <div className="w-full">
+      <div className="w-full pt-5">
         <MapSearchBar />
       </div>
 

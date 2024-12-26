@@ -29,10 +29,10 @@ const Navbar = ({ isAuthenticated = false }) => {
           {/* Logo */}
           <div className="w-full h-full flex items-center justify-between gap-10 text-lg font-semibold ">
             <a href="/">
-              <div className="w-full h-16 p-4 overflow-hidden flex items-center justify-center gap-2">
+              <div className="w-full h-20 p-4 overflow-hidden flex items-center justify-center gap-2">
                 <img
                   className="w-full h-full rounded-xl object-cover"
-                  src="https://s3-alpha-sig.figma.com/img/1c0c/d169/3dbdc0fd97d8c3de81ffbaef9d4c9586?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qUirXu4SfnS8EyQMEmCnb1mI5OI3CKIKFhtpuDJ0j9QL8FT40MHgnxbPjG3ERG5jITIru7u4aB5jHlOZzRYGasDe-r8mDLjv6qUDQQsbBtJPYVzNjQvI57prg2q9Hk9mNQ8dfogyg2FUjJOASsuG2c3rtFJPcOZ-fOV8rBxEA9QWDDH-WK6cTK7WW2Lym4S4s64l-HuqdD6ZDXNr7xNpigmIBz8BQcGSATD5wAoxyzZLMhU2rpYKh81J2iJ-uWPeuHgg4oeI8kbRN7EfmiaKw3Hn9LeDbI9CyZHlLk4Lo~PAaZpJtr87WSgeP1ROV3TOa6CtYSmeQVhaJvkpd8DfoA__"
+                  src="/logo.png"
                   alt=""
                 />
                 <p className="text-2xl font-bold bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text text-transparent">
@@ -76,7 +76,7 @@ const Navbar = ({ isAuthenticated = false }) => {
                 {/* signin */}
                 <button
                   onClick={() => openModal('login')}
-                  className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+                  className="px-3 py-2 rounded-md text-white font-semibold bg-[#2C52A0] hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
                 >
                   Sign In
                 </button>
@@ -84,7 +84,7 @@ const Navbar = ({ isAuthenticated = false }) => {
                 {/* Become Partner */}
                 <button
                 onClick={() => openModal('serviceProvider')}
-                  className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
+                  className="px-3 py-2 rounded-md text-white font-semibold bg-[#2C52A0] hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
                 >
                   Become a Partner
                 </button>
