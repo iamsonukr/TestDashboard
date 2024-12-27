@@ -12,13 +12,7 @@ function WhatWeOffer({isAuthenticated=true}) {
 
   const services = [
     { title: "Residential Cleaning", icon: "🏠", borderColor: "#22c55e" },
-    { title: "Commercial Cleaning", icon: "🏢", borderColor: "#3b82f6" },
-    { title: "Specialized Cleaning", icon: "🧹", borderColor: "#f59e0b" },
-    { title: "Industrial Cleaning", icon: "🏭", borderColor: "#ef4444" },
-    { title: "Medical Cleaning", icon: "🏥", borderColor: "#10b981" },
-    { title: "Event Cleaning", icon: "🎉", borderColor: "#6366f1" },
-    { title: "Green Cleaning", icon: "🌿", borderColor: "#16a34a" },
-    { title: "Vehicle Cleaning", icon: "🚗", borderColor: "#f97316" }
+    { title: "Office Cleaning", icon: "🏢", borderColor: "#3b82f6" },
   ];
 
   function handleClick(){
@@ -38,7 +32,7 @@ function WhatWeOffer({isAuthenticated=true}) {
         <h2 className="text-3xl font-bold mb-10">
           Clean Your Space With <span className="text-[#FFAB00]">Best Cleaning Services</span>
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto max-w-screen-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mx-auto max-w-screen-lg">
           {services.map((service, index) => (
             <div onClick={handleClick}
               key={index}

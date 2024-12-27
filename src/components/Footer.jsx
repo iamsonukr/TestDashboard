@@ -29,15 +29,17 @@ const Footer = () => {
         <div className="space-y-3">
           <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-gray-400 transition duration-200">
             <Phone size={16} />
-            <span>(123) 456-7890</span>
+            <span>+1 612-616-5019
+            </span>
           </a>
           <a href="mailto:info@gorapid.food" className="flex items-center gap-2 hover:text-gray-400 transition duration-200">
             <Mail size={16} />
-            <span>info@Yarpacom.food</span>
+            <span>contact@yarpacom.com</span>
           </a>
-          <div className="flex items-center gap-2">
-            <MapPin size={16} />
-            <span>123 Food Street, Cuisine City</span>
+          <div className="flex gap-2">
+            <MapPin size={20} />
+            <span>5700 Colfax Ave N
+            Brooklyn Center MN, 55430</span>
           </div>
         </div>
       )
