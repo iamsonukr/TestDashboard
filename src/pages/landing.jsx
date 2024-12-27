@@ -37,15 +37,15 @@ function Landing({ isAuthenticated = false }) {
     <div className="w-full h-full  ">
       <Navbar isAuthenticated={isAuthenticated} />
       {/* static content */}
-      <div className="w-full flex bg-[url('https://wallpaperaccess.com/full/1137443.jpg')] bg-cover bg-center flex-col md:flex-row gap-4 p-20">
+      <div className="w-full flex bg-[url('https://th.bing.com/th?id=OIP.CcLnxiHn1P-D_2gsa1p1HgHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2')] bg-cover bg-center flex-col md:flex-row gap-4 p-20">
         <div className="flex flex-col items-start justify-center gap-3 md:gap-4 md:w-1/2 md:p-[3vw]">
-          <h1 className="text-3xl md:text-[4vw] text-white font-bold md:leading-[4vw]">
+          <h1 className="text-3xl md:text-[4vw] text-gray-600 font-bold md:leading-[4vw]">
             Find Cleaning{" "}
             <span className="bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text text-transparent">
               Services Near You
             </span>
           </h1>
-          <h2 className="text-md md:text-[2vw] font-semibold text-gray-300">
+          <h2 className="text-md md:text-[2vw] font-semibold text-gray-600">
             Explore Best Cleaning Services Near You
           </h2>
           <button
