@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Modal = ({ isOpen, onClose, title, children, size = 'large' }) => {
+const Modal = ({ isOpen, setIsOpen, title, children, size = 'large' }) => {
   if (!isOpen) return null;
+  const navigate=useNavigate()
 
   // Dynamic width and height based on the modal size
   const modalSizes = {
@@ -9,6 +11,11 @@ const Modal = ({ isOpen, onClose, title, children, size = 'large' }) => {
     medium: 'max-w-lg h-[60vh]',
     large: 'max-w-2xl h-[80vh]',
   };
+  
+  const handleClose=()=>{
+    setIsOpen(false)
+    navigate('/')
+  }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -18,7 +25,7 @@ const Modal = ({ isOpen, onClose, title, children, size = 'large' }) => {
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold">{title}</h2>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="text-gray-600 hover:text-gray-900 text-2xl"
           >
             &times;

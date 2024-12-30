@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../../../layouts/Layout";
 import DynamicTable from "../../../components/DynamicTable";
+import { ServiceContext } from "../../../context/ServiceContext";
 const  Services = () => {
+  // const [faqData,setFaqData]=useState()
+
+  const {allAddOns}=useContext(ServiceContext)
+
+
   const faqColumns = [
     { key: "Name", label: "Name" },
     { key: "max limit", label: "Max Limit" },
@@ -28,6 +34,13 @@ const  Services = () => {
       createdAt: "22 May 2024",
     },
   ];
+
+  useEffect(()=>{
+    if(allAddOns){
+      console.log(allAddOns)
+      // setFaqData(allAddOns)
+    }
+  },[])
  
 
   return (
