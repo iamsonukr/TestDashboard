@@ -34,16 +34,20 @@ import SignUp from "../pages/auth/SignUp"
 import ErrorPage from "../pages/ErrorPage";
 import Cview from "../components/Viewandedit";
 import MainPage from "../pages/auth/MainApp";
+import { useState } from "react";
+// import SignupPage from "../pages/auth/SignUp";
 
 
 const AppRoutes = () => {
+  const [isOpen,setIsOpen]=useState(false)
   return (
     <Routes>
 
       {/* Unprotected Routes */}
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
+      {/* <SignupPage */}
+      <Route path="/signup" element={<SignUp isOpen={true} setIsOpen={setIsOpen} />} />
       <Route path="/main" element={<MainPage />} />
 
 

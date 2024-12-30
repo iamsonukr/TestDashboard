@@ -4,17 +4,19 @@ import DynamicForm from './component/FormCard';
 import Modal from './component/Modal';
 import { toast } from 'react-toastify';
 
-const SignupPage = ({ isOpen, onClose }) => {
-    const handleSignup = (data) => {
-      toast.success('Signup successful!');
-      onClose();
-    };
-  
-    return (
-      <Modal isOpen={isOpen} onClose={onClose} title="Signup">
-        <DynamicForm role="signup" onSubmit={handleSignup} />
-      </Modal>
-    );
+const SignupPage = ({ isOpen, setIsOpen }) => {
+  const handleSignup = (data) => {
+    toast.success('Signup successful!');
+    onClose();
   };
+
+  return (
+    <Modal isOpen={isOpen =true} setIsOpen={setIsOpen} title="Signup">
+      <DynamicForm role="signup" onSubmit={handleSignup} />
+    </Modal>
+  );
+};
+
+export default SignupPage;
+
   
-  export default SignupPage;

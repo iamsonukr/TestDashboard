@@ -6,19 +6,45 @@ export const ServiceContext=createContext(null)
 
 const ServiceContextProvider=(props)=>{
     const [allServices,setAllServices]=useState(null)
+    const [allAddOns,setAllAddOns]=useState(null)
+    const [allUsers,setAllUsers]=useState(null)
 
     const url='http://localhost:5001'
 
-    // fetching all the services
+    // 1> fetching all the services
     const fetchServices=async(req,res)=>{
         try {
-                const response=await axios.get(`http://localhost:5001/api/v1/admin/list-srvices`)
+                const response=await axios.get(`${url}/api/v1/admin/list-service/`)
                 console.log(response.data.data)
                 setAllServices(response.data.data)
         } catch (error) {
             console.log(error)
         }
     }
+
+      // 1> fetching all the addons
+    const fetchAddOns=async(req,res)=>{
+        try {
+                const response=await axios.get(`${url}/api/v1/admin/addons/get-addons`)
+                console.log(response.data.data)
+                setAllAddOns(response.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // 3> Fetch all users
+    const fetchAllUsers=async(req,res)=>{
+        try {
+                const response=await axios.get(`${url}/api/v1/users/all`)
+                console.log(response.data.data)
+                setAllUsers(response.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    
     
     const fetchBookings=async(req,res)=>{
         try {
@@ -32,11 +58,13 @@ const ServiceContextProvider=(props)=>{
 
     useEffect(()=>{
         fetchServices()
+        fetchAddOns()
 
     },[])
 
     const contextValues={
         allServices,
+        allAddOns,
     }
 
     return(

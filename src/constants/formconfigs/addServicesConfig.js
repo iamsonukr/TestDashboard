@@ -1,24 +1,25 @@
 const addServicesConfig = {
-  title: "Services",
+  title: "Add Services",
   endpoint: "",
-  backRoute: "/dashboard/catalogue/services",
+  backRoute: "http://localhost:5001/api/v1/admin/create",
   fields: [
+    // 
     { 
-      name: "serviceName", 
+      name: "name", 
       label: "Display Name", 
       subLabel: "Configure your Service Showcase... and Type your service name, customer can find this service using this name, this will also printed in Invoice.", 
       type: "text", 
       required: true 
     },
     { 
-      name: "shortDescription", 
+      name: "description", 
       label: "Short Description", 
       subLabel: "2-3 Line Description text about your Service, We suggest you to put in bullet points", 
       type: "textarea", 
       required: true 
     },
     { 
-      name: "featuredImage", 
+      name: "image", 
       label: "Featured Image", 
       type: "file", 
       variant: "banner",
@@ -29,9 +30,9 @@ const addServicesConfig = {
       label: "Pricing Type", 
       type: "dropdown", 
       options: ["Unit", "Hour"], 
-      required: true 
+      // required: true 
     },
-    { name: "price", label: "Price", type: "number", required: true },
+    { name: "pricePerHour", label: "Price", type: "number", required: true },
     { 
       name: "comparePrice", 
       label: "Compare Price", 
@@ -44,7 +45,7 @@ const addServicesConfig = {
       label: "Stock Status", 
       type: "toggle", 
       options: { enabled: "In Stock", disabled: "Out of Stock" }, 
-      required: true 
+      // required: true 
     },
     { name: "seoTitle", label: "SEO Title", type: "text" },
     { name: "metaKeyword", label: "Meta Keyword", type: "text" },
@@ -60,14 +61,14 @@ const addServicesConfig = {
       label: "Categories", 
       type: "dropdown", 
       options: ["Mechanical", "Lawyer", "Electrical"], 
-      required: true 
+      // required: true 
     },
     { 
       name: "addon", 
       label: "Addon", 
       type: "dropdown", 
       options: ["Addon 1", "Addon 2"], 
-      required: true 
+      // required: true 
     },
     { name: "isBestSeller", label: "Best Seller", type: "toggle", options: { enabled: "Yes", disabled: "No" } },
     { 
@@ -75,7 +76,7 @@ const addServicesConfig = {
       label: "Status", 
       type: "toggle", 
       options: { enabled: "Active", disabled: "Inactive" }, 
-      required: true 
+      // required: true 
     },
   ]
 };

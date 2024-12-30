@@ -13,6 +13,7 @@ function Card() {
 
   useEffect(() => {
     if (allServices) {
+      console.log(allServices)
       setIsLoading(false); // Data is fetched, stop loading
     }
   }, [allServices]);
