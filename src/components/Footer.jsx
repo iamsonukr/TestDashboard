@@ -57,7 +57,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
         <div className="flex md:flex-row items-center flex-col  gap-8">
           <div className="w-2/3">
-            <img src="./logoYarpa.jpg" alt="" width={`30%`} />
+            <img src="./logoYarpa.png" alt="" width={`30%`} />
           </div>
           <div className="">
 
