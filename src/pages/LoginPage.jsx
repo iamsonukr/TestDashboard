@@ -1,5 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
+import Header from '../components/Header';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -11,39 +14,41 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="h-[100vh]  flex items-center justify-center">
-      <div className="w-full h-full flex    shadow-2xl flex-col md:flex-row">
-        
+    <>
+    <Navbar />
+    <div className="h-[100vh]  flex items-center justify-center pt-4 pb-4">
+      <div className="w-full h-full flex    flex-col md:flex-row">
+
         {/* Left Panel - Background with Text */}
         <div className=" md:flex md:w-1/2 relative">
-        <div className=' md:m-10 m-6  bg-gray-800 p-12 flex-col items-center rounded-[10%]'>
-          <div className="z-10">
-            <div className="text-white text-2xl mb-2">xmee</div>
-            <h1 className="text-white text-4xl font-bold mb-4">Welcome to</h1>
-            <h2 className="text-white text-3xl font-light mb-6">Yarpacom Cleaning Business.</h2>
-            <p className="text-gray-200 mb-8">
-            We’re your trusted Cleaning Service partner.
-            We’re thrilled to see you again! Easily access your Bookings, Services, and Personalized Recommendations
-            <br />
-            Let’s keep your spaces sparkling clean together!
-            </p>
+          <div className=' md:m-10 m-6  bg-gray-800 p-12 flex flex-col items-start justify-between rounded-[10%]'>
+            <div className="z-10">
+              <div className="text-white text-2xl mb-2"></div>
+              <h1 className="text-white text-4xl font-bold mb-4">Welcome to Yarpacom Cleaning Business.</h1>
+              {/* <h2 className="text-white text-3xl font-light mb-6"></h2> */}
+              <p className="text-gray-200 mb-8">
+                We’re your trusted Cleaning Service partner. <br />
+                We’re thrilled to see you again! Easily access your <b> Bookings, Services,</b> and <b> Personalized Recommendations</b>
+                <br />
+                Let’s keep your spaces sparkling clean together!
+              </p>
+            </div>
+
+            <div className="z-10">
+              <p className="text-gray-200">Don't have an account?</p>
+              <button className="text-white hover:underline mt-2">Register</button>
+            </div>
           </div>
-          
-          <div className="z-10">
-            <p className="text-gray-200">Don't have an account?</p>
-            <button className="text-white hover:underline mt-2">Register</button>
-          </div>
-          </div>
-          
+
           {/* Ice cream background overlay - semi-transparent */}
-          <div 
-            className="absolute inset-0 opacity-20"
+          <div
+            className="absolute inset-0 opacity-20 rounded-[10%]"
             style={{
               backgroundImage: 'url("./cleaner.jpg")',
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}
-          />
+            />
         </div>
 
         {/* Right Panel - Login Form */}
@@ -64,7 +69,7 @@ const LoginPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   placeholder="Enter your email"
-                />
+                  />
               </div>
 
               <div>
@@ -78,7 +83,7 @@ const LoginPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   placeholder="Enter Password"
-                />
+                  />
               </div>
 
               <div className="text-right">
@@ -90,19 +95,19 @@ const LoginPage = () => {
               <button
                 type="submit"
                 className="w-full bg-emerald-500 text-white py-3 rounded-lg hover:bg-emerald-600 transition-colors"
-              >
+                >
                 Log in
               </button>
             </form>
 
             <div className="mt-6 text-center">
               <p className="text-gray-500 mb-4">OR</p>
-              
+
               <div className="space-y-3">
                 <button className="w-full flex items-center justify-center gap-2 bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 transition-colors">
                   <span>Continue with Google</span>
                 </button>
-                
+
                 <div className="flex gap-3">
                   <button className="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
                     f
@@ -119,6 +124,8 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+                </>
   );
 };
 
