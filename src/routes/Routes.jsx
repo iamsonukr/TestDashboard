@@ -37,6 +37,8 @@ import MainPage from "../pages/auth/MainApp";
 import { useState } from "react";
 // import SignupPage from "../pages/auth/SignUp";
 
+import LoginPage from "../pages/LoginPage";
+
 
 const AppRoutes = () => {
   const [isOpen, setIsModalOpen ] = useState(false); // Separate state for Login modal
@@ -56,6 +58,8 @@ const AppRoutes = () => {
 
       <Route path='/Cart' element={<CartDetails />} />
       <Route path='/cleaningServices' element={<CleaningServices />} />
+      <Route path='/login2' element={<LoginPage />} />
+
 
 
       {/* Dashboard Routes */}
