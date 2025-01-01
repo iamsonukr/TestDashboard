@@ -46,7 +46,7 @@ const Slider = () => {
             absolute transition-all duration-300 
             bg-white shadow-lg rounded-xl p-6
             flex flex-col justify-between
-            w-[85%] md:w-[30%] 
+            w-[125%] md:w-[30%] 
             h-auto aspect-[4/3]
             transform hover:scale-105 hover:z-50
         `;
@@ -76,7 +76,7 @@ const Slider = () => {
                     What Our Clients Say
                 </h2>
 
-                <div className="relative h-[500px] md:h-[400px] flex items-center justify-center">
+                <div className="relative h-[500px] md:h-[400px] flex items-center justify-center flex-row overflow-ellipsis">
                     {testimonials.map((testimonial, index) => (
                         <div
                             key={index}

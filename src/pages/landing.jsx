@@ -37,7 +37,7 @@ function Landing({ isAuthenticated = false }) {
     <div className="w-full h-full  ">
       <Navbar isAuthenticated={isAuthenticated} />
       {/* static content */}
-      <div className="w-full flex bg-cover bg-center flex-col md:flex-row gap-4 p-20">
+      <div className="w-[90%] md:w-full flex bg-cover bg-center flex-col md:flex-row gap-4 md:p-20 p-4">
         <div className="flex flex-col items-start justify-center gap-3 md:gap-4 md:w-1/2 md:p-[3vw]">
           <h1 className="text-3xl md:text-[4vw] text-gray-600 font-bold md:leading-[4vw]">
             Find Cleaning{" "}

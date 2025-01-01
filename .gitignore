@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# origin          https://github.com/iamsonukr/Yarpacom-Dash.git (fetch)
+# origin          https://github.com/iamsonukr/Yarpacom-Dash.git (push)
+# testDash        https://github.com/iamsonukr/TestDashboard.git (fetch)
+# testDash        https://github.com/iamsonukr/TestDashboard.git (push)
+# upstream        https://github.com/KreativanTechnologies/Yarpacom-Dash (fetch)
+# upstream        https://github.com/KreativanTechnologies/Yarpacom-Dash (push)

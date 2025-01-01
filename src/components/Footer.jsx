@@ -55,9 +55,9 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-12 ">
       <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex md:flex-row items-center flex-col  gap-8">
           <div className="w-2/3">
-            <img src="./logoYarpa.jpg" alt="" />
+            <img src="./logoYarpa.jpg" alt="" width={`30%`} />
           </div>
           <div className="">
 
@@ -110,14 +110,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <div className="mt-12 pt-8 border-t border-gray-800 flex items-center justify-center">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm">
+            <p className="text-sm text-center">
               Copyright © {currentYear} Yarpacom - All Rights Reserved.
             </p>
-            <p className="text-sm">
-              {/* Designed with ❤️ for Hygiene everywhere */}
-            </p>
+            {/* <p className="text-sm">
+              Designed with ❤️ for Hygiene everywhere
+            </p> */}
           </div>
         </div>
         
