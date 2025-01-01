@@ -39,15 +39,16 @@ import { useState } from "react";
 
 
 const AppRoutes = () => {
-  const [isOpen,setIsOpen]=useState(false)
+  const [isOpen, setIsModalOpen ] = useState(false); // Separate state for Login modal
+  // const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   return (
     <Routes>
 
       {/* Unprotected Routes */}
       <Route path="/" element={<Landing />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login isOpen={isOpen} setIsModalOpen={setIsModalOpen} />} />
       {/* <SignupPage */}
-      <Route path="/signup" element={<SignUp isOpen={true} setIsOpen={setIsOpen} />} />
+      <Route path="/signup" element={<SignUp isOpen={isOpen} setIsModalOpen={setIsModalOpen} />} />
       <Route path="/main" element={<MainPage />} />
 
 

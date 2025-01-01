@@ -5,24 +5,24 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   const footerSections = [
-    {
-      title: "Customer Service",
-      links: [
-        { text: "Terms & Conditions", href: "/terms" },
-        { text: "Privacy Policy", href: "/privacy" },
-        { text: "Refund Policy", href: "/refund" },
-        { text: "FAQs", href: "/faq" }
-      ]
-    },
-    {
-      title: "Quick Links",
-      links: [
-        { text: "About Us", href: "/about" },
-        { text: "Our Services", href: "/menu" },
-        { text: "Order Now", href: "/order" },
-        { text: "Contact Us", href: "/contact" }
-      ]
-    },
+    // {
+    //   title: "Customer Service",
+    //   links: [
+    //     { text: "Terms & Conditions", href: "/terms" },
+    //     { text: "Privacy Policy", href: "/privacy" },
+    //     { text: "Refund Policy", href: "/refund" },
+    //     { text: "FAQs", href: "/faq" }
+    //   ]
+    // },
+    // {
+    //   title: "Quick Links",
+    //   links: [
+    //     { text: "About Us", href: "/about" },
+    //     { text: "Our Services", href: "/menu" },
+    //     { text: "Order Now", href: "/order" },
+    //     { text: "Contact Us", href: "/contact" }
+    //   ]
+    // },
     {
       title: "Contact Info",
       content: (
@@ -56,6 +56,11 @@ const Footer = () => {
     <footer className="bg-gray-900 text-gray-300 py-12 ">
       <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="w-2/3">
+            <img src="./logoYarpa.jpg" alt="" />
+          </div>
+          <div className="">
+
           {footerSections.map((section, index) => (
             <div key={index}>
               <h2 className="text-lg font-semibold text-white mb-4">
@@ -68,7 +73,7 @@ const Footer = () => {
                       <a
                         href={link.href}
                         className="hover:text-gray-400 transition duration-200"
-                      >
+                        >
                         {link.text}
                       </a>
                     </li>
@@ -79,6 +84,7 @@ const Footer = () => {
               )}
             </div>
           ))}
+          </div>
 
           <div>
             <h2 className="text-lg font-semibold text-white mb-4">

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Modal = ({ isOpen, setIsOpen, title, children, size = 'large' }) => {
+const Modal = ({ isOpen, setIsModalOpen, title, children, size = 'large' }) => {
   if (!isOpen) return null;
   const navigate=useNavigate()
 
@@ -13,9 +13,17 @@ const Modal = ({ isOpen, setIsOpen, title, children, size = 'large' }) => {
   };
   
   const handleClose=()=>{
-    setIsOpen(false)
+    console.log(isOpen,"before")
+    setIsModalOpen(false)
+    console.log(isOpen,"After")
+    alert("Closing the Popup")
     navigate('/')
   }
+
+  useEffect(()=>{
+    console.log("Inside signup")
+    console.log(isOpen)
+  },[])
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -26,7 +34,7 @@ const Modal = ({ isOpen, setIsOpen, title, children, size = 'large' }) => {
           <h2 className="text-xl font-bold">{title}</h2>
           <button
             onClick={handleClose}
-            className="text-gray-600 hover:text-gray-900 text-2xl"
+            className="text-gray-600 hover:text-red-900 text-2xl p-10"
           >
             &times;
           </button>

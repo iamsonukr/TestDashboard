@@ -4,19 +4,18 @@ import DynamicForm from './component/FormCard';
 import Modal from './component/Modal';
 import { toast } from 'react-toastify';
 
-const SignupPage = ({ isOpen, setIsOpen }) => {
+const SignupPage = ({ isOpen, setIsModalOpen }) => {
   const handleSignup = (data) => {
+    console.log(data);
     toast.success('Signup successful!');
-    onClose();
+    setIsModalOpen(false); // Properly update the state to close the modal
   };
 
   return (
-    <Modal isOpen={isOpen =true} setIsOpen={setIsOpen} title="Signup">
+    <Modal isOpen={isOpen} setIsModalOpen={setIsModalOpen} title="Signup">
       <DynamicForm role="signup" onSubmit={handleSignup} />
     </Modal>
   );
 };
 
 export default SignupPage;
-
-  

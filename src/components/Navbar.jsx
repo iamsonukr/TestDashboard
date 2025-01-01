@@ -32,7 +32,7 @@ const Navbar = ({ isAuthenticated = false }) => {
               <div className="w-full h-20 p-4 overflow-hidden flex items-center justify-center gap-2">
                 <img
                   className="w-full h-full rounded-xl object-cover"
-                  src="/logo.png"
+                  src="/logoYarpa.jpg"
                   alt=""
                 />
                 <p className="text-2xl font-bold bg-gradient-to-r from-[#2C52A0] to-[#4189C4] bg-clip-text text-transparent">
@@ -41,8 +41,6 @@ const Navbar = ({ isAuthenticated = false }) => {
               </div>
             </a>
           </div>
-
-
           {/* Desktop Menu */}
           <div className="w-full hidden md:flex justify-end gap-3">
             {isAuthenticated ? (

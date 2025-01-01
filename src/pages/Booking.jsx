@@ -37,11 +37,9 @@ const  Booking = () => {
         <DynamicTable title="Bookings" initialData={faqData} columns={faqColumns}  pageConfig={{
             addNewEntryRoute: "/add/customer",
             statusOptions: ["Active", "Inactive"],
-
             select: true,
             Action: true,
             showAction: true,
-
             showView: true,
           }}/>
       </div>

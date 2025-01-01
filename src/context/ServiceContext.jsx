@@ -34,15 +34,7 @@ const ServiceContextProvider=(props)=>{
     }
 
     // 3> Fetch all users
-    const fetchAllUsers=async(req,res)=>{
-        try {
-                const response=await axios.get(`${url}/api/v1/users/all`)
-                console.log(response.data.data)
-                setAllUsers(response.data.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+  
 
     
     
@@ -61,7 +53,7 @@ const ServiceContextProvider=(props)=>{
         fetchAddOns()
 
     },[])
-
+    
     const contextValues={
         allServices,
         allAddOns,

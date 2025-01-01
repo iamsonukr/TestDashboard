@@ -7,7 +7,7 @@ const ReactQuill = React.lazy(() => import("react-quill"));
 import "react-quill/dist/quill.snow.css"; // Rich Text Editor styles
 import faqData from "../utils/Data";
 
-//    name	
+//   name	
 // mobileCode		
 // MobileNumber'			
 // email		
@@ -77,7 +77,10 @@ const DynamicForm = ({ configKey, onBack, onSubmit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("This is formdata")
+    console.log(formData)
     try {
+      console.log("the form data is ",formData)
 
       console.log('==============Form Datat------------:',formData);
       console.log(config)
