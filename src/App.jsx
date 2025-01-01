@@ -1,5 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import AppRoutes from "./routes/Routes";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
     
       <AppRoutes />
       <Toaster />
+
     </>
   );
 }

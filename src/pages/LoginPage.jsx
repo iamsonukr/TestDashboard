@@ -16,7 +16,7 @@ const LoginPage = () => {
   return (
     <>
     <Navbar />
-    <div className="h-[100vh]  flex items-center justify-center pt-4 pb-4">
+    <div className="h-[100vh]  flex items-center justify-center pt-4 pb-10">
       <div className="w-full h-full flex    flex-col md:flex-row">
 
         {/* Left Panel - Background with Text */}
@@ -42,7 +42,7 @@ const LoginPage = () => {
 
           {/* Ice cream background overlay - semi-transparent */}
           <div
-            className="absolute inset-0 opacity-20 rounded-[10%]"
+            className="absolute inset-0 opacity-60 rounded-[10%]"
             style={{
               backgroundImage: 'url("./cleaner.jpg")',
               backgroundSize: 'cover',
@@ -52,7 +52,7 @@ const LoginPage = () => {
         </div>
 
         {/* Right Panel - Login Form */}
-        <div className="w-full md:w-1/2 p-8 md:p-12 bg-white">
+        <div className="w-full md:w-1/2 p-8 md:p-12 bg-white min-h-[100vh] block">
           <div className="max-w-md mx">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Log In</h2>
             <p className="text-gray-600 mb-8">Log In to try our amazing services</p>
@@ -94,7 +94,7 @@ const LoginPage = () => {
 
               <button
                 type="submit"
-                className="w-full bg-emerald-500 text-white py-3 rounded-lg hover:bg-emerald-600 transition-colors"
+                className="w-full bg-[#2C52A0] text-white py-3 rounded-lg hover:bg-emerald-600 transition-colors"
                 >
                 Log in
               </button>
@@ -114,7 +114,7 @@ const LoginPage = () => {
                   </button>
                   <button className="flex-1 bg-gray-900 text-white py-3 rounded-lg hover:bg-black transition-colors">
                     <span>
-                      <img src="/api/placeholder/20/20" alt="apple icon" className="w-5 h-5 mx-auto" />
+                      <img src="./apple.spng" alt="apple icon" className="w-5 h-5 mx-auto" />
                     </span>
                   </button>
                 </div>
@@ -124,7 +124,10 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
-    <Footer/>
+    <div className='mt-[100vh] md:mt-0 block'>
+
+<Footer/>
+    </div>
                 </>
   );
 };

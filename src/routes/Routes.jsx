@@ -38,6 +38,8 @@ import { useState } from "react";
 // import SignupPage from "../pages/auth/SignUp";
 
 import LoginPage from "../pages/LoginPage";
+import ForgotPage from "../pages/ForgotPage";
+import RegisterPage from "../pages/RegisterPage";
 
 
 const AppRoutes = () => {
@@ -59,6 +61,11 @@ const AppRoutes = () => {
       <Route path='/Cart' element={<CartDetails />} />
       <Route path='/cleaningServices' element={<CleaningServices />} />
       <Route path='/login2' element={<LoginPage />} />
+      <Route path='/forgot' element={<ForgotPage />} />
+      <Route path='/register' element={<RegisterPage />} />
+      
+      
+
 
 
 
