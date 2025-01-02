@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,9 @@ const RegisterPage = () => {
     password: '',
     agreeToTerms: false
   });
+  const navigate = useNavigate();
 
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle registration logic here
@@ -19,7 +22,7 @@ const RegisterPage = () => {
   return (
     <>
       <Navbar />
-      <div className="h-[100vh] flex items-center justify-center pt-4 pb-10 mb-12">
+      <div className=" flex items-center justify-center pt-4 px-8 ">
         <div className="w-full h-full flex flex-col md:flex-row">
           {/* Left Panel remains unchanged */}
           <div className="md:flex md:w-1/2 relative">
@@ -35,7 +38,7 @@ const RegisterPage = () => {
               </div>
               <div className="z-10">
                 <p className="text-gray-200">Already have an account?</p>
-                <button className="text-white hover:underline mt-2">Sign In</button>
+                <button onClick={()=>navigate('/login2')} className="text-white hover:underline mt-2">Sign In</button>
               </div>
             </div>
             <div className="absolute inset-0 opacity-60 rounded-[10%]"
@@ -138,7 +141,7 @@ const RegisterPage = () => {
           </div>
         </div>
       </div>
-      <div className='mt-[100vh] md:mt-0 block'>
+      <div className='mt-1 md:mt-12'>
         <Footer />
       </div>
     </>

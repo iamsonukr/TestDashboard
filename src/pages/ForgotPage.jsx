@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const ForgotPage = () => {
   const [emailOrMobile, setEmailOrMobile] = useState('');
@@ -10,11 +11,12 @@ const ForgotPage = () => {
     e.preventDefault();
     // Handle reset password logic here
   };
+  const navigate = useNavigate();
 
   return (
     <>
       <Navbar />
-      <div className="h-[100vh] flex items-center justify-center pt-4 pb-10">
+      <div className=" flex items-center justify-center pt-4 pb-10">
         <div className="w-full h-full flex flex-col md:flex-row">
           {/* Left Panel - Background with Text */}
           <div className="md:flex md:w-1/2 relative">
@@ -42,7 +44,7 @@ const ForgotPage = () => {
           </div>
 
           {/* Right Panel - Reset Password Form */}
-          <div className="w-full md:w-1/2 p-8 md:p-12 min-h-[100vh] flex justify-start items-center ">
+          <div className="w-full md:w-1/2 p-8 md:p-12 md:min-h-[100vh] flex justify-start items-center ">
             <div className="max-w-md mx">
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Reset Password</h2>
               <p className="text-gray-600 mb-8">Enter the email address or mobile number associated with your account.</p>
@@ -73,16 +75,17 @@ const ForgotPage = () => {
               <div className="mt-6 text-center">
                 <p className="text-gray-600">
                   Return to?{' '}
-                  <a href="#" className="text-emerald-500 hover:text-emerald-600">
+                  {/* <a href="#" className="text-emerald-500 hover:text-emerald-600">
                     Log in
-                  </a>
+                  </a> */}
+                  <button onClick={()=>navigate('/login2')} className="text-emerald-500 hover:text-emerald-600">Log in</button>
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className='mt-[100vh] md:mt-0 block'>
+      <div className='mt-1 md:mt-12'>
         <Footer />
       </div>
     </>
