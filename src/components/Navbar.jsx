@@ -5,10 +5,12 @@ import { FaCartShopping } from "react-icons/fa6";
 import { IoLogOutOutline } from "react-icons/io5";
 import LoginPage from '../pages/auth/Login';
 import ServiceProviderPage from '../pages/auth/ServiceProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ isAuthenticated = false }) => {
   const { carts } = useSelector((state) => state.allCart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
 
   const [activeModal, setActiveModal] = useState(null);
@@ -73,7 +75,7 @@ const Navbar = ({ isAuthenticated = false }) => {
               <div className="flex gap-2">
                 {/* signin */}
                 <button
-                  onClick={() => openModal('login')}
+                  onClick={()=>navigate('/login2 ')}
                   className="px-3 py-2 rounded-md text-white font-semibold bg-[#2C52A0] hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
                 >
                   Sign In
@@ -81,7 +83,7 @@ const Navbar = ({ isAuthenticated = false }) => {
 
                 {/* Become Partner */}
                 <button
-                onClick={() => openModal('serviceProvider')}
+                onClick={()=>navigate('/register ')}
                   className="px-3 py-2 rounded-md text-white font-semibold bg-[#2C52A0] hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
                 >
                   Become a Partner
@@ -163,7 +165,7 @@ const Navbar = ({ isAuthenticated = false }) => {
                 <div className="flex flex-col gap-2">
                 {/* signin */}
                 <button
-                  onClick={() => openModal('login')}
+                  onClick={()=>navigate('/login2 ')}
                   className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
                 >
                   Sign In
@@ -171,7 +173,7 @@ const Navbar = ({ isAuthenticated = false }) => {
 
                 {/* Become Partner */}
                 <button
-                onClick={() => openModal('serviceProvider')}
+                onClick={()=>navigate('/register ')}
                   className="px-3 py-2 rounded-md text-white font-semibold bg-gray-400 hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
                 >
                   Become a Partner
