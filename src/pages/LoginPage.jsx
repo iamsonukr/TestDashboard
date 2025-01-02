@@ -4,6 +4,8 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { FaGoogle } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -17,12 +19,12 @@ const LoginPage = () => {
       const response = await axios.post('https://yarpacom.onrender.com/api/v1/users/login', {
         phoneNumber,
         password,
-      });mer
+      });
       console.log(response)
       console.log("Checking Credentials")
       if (response.data.success) {
         toast.success("Login Successfull")
-        navigate('/dasboard')
+        navigate('/dashboard')
         console.log(response)
         console.log('Login successful:', response.data);
         // Redirect or save token as needed
@@ -58,7 +60,7 @@ const LoginPage = () => {
 
               <div className="z-10">
                 <p className="text-gray-200">Don't have an account?</p>
-                <button onClick={()=>navigate('/register ')} className="text-white hover:underline mt-2">Register</button>
+                <button onClick={() => navigate('/register ')} className="text-white hover:underline mt-2">Register</button>
               </div>
             </div>
 
@@ -110,36 +112,37 @@ const LoginPage = () => {
                 </div>
 
                 <div className="text-right">
-                <button onClick={()=>navigate('/forgot ')} className="text-emerald-500 hover:text-emerald-600 text-sm">Forgot Password</button>
+                  <button onClick={() => navigate('/forgot ')} className="text-emerald-500 hover:text-emerald-600 text-sm">Forgot Password</button>
 
                 </div>
+                <div className='w-full h-full flex items-center justify-center'>
 
-                <button
-                  type="submit"
-                  className="w-full bg-[#2C52A0] text-white py-3 rounded-lg hover:bg-emerald-600 transition-colors"
-                >
-                  Log in
-                </button>
+                  <button
+                    type="submit"
+                    className="w-1/2 bg-[#2C52A0] text-white font-bold py-3 rounded-lg hover:bg-emerald-600 transition-colors"
+                  >
+                    Log in
+                  </button>
+                </div>
               </form>
 
               <div className="mt-6 text-center">
                 <p className="text-gray-500 mb-4">OR</p>
 
-                <div className="space-y-3">
-                  <button className="w-full flex items-center justify-center gap-2 bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 transition-colors">
-                    <span>Continue with Google</span>
+                <div className=" gap-2 flex items-center justify-center">
+                  <button className="h-full w-1/3 flex items-center justify-center  bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors">
+                    <FaGoogle className="w-5 h-5 mx-auto" />
                   </button>
 
-                  <div className="flex gap-3">
-                    <button className="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                      f
-                    </button>
-                    <button className="flex-1 bg-gray-900 text-white py-3 rounded-lg hover:bg-black transition-colors">
-                      <span>
-                        <img src="./apple.png" alt="apple icon" className="w-5 h-5 mx-auto" />
-                      </span>
-                    </button>
-                  </div>
+                  <button className="h-full w-1/3  flex items-center justify-center  bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    <FaFacebook className="w-5 h-5 mx-auto" />
+
+                  </button>
+                  <button className="h-full w-1/3  bg-gray-900 text-white py-3 rounded-lg hover:bg-black transition-colors">
+                    <span>
+                      <img src="./apple.png" alt="apple icon" className="w-5 h-5 mx-auto" />
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>

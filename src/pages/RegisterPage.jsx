@@ -10,6 +10,7 @@ const RegisterPage = () => {
     name: '',
     email: '',
     phoneNumber: '',
+    otp: '',
     password: '',
     agreeToTerms: false,
     role: 'client',
@@ -47,7 +48,7 @@ const RegisterPage = () => {
   // sent OTP
   const handleSendOtp = async (e) => {
     e.preventDefault();
-    setIsOtpVerified(true)
+
     if (!formData.phoneNumber) {
       toast.error('Please enter a phone number');
       return;
@@ -76,7 +77,7 @@ const RegisterPage = () => {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
 
-    if (!otp) {
+    if (!formData.otp) {
       toast.error('Please enter the OTP');
       return;
     }
@@ -86,7 +87,7 @@ const RegisterPage = () => {
     try {
       const response = await axios.post(`${API_BASE_URL}/otp/otpVerification`, {
         phoneNumber: formData.phoneNumber,
-        otp,
+        otp:formData.otp,
       });
       console.log("OTP sent for verification")
 
@@ -106,6 +107,7 @@ const RegisterPage = () => {
   // register the user
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Checking the user data" , formData)
 
     if (!isOtpVerified) {
       toast.error('Please verify your phone number first');
@@ -115,19 +117,14 @@ const RegisterPage = () => {
     if (!formData.agreeToTerms) {
       toast.error('Please agree to the terms and conditions');
       return;
-    }
-
-    if (!formData.fullName || !formData.email || !formData.password) {
-      toast.error('Please fill in all required fields');
-      return;
+      // error('Please fill in all required fields');
+      // return;
     }
 
     setIsLoading(true);
-    console.log("Sending user data")
-    const phoneNumber = `+91 8210490833`
-    const otp = '7541'
+    // console.log("Sending user data")
     try {
-      const response = await axios.post(`${API_BASE_URL}/users/verify`, { ...formData, phoneNumber, otp });
+      const response = await axios.post(`${API_BASE_URL}/users/verify`, { ...formData });
       // const response = await axios.post(`localhost:5001/api/v1/users/register`, formData);
 
       console.log("Response after registereing the user", response)
@@ -225,8 +222,8 @@ const RegisterPage = () => {
                           <input
                             id="otp"
                             type="text"
-                            value={otp}
-                            onChange={(e) => setOtp(e.target.value)}
+                            value={formData.otp}
+                          onChange={(e) => setFormData({ ...formData, otp: e.target.value })}
                             className="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                             placeholder="Enter the OTP"
                           />
