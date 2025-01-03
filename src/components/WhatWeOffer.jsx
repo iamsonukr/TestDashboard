@@ -28,7 +28,7 @@ function WhatWeOffer({isAuthenticated=true}) {
 
   return (
     <div>
-      <section className="py-16 border-2 border-red-800 text-center px-8">
+      <section className="py-16  text-center px-8">
         <h2 className="text-3xl font-bold mb-10">
           Clean Your Space With <span className="text-[#FFAB00]">Best Cleaning Services</span>
         </h2>

@@ -97,30 +97,30 @@ const DynamicTable = ({
       {/* Header Section */}
       <div className="flex justify-between flex-wrap gap-4 mb-4">
         <h2 className="text-2xl font-semibold">{title}</h2>
-        <div className="flex gap-2">
+        <div className="flex  gap-2">
           {pageConfig?.importExport && (
             <>
-              <button
+               <button
                 onClick={handleExport}
-                className="action-button flex items-center gap-1"
+                className="action-button rounded-sm p-2 bg-gradient-to-r from-[#4189C4] to-[#2C52A0] text-white flex items-center gap-1"
               >
                 <FaFileExport /> Export
               </button>
-              <label className="action-button relative">
+              <button className="action-button rounded-sm p-2 bg-gradient-to-r from-[#4189C4] to-[#2C52A0] text-white flex items-center relative">
                 <MdImportExport /> Import
                 <input
                   type="file"
                   accept=".csv"
                   onChange={handleImport}
-                  className="absolute inset-0 opacity-0 cursor-pointer"
+                  className="absolute inset-0  opacity-0 cursor-pointer"
                 />
-              </label>
+              </button>
             </>
           )}
           {pageConfig?.AddnewEntry && (
             <button
               onClick={() => navigate(pageConfig.addNewEntryRoute)}
-              className="action-button flex items-center gap-1"
+              className="action-button rounded-sm p-2 flex bg-gradient-to-r from-[#4189C4] to-[#2C52A0] text-white items-center gap-1"
             >
               + Add New {title}
             </button>

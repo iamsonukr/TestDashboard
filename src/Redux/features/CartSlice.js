@@ -6,7 +6,7 @@ const initialState = {
 }
 
 //  card Slice 
- const cartSlice = createSlice ({
+ const cartSlice = createSlice ({  
     name : "cartsSlice",
     initialState,
     reducers : {
