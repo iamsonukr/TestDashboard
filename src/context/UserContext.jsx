@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 const UserContext=createContext(null)
 
 const UserContextProvier=(props)=>{
+    const url='https://yarpacom.onrender.com'
     const[allUsers,setAllUsers]=useState(null)
 
     const fetchAllUsers=async(req,res)=>{
