@@ -6,12 +6,25 @@ const AuthContextProvider = ({ children }) => {
     const [accessToken, setAccessToken] = useState(null);
     const [refreshToken, setRefreshToken] = useState(null);
     const [role, setRole] = useState(null);
+    const [isAuthenticated,setIsAuthenticated]=useState(false)
 
+    
     useEffect(() => {
-        setAccessToken(localStorage.getItem('accessToken'));
-        setRefreshToken(localStorage.getItem('refreshToken'));
-        setRole(localStorage.getItem('role'));
+        const token = localStorage.getItem('accessToken');
+        const storedRefreshToken = localStorage.getItem('refreshToken');
+        const storedRole = localStorage.getItem('role');
+        
+        setAccessToken(token);
+        setRefreshToken(storedRefreshToken);
+        setRole(storedRole);
+        
+        console.log("Access Token on Auth Side:", token);
+        if (token !== null && token !== undefined) {
+            setIsAuthenticated(true);
+        }
     }, []);
+    
+    
 
     const authValues = {
         accessToken,
@@ -19,11 +32,12 @@ const AuthContextProvider = ({ children }) => {
         refreshToken,
         setRefreshToken,
         role,
-        setRole
+        setRole,
+        isAuthenticated,
+        setIsAuthenticated
     };
 
     return (
-        
         <AuthContext.Provider value={authValues}>
             {children}
         </AuthContext.Provider>

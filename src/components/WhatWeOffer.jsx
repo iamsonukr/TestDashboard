@@ -1,13 +1,16 @@
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import LoginPage from '../pages/auth/Login';
+import { AuthContext } from '../context/AuthContext';
 
-function WhatWeOffer({isAuthenticated=true}) {
+function WhatWeOffer() {
   const navigate = useNavigate();
 
   const [activeModal, setActiveModal] = useState(null);
   const openModal = (modal) => setActiveModal(modal);
   const closeModal = () => setActiveModal(null);
+
+  const {isAuthenticated}=useContext(AuthContext)
 
 
   const services = [
@@ -18,7 +21,7 @@ function WhatWeOffer({isAuthenticated=true}) {
   function handleClick(){
     if(!isAuthenticated)
     {
-      openModal('login')
+      navigate("/login2")
     }
     else{
       navigate("/CleaningServices")
@@ -34,7 +37,7 @@ function WhatWeOffer({isAuthenticated=true}) {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mx-auto max-w-screen-lg">
           {services.map((service, index) => (
-            <div onClick={() => navigate('/login2 ')}
+            <div onClick={handleClick}
               key={index}
               className="p-6 rounded-lg border-2  hover:cursor-pointer shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               style={{

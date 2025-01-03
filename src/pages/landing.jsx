@@ -4,17 +4,19 @@ import Slider from "../components/Slider";
 import WhatWeOffer from "../components/WhatWeOffer";
 import MapSearchBar from "../components/MapSearchBar";
 import { useNavigate } from "react-router-dom";
-import { useEffect,useState } from "react";
+import { useEffect,useState,useContext } from "react";
 import LoginPage from './auth/Login';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from "../context/AuthContext";
 
-function Landing({ isAuthenticated = false }) {
+function Landing() {
 
   const navigate = useNavigate();
 
   const [activeModal, setActiveModal] = useState(null);
   const openModal = (modal) => setActiveModal(modal);
   const closeModal = () => setActiveModal(null);
+    const {accessToken,isAuthenticated,setIsAuthenticated}=useContext(AuthContext)
 
   const handleClick = () => {
     if (!isAuthenticated) {
@@ -75,7 +77,7 @@ function Landing({ isAuthenticated = false }) {
 
       {/*  */}
       <div className="w-full h-full">
-        <WhatWeOffer isAuthenticated={isAuthenticated} />
+        <WhatWeOffer  />
       </div>
 
       {/* Testimonials */}

@@ -9,12 +9,12 @@ const ServiceContextProvider=(props)=>{
     const [allAddOns,setAllAddOns]=useState(null)
     const [allUsers,setAllUsers]=useState(null)
 
-    const url='http://localhost:5001'
+    const url='https://yarpacom.onrender.com/api/v1'
 
     // 1> fetching all the services
     const fetchServices=async(req,res)=>{
         try {
-                const response=await axios.get(`${url}/api/v1/admin/list-service/`)
+                const response=await axios.get(`${url}/admin/list-service/`)
                 console.log(response.data.data)
                 setAllServices(response.data.data)
         } catch (error) {

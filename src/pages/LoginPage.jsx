@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import axios from 'axios';
@@ -6,11 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import { AuthContext } from '../context/AuthContext';
 
 const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+
+  const {setAccessToken,setRefreshToken,setToken,accessToken,setIsAuthenticated,isAuthenticated}=useContext(AuthContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,10 +26,19 @@ const LoginPage = () => {
       console.log("Checking Credentials")
       if (response.data.success) {
         toast.success("Login Successfull")
-        navigate('/dashboard')
+        if(response.data.data.role=='admin'){
+          navigate('/dashboard')
+        }else{
+          navigate('/')
+        }
         console.log(response)
         console.log('Login successful:', response.data);
+
+        setAccessToken(response.data.data.accessToken)
+        localStorage.setItem('accessToken',response.data.data.accessToken)
         // Redirect or save token as needed
+
+        console.log("This is access token on logn ",response.data.data.accessToken)
 
       } else {
         setError('Invalid Phone Number or password.');
@@ -38,8 +50,12 @@ const LoginPage = () => {
   };
   const navigate = useNavigate();
 
+
   return (
     <>
+    {
+      isAuthenticated && navigate('/') 
+    }
       <Navbar />
       <div className=" flex items-center justify-center pt-4 pb-10">
         <div className="w-full h-full flex flex-col md:px-8 md:flex-row">
