@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaCartShopping } from "react-icons/fa6";
@@ -6,11 +6,14 @@ import { IoLogOutOutline } from "react-icons/io5";
 import LoginPage from '../pages/auth/Login';
 import ServiceProviderPage from '../pages/auth/ServiceProvider';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = ({ isAuthenticated = false }) => {
   const { carts } = useSelector((state) => state.allCart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  const {token}=useContext(AuthContext)
 
 
   const [activeModal, setActiveModal] = useState(null);

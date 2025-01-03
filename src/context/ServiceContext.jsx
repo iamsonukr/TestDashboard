@@ -9,7 +9,7 @@ const ServiceContextProvider=(props)=>{
     const [allAddOns,setAllAddOns]=useState(null)
     const [allUsers,setAllUsers]=useState(null)
 
-    const url='http://localhost:5001'
+    const url='https://yarpacom.onrender.com'
 
     // 1> fetching all the services
     const fetchServices=async(req,res)=>{

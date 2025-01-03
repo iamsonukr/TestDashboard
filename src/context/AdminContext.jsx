@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 
 
@@ -19,3 +19,5 @@ const AdminContextProvider=(props)=>{
         </AdminContext.Provider>
     )
 }
+
+export default AdminContextProvider
