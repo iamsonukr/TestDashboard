@@ -28,15 +28,15 @@ function WhatWeOffer({isAuthenticated=true}) {
 
   return (
     <div>
-      <section className="py-16 text-center px-8">
+      <section className="py-16  text-center px-8">
         <h2 className="text-3xl font-bold mb-10">
           Clean Your Space With <span className="text-[#FFAB00]">Best Cleaning Services</span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mx-auto max-w-screen-lg">
           {services.map((service, index) => (
-            <div onClick={handleClick}
+            <div onClick={() => navigate('/login2 ')}
               key={index}
-              className="p-6 rounded-lg hover:cursor-pointer shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              className="p-6 rounded-lg border-2  hover:cursor-pointer shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               style={{
                 borderBottom: '4px solid transparent',
                 transition: 'border-color 0.3s ease',
@@ -53,7 +53,7 @@ function WhatWeOffer({isAuthenticated=true}) {
           ))}
         </div>
       </section>
-      <LoginPage isOpen={activeModal === 'login'} onClose={closeModal} />
+      <LoginPage onClick={() => navigate('/login2 ')} />
     </div>
   )
 }

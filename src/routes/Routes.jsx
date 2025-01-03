@@ -40,7 +40,7 @@ import { useState } from "react";
 import LoginPage from "../pages/LoginPage";
 import ForgotPage from "../pages/ForgotPage";
 import RegisterPage from "../pages/RegisterPage";
-
+import Dashview from "../components/Dashview";
 
 const AppRoutes = () => {
   const [isOpen, setIsModalOpen ] = useState(false); // Separate state for Login modal
@@ -63,7 +63,7 @@ const AppRoutes = () => {
       <Route path='/login2' element={<LoginPage />} />
       <Route path='/forgot' element={<ForgotPage />} />
       <Route path='/register' element={<RegisterPage />} />
-      
+      <Route path='/booking' element={<Dashview/>} /> 
       
 
 

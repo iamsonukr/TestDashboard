@@ -25,6 +25,7 @@ const testimonials = [
     }
 ];
 
+
 const Slider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);

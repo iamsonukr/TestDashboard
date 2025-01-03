@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import Layout from "../layouts/Layout";
-
 const UserProfile = () => {
   // const location = useLocation();
 
@@ -94,7 +93,7 @@ const UserProfile = () => {
                   <td className="py-2 px-4 text-red-500">Cancelled</td>
                   <td className="py-2 px-4">07 Aug 2024, 7:02 PM</td>
                   <td className="py-2 px-4">
-                    <button className="text-blue-500">View</button>
+                    <button onClick={() => navigate('/booking')} className="text-blue-500">View</button>
                   </td>
                 </tr>
               </tbody>

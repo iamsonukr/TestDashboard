@@ -49,7 +49,7 @@ function Landing({ isAuthenticated = false }) {
             Explore Best Cleaning Services Near You
           </h2>
           <button
-            onClick={handleClick}
+            onClick={() => navigate('/login2 ')}
             className="text-lg md:text-[2vw] px-4 py-2 md:px-2vw] md:py-[1vw] rounded-md font-semibold text-white bg-[#2C52A0] hover:bg-gradient-to-r from-[#2C52A0] to-[#4189C4]"
           >
             Book Now
