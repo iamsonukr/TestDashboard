@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import axios from 'axios';
@@ -6,11 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import AuthContext from './../context/AuthContext'
 
 const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+
+  const {setAccessToken, setRefreshToken, setToken } =useContext(AuthContext)
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +28,19 @@ const LoginPage = () => {
       console.log("Checking Credentials")
       if (response.data.success) {
         toast.success("Login Successfull")
-        navigate('/dashboard')
+        toast.success(response.data.data.role)
+
+        localStorage.setItem('token',response.data.data.token)
+        localStorage.setItem('refreshToken',response.data.data.refreshToken)
+        localStorage.setItem('accessToken',response.data.data.accessToken)
+        setToken(response.data.data.token)
+        setRefreshToken(response.data.data.refreshToken)
+        setAccessToken(response.data.data.accessToken)
+        if(response.data.data.role==='admin'){
+          navigate('/dashboard')
+        }else{
+          navigate('/')
+        }
         console.log(response)
         console.log('Login successful:', response.data);
         // Redirect or save token as needed
