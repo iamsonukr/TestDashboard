@@ -4,7 +4,7 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import axios from 'axios';
+
 import { toast } from 'react-toastify';
 
 const ForgotPage = () => {

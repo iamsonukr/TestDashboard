@@ -1,4 +1,4 @@
-import React, { useContext, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import axios from 'axios';
@@ -15,6 +15,8 @@ const LoginPage = () => {
   const [error, setError] = useState(null);
   // const navigate=useNavigate()
 
+  const {setAccessToken, setRefreshToken, isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -22,20 +24,20 @@ const LoginPage = () => {
         phoneNumber,
         password,
       });
+
       console.log(response)
       console.log("Checking Credentials")
       if (response.data.success) {
-        toast.success("Login Successfull")
-        toast.success(response.data.data.role)
-
-        localStorage.setItem('token',response.data.data.token)
+        
         localStorage.setItem('refreshToken',response.data.data.refreshToken)
         localStorage.setItem('accessToken',response.data.data.accessToken)
-        setToken(response.data.data.token)
+
         setRefreshToken(response.data.data.refreshToken)
         setAccessToken(response.data.data.accessToken)
+        setIsAuthenticated(true)
+        toast.success("Login Successfull")
+
         if(response.data.data.role==='admin'){
-          if(response.data.data.role=='admin'){
           navigate('/dashboard')
         }else{
           navigate('/')
@@ -43,18 +45,9 @@ const LoginPage = () => {
         }else{
           navigate('/')
         }
-        console.log(response)
-        console.log('Login successful:', response.data);
-
-        setAccessToken(response.data.data.accessToken)
-        localStorage.setItem('accessToken',response.data.data.accessToken)
-        // Redirect or save token as needed
-
         console.log("This is access token on logn ",response.data.data.accessToken)
 
-      } else {
-        setError('Invalid Phone Number or password.');
-      }
+     
     } catch (err) {
       console.error('Login error:', err);
       setError('Something went wrong. Please try again later.');
